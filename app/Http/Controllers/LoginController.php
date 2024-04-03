@@ -114,7 +114,7 @@ class LoginController extends Controller
         return view('site.trocarsenha', ['token' =>$token]);
     }
 
-    public function trocarsenha(Request $request){
+    /*public function trocarsenha(Request $request){
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
@@ -144,7 +144,42 @@ class LoginController extends Controller
                 event(new PasswordReset($cadastro));
             }
         );
+    }*/
+
+    public function trocarsenha(Request $request)
+{
+    // Valide os dados do formulário, se necessário
+    $request->validate([
+        'senha' => 'required|string|min:8|confirmed',
+        'token' => 'required|string',
+        'email' => 'required|email'
+    ],
+    
+    [
+        'token.required' => 'Esse link expirou. Recupere a senha novamente!',
+        'email.required' => 'Os dados informados estão incorretos!',
+        'email.email' => 'Dados incorretos. Recupere a senha novamente!',
+        'senha.required' => 'A senha é obrigatória!',
+        'senha.min' => 'A senha precisa ter 8 ou mais caracteres!',
+        'senha.confirmed' => 'As senhas estão divergentes!'
+    ]);
+
+    // Recupere o cadastro pelo email fornecido
+    $cadastro = Cadastro::where('email', $request->email)->first();
+
+    // Verifique se o cadastro foi encontrado e se o token corresponde
+    if ($cadastro && $cadastro) {
+        // Se a senha atual estiver correta, atualize a senha na tabela cadastros
+        $cadastro->senha = Hash::make($request->senha);
+        $cadastro->save();
+
+        // Retorne uma resposta de sucesso ou redirecione para uma página de sucesso
+        return redirect()->route('site.login')->with('success', 'Senha alterada com sucesso!');
+    } else {
+        // Se não encontrar o cadastro ou se o token estiver incorreto, retorne uma mensagem de erro
+        return back()->withErrors(['site.login' => 'E-mail ou token inválido.']);
     }
+}
 
     
     
