@@ -24,39 +24,6 @@ class LoginController extends Controller
         return view('site.login', ['erro' => $erro]);
     }
 
-    /*public function autenticar(Request $request){
-        $regras = [
-            'email' => 'required|email',
-            'senha' => 'required'
-        ];
-
-        $feedback = [
-            'email.required' => 'O campo E-mail é obrigatório!',
-            'email.email' => 'Digite um E-mail válido!',
-            'senha.required' => 'O campo Senha é obrigatório!'
-        ];
-
-        $request->validate($regras, $feedback);
-
-        $email = $request->get('email');
-        $senha = $request->get('senha');
-        //$senha = $request->Hash::make('senha');
-        
-
-        echo "User:  $email | Senha: $senha";
-
-        $cadastro = new Cadastro();
-
-        $cadastrado = $cadastro->where('email', $email)->where('senha', $senha)->get()->first();
-
-        if(isset($cadastrado->nome)){
-            echo 'Usuário existe';
-        } else {
-           return redirect()->route('site.login', ['erro' => 1]);
-        };
-        
-    }*/
-
     public function autenticar(Request $request){
         $regras = [
             'email' => 'required|email',
@@ -114,38 +81,6 @@ class LoginController extends Controller
         return view('site.trocarsenha', ['token' =>$token]);
     }
 
-    /*public function trocarsenha(Request $request){
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'senha' => 'required|min:8|confirmed',
-        ],
-        
-        [
-            'token.required' => 'Esse link expirou. Recupere a senha novamente!',
-            'email.required' => 'Os dados informados estão incorretos!',
-            'email.email' => 'Dados incorretos. Recupere a senha novamente!',
-            'senha.required' => 'A senha é obrigatória!',
-            'senha.min' => 'A senha precisa ter 8 ou mais caracteres!',
-            'senha.confirmed' => 'As senhas estão divergentes!'
-        ]
-    );
-
-        $status = Password::reset(
-            //$request->only('email', 'senha', 'senha_confirmation', 'token'),
-            $request->only('email', 'senha', 'token'),
-            function (Cadastro $cadastro, string $senha){
-                $cadastro->forceFill([
-                    'senha' =>Hash::make($senha)
-                ])->setRememberToken(Str::random(60));
-
-             $cadastro->save();
-
-                event(new PasswordReset($cadastro));
-            }
-        );
-    }*/
-
     public function trocarsenha(Request $request)
 {
     // Valide os dados do formulário, se necessário
@@ -154,7 +89,7 @@ class LoginController extends Controller
         'token' => 'required|string',
         'email' => 'required|email'
     ],
-    
+
     [
         'token.required' => 'Esse link expirou. Recupere a senha novamente!',
         'email.required' => 'Os dados informados estão incorretos!',

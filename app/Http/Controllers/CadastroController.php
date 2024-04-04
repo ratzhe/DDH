@@ -47,5 +47,4 @@ class CadastroController extends Controller
 
         return redirect()->route('site.login');
     }
-
 }
