@@ -19,17 +19,12 @@ use App\Http\Controllers\PerfilController;
 
 Route::get('/', function () {return 'Teste';});
 
-//Route::get('/site/login', 'LoginController@loginTeste')->name('site.login');
-
 Route::get('/site/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
 Route::post('/site/login', [LoginController::class, 'autenticar'])->name('site.login');
-//Route::post('/site/login', [LoginController::class, 'trocarsenha'])->name('site.trocarsenha');
 
 
 Route::match(['get', 'post'], '/site/recuperarsenha', [LoginController::class, 'recuperarsenha'])->name('site.recuperarsenha');
-// Route::post('/site/recuperarsenha', [LoginController::class, 'recuperarsenha'])->name('site.recuperarsenha');
 Route::get('/reset-password/{token}', [LoginController::class, 'reiniciarsenha'])->middleware('guest')->name('password.reset');
-//Route::post('/reset-password', [LoginController::class, 'trocarsenha'])->middleware('guest')->name('trocarsenha');
 Route::post('/site/trocarsenha', [LoginController::class, 'trocarsenha'])->middleware('guest')->name('trocarsenha');
 
 Route::get('/site/cadastro', [CadastroController::class, 'cadastrar'])->name('site.cadastro');
