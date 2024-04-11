@@ -13,6 +13,6 @@ O Discovery Diet & Health visa oferecer uma plataforma abrangente para o acompan
 
 ## Desenvolvimento:
 
-<p align="center">
+<p align="right">
   <img src="public/img/vscode.jpg" width="100" alt="vscode">
 </p>
