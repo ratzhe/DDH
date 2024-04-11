@@ -120,16 +120,16 @@
 
         .pesquisa-consultas input {
             width: 500px;
-            height: 40px;
+            height: 43px;
             color: #cdf2ff;
             padding: 0 15px;
-            margin-right: 600px;
             border-radius: 5px;
             border: none;
             color: #3C7182;
             background-color: lightcyan;
             font-size: 1rem;
         }
+
 
         .pesquisa-consultas input::placeholder {
             color: #3C7182;
@@ -139,91 +139,11 @@
             color: lightcyan;
             margin-bottom: 20px ;
         }
-        .prontuario-consultas {
-            background-color: #3C7182;
+        
+        .input-container {
             display: flex;
-        }
-
-        .listar-consultas {
-            flex: 1;
-            padding: 10px;
-        }
-
-        .card {
-            width: 685px;
-            background-color: lightcyan;
-            height: 150px;
-            margin: 10px;
-            border-radius: 5px;
-            display: block;
-            color: #3C7182;
-            position: relative;
-        }
-
-        .card p {
-            padding: 15px;
-        }
-
-        .card button {
-            width: 90px;
-            height: 30px;
-            background-color: #3C7182;
-            color: lightcyan;
-            border: none;
-            border-radius: 5px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.1rem;
-        }
-
-        .card button:hover {
-            cursor: pointer;
-            background: #5eb4d1;
-            color: #3C7182;
-        }
-
-        .card button:hover {
-            cursor: pointer;
-            background: #5eb4d1;
-            color: #3C7182;
-        }
-
-        .calendario-consultas {
-            background-color: #3C7182; 
-            flex: 1; 
-            padding: 0;
-            margin-left: 120px;
-        }
-
-        .month {
-            font-size: 1.5rem;
-            color: lightcyan;
-            margin-bottom: 10px;
-        }
-
-        .days-container {
-            display: grid;
-            grid-template-columns: repeat(7, 80px); 
-            gap: 10px 15px; /
-        }
-        .day {
-            position: relative; 
-            background-color: lightcyan;
-            width: 83px;
-            height: 83px;
-            border-radius: 2px;
-            display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-size: 0.9rem;
-        }
-
-        .day .number {
-            color: #3C7182;
-            position: absolute; 
-            top: 5px;
-            right: 5px; 
         }
 
     </style>
@@ -262,40 +182,48 @@
         
 
         <div class="pesquisa-consultas">
-            <div>
-                <label for="nome">Nome: </label><br>
-                <input name="nome" type="text" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
-            </div>
-            
-            <div>
-                <label for="cpf">CPF: </label><br>
-                <input name="cpf" type="text" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
-            </div>
+            <div class="input-container">
+                <div>
+                    <label for="nome">Nome: </label><br>
+                    <input name="nome" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
+                
+                <div>
+                    <label for="cpf">CPF: </label><br>
+                    <input name="cpf" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
 
-            <div>
-                <label for="rg">RG: </label><br>
-                <input name="rg" type="text" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
-            </div>
+                <div>
+                    <label for="rg">RG: </label><br>
+                    <input name="rg" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
 
-            <div>
-                <label for="email">E-Mail: </label><br>
-                <input name="email" type="email" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
-            </div>
+                <div>
+                    <label for="rg">CEP: </label><br>
+                    <input name="rg" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
 
-            <div>
-                <label for="telefone">Telefone: </label><br>
-                <input name="telefone" type="text" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
-            </div>
+                <div>
+                    <label for="email">E-Mail: </label><br>
+                    <input name="email" type="email" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
 
-            <div>
-                <label for="senha">Senha: </label><br>
-                <input name="senha" type="password" placeholder=""><br><br>
-                <i class="icon" data-feather="pen"></i>
+                <div>
+                    <label for="telefone">Telefone: </label><br>
+                    <input name="telefone" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
+
+                <div>
+                    <label for="senha">Senha: </label><br>
+                    <input name="senha" type="password" placeholder=""><br><br>
+                    <i class="icon" data-feather="pen"></i>
+                </div>
             </div>
             
         </div>
