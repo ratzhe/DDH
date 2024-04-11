@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\NovousuarioController;
 use App\Http\Controllers\PerfilController;
 
 /*
@@ -31,5 +32,8 @@ Route::get('/site/cadastro', [CadastroController::class, 'cadastrar'])->name('si
 Route::post('/site/cadastro', [CadastroController::class, 'salvar'])->name('site.cadastro');
 
 Route::get('/site/perfil', [PerfilController::class, 'index'])->name('site.perfil');
+
+Route::get('/site/novousuario', [NovousuarioController::class, 'index'])->name('site.novousuario');
+
 
 

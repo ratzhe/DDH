@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="shortcut icon" href="../assets/logo.png" />
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
     <title>Novos Usuários</title>
 
     <style>
@@ -15,9 +15,14 @@
             margin: 0;
         }
 
+        body {
+            height: 100%;
+        }
+
         .consultas-container {
             display: flex;
             flex-direction: column; 
+            min-height: 100%;
         }
 
         .paciente {
@@ -98,7 +103,7 @@
         }
 
         .usuarios input {
-            width: 500px;
+            width: 600px;
             height: 40px;
             color: #cdf2ff;
             padding: 0 15px;
@@ -159,7 +164,15 @@
             padding: 25px;
         }
 
+        .input-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; 
+        }
 
+        .input-wrapper input {
+            width: 70%; 
+        }
 
 
     </style>
@@ -201,13 +214,12 @@
                     <button class="botao">Educador Físico</button>
                 </div>
 
-                <div>
+                <div class="input-wrapper">
                     <input type="text" placeholder="Pesquisar usuário">
-                    <i class="icon" data-feather="search"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 
     <script>
         feather.replace();

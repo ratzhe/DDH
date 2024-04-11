@@ -88,10 +88,26 @@
             background-color: #3C7182;
         }
 
+        .menu a{
+            text-decoration: none;
+            color: #3C7182;
+            background-color: lightcyan;
+        }
+
+        .menu a:hover {
+            text-decoration: none;
+            color: lightcyan;
+            background-color: #3C7182;
+        }
+
         .menu #menu {
             color: lightcyan;
             background-color: #3C7182;
             
+        }
+
+        .menu a {
+            text-decoration: none;
         }
 
         .pesquisa-consultas {
@@ -224,7 +240,7 @@
 
         <div class="menu">
             <div class="menu-consultas" >
-                <p>Consultas</p>
+                <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
         
             <div class="menu-consultas">
