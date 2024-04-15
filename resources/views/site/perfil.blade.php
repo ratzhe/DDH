@@ -186,44 +186,57 @@
                 <div>
                     <label for="nome">Nome: </label><br>
                     <input name="nome" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <i class="icon" data-feather="edit-2"></i>
+                </div>
+
+                <div>
+                    <label for="sobrenome">Sobrenome: </label><br>
+                    <input name="sobrenome" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="edit-2"></i>
                 </div>
                 
                 <div>
                     <label for="cpf">CPF: </label><br>
                     <input name="cpf" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <i class="icon" data-feather="lock"></i>
                 </div>
 
                 <div>
-                    <label for="rg">RG: </label><br>
-                    <input name="rg" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <label for="dataNascimento">Data de Nascimento: </label><br>
+                    <input name="dataNascimento" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="edit-2"></i>
                 </div>
 
                 <div>
-                    <label for="rg">CEP: </label><br>
-                    <input name="rg" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <label for="genero">Gênero: </label><br>
+                    <input name="genero" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="edit-2"></i>
                 </div>
 
                 <div>
-                    <label for="email">E-Mail: </label><br>
-                    <input name="email" type="email" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <label for="cep">CEP: </label><br>
+                    <input name="cep" type="text" placeholder=""><br><br>
+                    <i class="icon" data-feather="edit-2"></i>
                 </div>
 
                 <div>
                     <label for="telefone">Telefone: </label><br>
                     <input name="telefone" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <i class="icon" data-feather="edit-2"></i>
+                </div>
+
+                <div>
+                    <label for="email">E-Mail: </label><br>
+                    <input name="email" type="email" placeholder=""><br><br>
+                    <i class="icon" data-feather="lock"></i>
                 </div>
 
                 <div>
                     <label for="senha">Senha: </label><br>
                     <input name="senha" type="password" placeholder=""><br><br>
-                    <i class="icon" data-feather="pen"></i>
+                    <i class="icon" data-feather="edit-2"></i>
                 </div>
+
             </div>
             
         </div>
@@ -236,18 +249,6 @@
     <script>
         feather.replace();
 
-        const daysInMonth = 31; 
-        const daysContainer = document.querySelector('.days-container');
-
-        for (let i = 1; i <= daysInMonth; i++) {
-        const dayElement = document.createElement('div');
-            dayElement.classList.add('day');
-            const numberSpan = document.createElement('span'); 
-            numberSpan.classList.add('number'); 
-            numberSpan.textContent = i; 
-            dayElement.appendChild(numberSpan); 
-            daysContainer.appendChild(dayElement);
-        }
     </script>
 </body>
 </html>

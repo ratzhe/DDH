@@ -17,12 +17,14 @@
 
         body {
             height: 100%;
+            background-color: #3C7182
         }
 
         .consultas-container {
             display: flex;
             flex-direction: column; 
             min-height: 100%;
+            background-color: white;
         }
 
         .paciente {
@@ -99,33 +101,25 @@
             background-color: #3C7182;
             width: 100%;
             align-items: center;
-            padding: 20px;
+            padding:  1px 0 0 20px;
         }
 
         .usuarios input {
             width: 600px;
-            height: 40px;
+            height: 50px;
             color: #cdf2ff;
             padding: 0 15px;
-            margin-top: 70px;
             border-radius: 5px;
             border: none;
             color: #3C7182;
             background-color: lightcyan;
             font-size: 1rem;
             display: flex;
-            justify-content: center; 
-            flex-direction: column; 
+            justify-content: center;
+            flex-direction: column;
             position: relative;
         }
 
-        .usuarios input + .icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 13px; 
-            color: lightcyan;
-        }
 
         .usuarios input::placeholder {
             color: #3C7182;
@@ -133,11 +127,15 @@
 
         .usuarios label {
             color: lightcyan;
-            margin-bottom: 20px ;
         }
         .botoes-container {
             display: flex;
             justify-content: center; 
+        }
+
+        .botoes-container a {
+            text-decoration: none;
+
         }
 
         .botao {
@@ -149,7 +147,10 @@
             border: none;
             border-radius: 5px;
             font-size: 1.1rem;
+            text-align: center; 
+            line-height: 50px; 
         }
+
 
         .botao:hover {
             cursor: pointer;
@@ -161,13 +162,13 @@
             background-color: #3C7182;
             color: lightcyan;
             font-size: 1.5rem;
-            padding: 25px;
+            padding: 35px;
         }
 
         .input-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 20px; 
+            margin: 20px 20px 0; 
         }
 
         .input-wrapper input {
@@ -209,11 +210,15 @@
 
             <div class="usuarios">
                 <div class="botoes-container">
-                    <button class="botao">Médico</button>
+                    <a href="{{ route('site.novomedico') }}" class="botao">Médico</a>
                     <button class="botao">Nutricionista</button>
                     <button class="botao">Educador Físico</button>
                 </div>
+            </div>
 
+            <h3 class="titulo">Usuários</h3>
+
+            <div class="usuarios">
                 <div class="input-wrapper">
                     <input type="text" placeholder="Pesquisar usuário">
                 </div>
