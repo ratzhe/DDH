@@ -174,7 +174,7 @@
         .input-wrapper input {
             width: 70%; 
         }
-
+        
 
     </style>
 </head>
@@ -223,17 +223,24 @@
                     <input type="text" placeholder="Pesquisar usuário">
                 </div>
             </div>
+
+            <h3 class="titulo">Agendas</h3>
+
+            <div class="usuarios">
+                <div class="botoes-container">
+                    <a href="{{ route('site.novomedico') }}" class="botao">Nova Agenda</a>
+                </div>
+            </div>
+
+            <h3 class="titulo">Horários</h3>
+
+            <div class="usuarios">
+                <div class="input-wrapper">
+                    <input type="text" placeholder="Pesquisar usuário">
+                </div>
+            </div>
         </div>
     </div>  
-
-    <script>
-        feather.replace();
-    </script>
-</body>
-</html>
-
-        </div>
-    </div>
 
     <script>
         feather.replace();

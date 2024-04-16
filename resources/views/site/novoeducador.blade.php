@@ -122,7 +122,7 @@
             padding: 20px;
         }
 
-        .pesquisa-consultas h3{
+        .pesquisa-consultas h2{
             color: lightcyan;
             padding: 20px;
         }  
@@ -224,6 +224,7 @@
 
         <div class="pesquisa-consultas">
             <div class="input-container">
+            <h2>Novo Usuário - Educador Físico</h2>
                 <div>
                     <label for="nome">Nome: </label><br>
                     <div class="input-with-icon">
