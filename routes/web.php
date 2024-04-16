@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\NovoeducadorController;
 use App\Http\Controllers\NovomedicoController;
 use App\Http\Controllers\NovonutricionistaController;
 use App\Http\Controllers\NovousuarioController;
 use App\Http\Controllers\PerfilController;
+use App\Models\Medico;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::post('/site/trocarsenha', [LoginController::class, 'trocarsenha'])->middl
 
 Route::get('/site/cadastro', [CadastroController::class, 'cadastrar'])->name('site.cadastro');
 Route::post('/site/cadastro', [CadastroController::class, 'salvar'])->name('site.cadastro');
+
+//Route::get('/site/novomedico', [NovomedicoController::class, 'cadastrar'])->name('site.medico');
+//Route::post('/site/novomedico', [NovomedicoController::class, 'salvar'])->name('site.medico');
 
 Route::get('/site/perfil', [PerfilController::class, 'index'])->name('site.perfil');
 Route::post('/site/perfil', [PerfilController::class, 'index'])->name('site.perfil');

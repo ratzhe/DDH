@@ -193,6 +193,21 @@
             pointer-events: none; 
         }
 
+        .input-container input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
+
+        .input-error {
+            border: solid 1px red !important; 
+            background-color: #ffe9e9 !important;
+        }
+
     </style>
 </head>
 <body>
@@ -226,98 +241,132 @@
 
         <div class="pesquisa-consultas">
             <div class="input-container">
-            <h2>Novo Usuário - Médico</h2>
-                <div>
-                    <label for="nome">Nome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="nome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-
-               <div>
-                    <label for="sobrenome">Sobrenome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="sobrenome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="crm">CRM: </label><br>
-                    <div class="input-with-icon">
-                        <input name="crm" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
                 
-                <div>
-                    <label for="cpf">CPF: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cpf" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                    <h2>Novo Usuário - Médico</h2>
+                    @csrf         
+                    <div style="position: relative;">
+                        <label for="nome">Nome: </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('nome')}}" name="nome" type="text" placeholder="" class="{{ $errors->has('nome') ? 'input-error' : '' }}">
+
+                            <div class="error-message">
+                                {{$errors->has('nome') ? $errors->first('nome') : ''}}
+                            </div>
+
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <label for="dataNascimento">Data de Nascimento: </label><br>
-                    <div class="input-with-icon">
-                        <input name="dataNascimento" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                    <div style="position: relative;">
+                        <label for="nome">Sobrenome: </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('sobrenome')}}" name="sobrenome" type="text" placeholder="" class="{{ $errors->has('sobrenome') ? 'input-error' : '' }}">
+
+                            <div class="error-message">
+                                {{$errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                            </div>
+
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <label for="genero">Gênero: </label><br>
-                    <div class="input-with-icon">
-                        <input name="genero" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                    <div style="position: relative;">
+                        <label for="crm">CRM: </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('crm')}}" name="crm" type="text" placeholder="" class="{{ $errors->has('crm') ? 'input-error' : '' }}">
+
+                            <div class="error-message">
+                                {{$errors->has('crm') ? $errors->first('crm') : ''}}
+                            </div>
+
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div style="position: relative;">
+                        <label for="cpf">CPF: </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('cpf')}}" name="cpf" type="text" placeholder="" class="{{ $errors->has('cpf') ? 'input-error' : '' }}">
 
-                <div>
-                    <label for="cep">CEP: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cep" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                            <div class="error-message">
+                                {{$errors->has('cpf') ? $errors->first('cpf') : ''}}
+                            </div>
+
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <label for="telefone">Telefone: </label><br>
-                    <div class="input-with-icon">
-                        <input name="telefone" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                    <div style="position: relative;">
+                        <label for="datanasc">Data de Nascimento:  </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('datanasc')}}" name="datanasc" type="text" placeholder="" class="{{ $errors->has('datanasc') ? 'input-error' : '' }}">
+
+                            <div class="error-message">
+                                {{$errors->has('cpf') ? $errors->first('datanasc') : ''}}
+                            </div>
+
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <label for="email">E-mail: </label><br>
-                    <div class="input-with-icon">
-                        <input name="email" type="email" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+                    <div style="position: relative;">
+                        <label for="genero" >Gênero: </label><br>
+                        <div class="input-with-icon">
+                            <input value="{{ old('genero')}}" type="radio" id="genero_masculino" name="genero" value="masculino" class="{{ $errors->has('datanasc') ? 'input-error' : '' }}">
+                            <label for="genero_masculino">Masculino</label>
+                            <input  value="{{ old('genero')}}" type="radio" id="genero_feminino" name="genero" value="feminino" class="{{ $errors->has('datanasc') ? 'input-error' : '' }}">
+                            <label for="genero_feminino">Feminino</label>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <label for="senha">Senha: </label><br>
-                    <div class="input-with-icon">
-                        <input name="senha" type="password" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
+
+                    <div>
+                        <label for="cep">CEP: </label><br>
+                        <div class="input-with-icon">
+                            <input name="cep" type="text" placeholder="">
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div class="botoes-container">
-                    <button class="botao">Cadastrar</button>
-                </div>
+                    <div>
+                        <label for="telefone">Telefone: </label><br>
+                        <div class="input-with-icon">
+                            <input name="telefone" type="text" placeholder="">
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
+                    </div>
 
-            </div>
-            
+                    <div>
+                        <label for="email">E-mail: </label><br>
+                        <div class="input-with-icon">
+                            <input name="email" type="email" placeholder="">
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="senha">Senha: </label><br>
+                        <div class="input-with-icon">
+                            <input name="senha" type="password" placeholder="">
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
+                    </div>
+
+                     <div>
+                        <label for="senha_confirmation">Confirmar Senha: </label><br>
+                        <div class="input-with-icon">
+                            <input name="senha_confirmation" type="password" placeholder="">
+                            <i class="icon" data-feather="edit-2"></i>
+                        </div>
+                    </div>
+
+                    <div class="botoes-container">
+                        <button class="botao" type="submit">Cadastrar</button>
+                    </div>
+            </div>       
         </div>
     
     </div>
-
 
     <script>
         feather.replace();
