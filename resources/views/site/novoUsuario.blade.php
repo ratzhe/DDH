@@ -212,7 +212,7 @@
                 <div class="botoes-container">
                     <a href="{{ route('site.novomedico') }}" class="botao">Médico</a>
                     <a href="{{ route('site.novonutricionista') }}" class="botao">Nutricionista</a>
-                    <button class="botao">Educador Físico</button>
+                    <a href="{{ route('site.novoeducador') }}" class="botao">Educador Físico</a>
                 </div>
             </div>
 
