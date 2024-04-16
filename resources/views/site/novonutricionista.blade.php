@@ -239,9 +239,9 @@
                 </div>
 
                 <div>
-                    <label for="crm">CRM: </label><br>
+                    <label for="cfn">CFN: </label><br>
                     <div class="input-with-icon">
-                        <input name="crm" type="text" placeholder="">
+                        <input name="cfn" type="text" placeholder="">
                         <i class="icon" data-feather="edit-2"></i>
                     </div>
                 </div>

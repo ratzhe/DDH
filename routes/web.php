@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\NovomedicoController;
+use App\Http\Controllers\NovonutricionistaController;
 use App\Http\Controllers\NovousuarioController;
 use App\Http\Controllers\PerfilController;
 
@@ -40,3 +41,6 @@ Route::post('/site/novousuario', [NovousuarioController::class, 'index'])->name(
 
 Route::get('/site/novomedico', [NovomedicoController::class, 'index'])->name('site.novomedico');
 Route::post('/site/novomedico', [NovomedicoController::class, 'index'])->name('site.novomedico');
+
+Route::get('/site/novonutricionista', [NovonutricionistaController::class, 'index'])->name('site.novonutricionista');
+Route::post('/site/novonutricionista', [NovonutricionistaController::class, 'index'])->name('site.novonutricionista');
