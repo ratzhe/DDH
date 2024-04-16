@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Perfil</title>
+    <title>Cadastro - Nutricionista</title>
 
     <style>
         * {
@@ -14,7 +14,6 @@
             box-sizing: border-box;
             margin: 0;
         }
-
 
         .consultas-container {
             display: flex;
@@ -123,6 +122,11 @@
             padding: 20px;
         }
 
+        .pesquisa-consultas h3{
+            color: lightcyan;
+            padding: 20px;
+        }   
+
         .pesquisa-consultas input {
             width: 500px;
             height: 43px;
@@ -221,6 +225,7 @@
 
         <div class="pesquisa-consultas">
             <div class="input-container">
+                <h3>Novo Usuário - Nutricionista</h3>
                 <div>
                     <label for="nome">Nome: </label><br>
                     <div class="input-with-icon">
@@ -289,7 +294,7 @@
                 <div>
                     <label for="email">E-mail: </label><br>
                     <div class="input-with-icon">
-                        <input name="email" type="text" placeholder="">
+                        <input name="email" type="email" placeholder="">
                         <i class="icon" data-feather="edit-2"></i>
                     </div>
                 </div>
@@ -297,7 +302,7 @@
                 <div>
                     <label for="senha">Senha: </label><br>
                     <div class="input-with-icon">
-                        <input name="senha" type="text" placeholder="">
+                        <input name="senha" type="password" placeholder="">
                         <i class="icon" data-feather="edit-2"></i>
                     </div>
                 </div>
