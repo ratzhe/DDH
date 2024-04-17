@@ -12,7 +12,6 @@ class Medico extends Model
 {
     use HasFactory, CanResetPasswordTrait, Notifiable;
 
-    protected $fillable = [
-        'nome', 'sobrenome', 'crm', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'
-    ];
+   protected $table = 'medicos';
+   protected $fillable = ['nome', 'sobrenome', 'crm', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Novos Usuários</title>
+    <title>Cadastro - Médico</title>
 
     <style>
         * {
@@ -15,16 +15,10 @@
             margin: 0;
         }
 
-        body {
-            height: 100%;
-            background-color: #3C7182
-        }
 
         .consultas-container {
             display: flex;
             flex-direction: column; 
-            min-height: 100%;
-            background-color: white;
         }
 
         .paciente {
@@ -35,7 +29,9 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
+
         }
+
 
         .paciente h2 {
             text-align: left;
@@ -97,16 +93,44 @@
             background-color: #3C7182;
         }
 
-        .usuarios {
-            background-color: #3C7182;
-            width: 100%;
-            align-items: center;
-            padding:  1px 0 0 20px;
+        .menu a{
+            text-decoration: none;
+            color: #3C7182;
+            background-color: lightcyan;
         }
 
-        .usuarios input {
-            width: 600px;
-            height: 50px;
+        .menu a:hover {
+            text-decoration: none;
+            color: lightcyan;
+            background-color: #3C7182;
+        }
+
+        .menu #menu {
+            color: lightcyan;
+            background-color: #3C7182;
+            
+        }
+
+        .menu a {
+            text-decoration: none;
+        }
+
+        .pesquisa-consultas {
+            background-color: #3C7182;
+            width: 100%;
+            
+            align-items: center;
+            padding: 20px;
+        }
+
+        .pesquisa-consultas h2{
+            color: lightcyan;
+            padding: 20px;
+        }
+
+        .pesquisa-consultas input {
+            width: 500px;
+            height: 43px;
             color: #cdf2ff;
             padding: 0 15px;
             border-radius: 5px;
@@ -114,32 +138,35 @@
             color: #3C7182;
             background-color: lightcyan;
             font-size: 1rem;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
         }
 
 
-        .usuarios input::placeholder {
+        .pesquisa-consultas input::placeholder {
             color: #3C7182;
         }
 
-        .usuarios label {
+        .pesquisa-consultas label {
             color: lightcyan;
+            margin-bottom: 20px;
         }
+        
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container input {
+            margin-bottom: 10px; 
+        }
+
         .botoes-container {
             display: flex;
             justify-content: center; 
         }
 
-        .botoes-container a {
-            text-decoration: none;
-
-        }
-
-        .botao {
-            width: 400px;
+        button {
+            width: 200px;
             height: 50px;
             margin-right: 20px; 
             background-color: lightcyan;
@@ -147,41 +174,47 @@
             border: none;
             border-radius: 5px;
             font-size: 1.1rem;
-            text-align: center; 
-            line-height: 50px; 
         }
 
-
-        .botao:hover {
-            cursor: pointer;
-            background: #5eb4d1;
-            color: lightcyan;
+        .input-with-icon {
+            position: relative;
         }
 
-        .titulo {
-            background-color: #3C7182;
-            color: lightcyan;
-            font-size: 1.5rem;
-            padding: 35px;
+        .input-with-icon input {
+            padding-right: 20px; 
         }
 
-        .input-wrapper {
-            display: flex;
-            justify-content: center;
-            margin: 20px 20px 0; 
+        .input-with-icon .icon {
+            position: absolute;
+            top: 50%;
+            right: 10px; 
+            transform: translateY(-50%);
+            color: #3C7182;
+            pointer-events: none; 
         }
 
-        .input-wrapper input {
-            width: 70%; 
+        .input-container input[type="radio"] {
+            margin-right: 5px;
         }
-        
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
+
+        .input-error {
+            border: solid 1px red !important; 
+            background-color: #ffe9e9 !important;
+        }
 
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
-            <h2>Olá, Paciente!</h2>
+            <h2>DDH</h2>
+            
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>
@@ -204,43 +237,15 @@
                 <p>Perfil</p>
             </div>
         </div>
+        
 
-        <div class="conteudo">
-            <h3 class="titulo">Novos Usuários</h3>
-
-            <div class="usuarios">
-                <div class="botoes-container">
-                    <a href="{{ route('site.medico.index') }}" class="botao">Médico</a>
-                    <a href="{{ route('site.novonutricionista') }}" class="botao">Nutricionista</a>
-                    <a href="{{ route('site.novoeducador') }}" class="botao">Educador Físico</a>
-                </div>
-            </div>
-
-            <h3 class="titulo">Usuários</h3>
-
-            <div class="usuarios">
-                <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar usuário">
-                </div>
-            </div>
-
-            <h3 class="titulo">Agendas</h3>
-
-            <div class="usuarios">
-                <div class="botoes-container">
-                    <a href="{{ route('site.medico.index') }}" class="botao">Nova Agenda</a>
-                </div>
-            </div>
-
-            <h3 class="titulo">Horários</h3>
-
-            <div class="usuarios">
-                <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar usuário">
-                </div>
-            </div>
+        <div class="pesquisa-consultas">
+            <div class="input-container">
+                lista
+            </div>       
         </div>
-    </div>  
+    
+    </div>
 
     <script>
         feather.replace();

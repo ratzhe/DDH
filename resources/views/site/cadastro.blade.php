@@ -135,7 +135,7 @@
         </div>
         
         <div class="login">
-            <form action="{{ route('site.cadastro') }}" method="post">
+        <form action="{{ route('site.cadastro') }}" method="post">
 
             <h2>Cadastro</h2>
             @csrf
