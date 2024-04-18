@@ -17,7 +17,7 @@ class MedicoController extends Controller
     }
 
     public function adicionar(Request $request){
-        
+        //dd($request->all());
 
         if($request->input('_token') != ''){
             
@@ -27,11 +27,10 @@ class MedicoController extends Controller
                 'crm' => 'required|unique:medicos',
                 'cpf' => 'required|unique:cadastros',
                 'datanasc' => 'required|date',
-                'genero' => 'required|in:masculino,feminino',
+                //'genero' => 'required|in:masculino,feminino',
                 'cep' => 'required|regex:/^\d{5}-?\d{3}$/',
                 'telefone' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/',
                 'email' => 'required|email|unique:cadastros',
-                //'senha' => 'required|min:8',
                 'senha' => 'required|min:8|confirmed',
             ];
 
@@ -46,8 +45,8 @@ class MedicoController extends Controller
                 'cpf.unique' => 'CPF já cadastrado!',
                 'datanasc.required' => 'A data de nascimento é obrigatória!',
                 'datanasc.date' => 'Por favor, insira uma data de nascimento válida!',
-                'genero.required' => 'Informe o gênero!',
-                'genero.in' => 'Gênero inválido!',
+                //'genero.required' => 'Informe o gênero!',
+                //'genero.in' => 'Gênero inválido!',
                 'cep.required' => 'O CEP é obrigatório!',
                 'cep.regex' => 'Por favor, insira um CEP válido!',
                 'telefone.required' => 'O telefone é obrigatório!',
@@ -62,8 +61,9 @@ class MedicoController extends Controller
 
             $request->validate($regras, $respostas);
 
-            $medico = new Medico();
-            $medico->create($request->all());
+            $medico = Medico::create($request->all());
+            $medico->senha = Hash::make($request->senha);
+            $medico->save();
         }
         
         return view('site.medico.adicionar');
