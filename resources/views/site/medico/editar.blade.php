@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Cadastro - Médico</title>
+    <title>Editar - Médico</title>
 
     <style>
         * {
@@ -207,6 +207,9 @@
             border: solid 1px red !important; 
             background-color: #ffe9e9 !important;
         }
+        .input-container input {
+            margin-bottom: 10px;
+        }
 
     </style>
 </head>
@@ -240,42 +243,43 @@
         
 
         <div class="pesquisa-consultas">
-            <div style="width: 90%; margin-left: auto; margin-right: auto;">
+            
+           <div class="input-container">
+                
+                <form method="post" action="{{ route('site.medico.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $medico->id}}">
+                    @csrf
+                    <input value="{{ $medico->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
+                    <input value="{{ $medico->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                    <input value="{{ $medico->crm ?? old('crm') }}" name="crm" type="text" placeholder="CRM" disabled>
+                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
+                    <input value="{{ $medico->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF" disabled>
+                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
+                    <input value="{{ $medico->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
 
-                <table border="1" width: 100%>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Sobrenome</th>
-                            <th>CRM</th>
-                            <th>CPF</th>
-                            <th>Gênero</th>
-                            <th>Data de Nascimento</th>
-                            <th>CEP</th>
-                            <th>Telefone</th>
-                            <th>E-mail</th>                       
-                        </tr>
-                    </thead>
+                    <label>Genero</label>
+                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
+                    <label for="genero_masculino">Masculino</label>
+                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
+                    <label for="genero_feminino">Feminino</label>
 
-                    <tbody>
-                        @foreach ($medicos as $medico)
-                            <tr>
-                                <td>{{$medico->nome}}</td>
-                                <td>{{$medico->sobrenome}}</td>
-                                <td>{{$medico->crm}}</td>
-                                <td>{{$medico->cpf}}</td>
-                                <td>{{$medico->genero}}</td>
-                                <td>{{$medico->datanasc}}</td>
-                                <td>{{$medico->cep}}</td>
-                                <td>{{$medico->telefone}}</td>
-                                <td>{{$medico->email}}</td>
-                                <td><a href="{{ route('site.medico.editar', $medico->id) }}">Editar</td>
-                                <td>Excluir</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>       
+
+                    <input value="{{  $medico->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
+                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
+                    <input value="{{  $medico->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
+                    <input value="{{  $medico->email ?? old('email') }}" name="email" type="email" placeholder="E-mail" disabled>
+                    {{ $errors->has('email') ? $errors->first('email') : ''}}
+                    <input value="{{  $medico->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
+                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
+                    <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
         </div>
     
     </div>

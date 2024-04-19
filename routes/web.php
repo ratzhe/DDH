@@ -35,6 +35,7 @@ Route::get('/site/medico/listar', [MedicoController::class, 'listar'])->name('si
 Route::post('/site/medico/listar', [MedicoController::class, 'listar'])->name('site.medico.listar');
 Route::get('/site/medico/adicionar', [MedicoController::class, 'adicionar'])->name('site.medico.adicionar');
 Route::post('/site/medico/adicionar', [MedicoController::class, 'adicionar'])->name('site.medico.adicionar');
+Route::get('/site/medico/editar/{id}', [MedicoController::class, 'editar'])->name('site.medico.editar');
 
 
 Route::get('/site/novonutricionista', [NovonutricionistaController::class, 'index'])->name('site.novonutricionista');

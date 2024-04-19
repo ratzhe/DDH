@@ -245,37 +245,14 @@
         <div class="pesquisa-consultas">
            
            <div class="input-container">
-                <form method="post" action="{{ route('site.medico.adicionar') }}">
+                <form method="post" action="{{ route('site.medico.listar') }}">
                     @csrf
-                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
-                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
-                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
-                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
-                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
-
-                    <label>Genero</label>
-                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
-                    <label for="genero_masculino">Masculino</label>
-                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
-                    <label for="genero_feminino">Feminino</label>
-
-
-                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
-                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
-                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
+                       
+                    <input value="{{ old('email') }}" name="email" type="email" placeholder="Pesquise pelo e-mail">
                     {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
-                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
-                    <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
+                    
 
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit">Pesquisar</button>
                 </form>
             </div>
         </div>
