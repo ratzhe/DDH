@@ -78,8 +78,9 @@ class MedicoController extends Controller
             } else{
                 echo 'não foi possível atualizar';
             }
+            return redirect()->route('site.medico.editar');
         }
-        return view('site.medico.adicionar');
+        return view('site.medico.editar');
     }
 
     public function editar($id){

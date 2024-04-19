@@ -247,7 +247,7 @@
            <div class="input-container">
                 
                 <form method="post" action="{{ route('site.medico.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $medico->id}}">
+                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
                     @csrf
                     <input value="{{ $medico->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
