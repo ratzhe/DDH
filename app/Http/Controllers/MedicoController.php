@@ -85,10 +85,13 @@ class MedicoController extends Controller
 
     public function editar($id){
         $medico = Medico::find($id);
-        
-
         return view('site.medico.editar', ['medico' => $medico]);
     }
 
+    public function excluir($id){
+        Medico::find($id)->delete();
+
+        return redirect()->route('site.medico.index');
+    }
     
 }

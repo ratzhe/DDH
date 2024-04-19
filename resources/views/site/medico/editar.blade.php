@@ -253,9 +253,9 @@
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
                     <input value="{{ $medico->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ $medico->crm ?? old('crm') }}" name="crm" type="text" placeholder="CRM" disabled>
+                    <input value="{{ $medico->crm ?? old('crm') }}" name="crm" type="text" placeholder="CRM">
                     {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ $medico->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF" disabled>
+                    <input value="{{ $medico->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     <input value="{{ $medico->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
                     {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
@@ -271,7 +271,7 @@
                     {{ $errors->has('cep') ? $errors->first('cep') : ''}}
                     <input value="{{  $medico->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
                     {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{  $medico->email ?? old('email') }}" name="email" type="email" placeholder="E-mail" disabled>
+                    <input value="{{  $medico->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
                     {{ $errors->has('email') ? $errors->first('email') : ''}}
                     <input value="{{  $medico->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
                     {{ $errors->has('senha') ? $errors->first('senha') : ''}}

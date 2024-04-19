@@ -269,8 +269,8 @@
                                 <td>{{$medico->cep}}</td>
                                 <td>{{$medico->telefone}}</td>
                                 <td>{{$medico->email}}</td>
-                                <td><a href="{{ route('site.medico.editar', $medico->id) }}">Editar</td>
-                                <td>Excluir</td>
+                                <td><a href="{{ route('site.medico.editar', $medico->id) }}">Editar</a></td>
+                                <td><a href="{{ route('site.medico.excluir', $medico->id) }}">Excluir</a></td>
                             </tr>
                         @endforeach
                     </tbody>

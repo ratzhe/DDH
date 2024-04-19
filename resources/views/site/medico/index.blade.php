@@ -252,7 +252,7 @@
                     {{ $errors->has('email') ? $errors->first('email') : ''}}
                     
 
-                    <button type="submit">Pesquisar</button>
+                    <button type="submit">Cadastrar</button>
                 </form>
             </div>
         </div>
