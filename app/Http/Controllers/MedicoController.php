@@ -15,9 +15,9 @@ class MedicoController extends Controller
     public function listar(Request $request){
         $medicos = Medico::where('email', 'like', '%'.$request->input('email').'%')
             ->get();
-
         return view('site.medico.listar', ['medicos' => $medicos]);
     }
+    
 
     public function adicionar(Request $request){
         
@@ -67,6 +67,9 @@ class MedicoController extends Controller
             $medico = Medico::create($request->all());
             $medico->senha = Hash::make($request->senha);
             $medico->save();
+
+            //$medicos = Medico::all(); 
+            //return view('site.medico.listar', ['medicos' => $medicos]);
         }
         // edição
         if($request->input('_token') != '' && $request->input('id') != ''){

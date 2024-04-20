@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Cadastro - Educador Físico</title>
+    <title>Cadastro - Nutricionista</title>
 
     <style>
         * {
@@ -118,6 +118,7 @@
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
+            
             align-items: center;
             padding: 20px;
         }
@@ -125,7 +126,7 @@
         .pesquisa-consultas h2{
             color: lightcyan;
             padding: 20px;
-        }  
+        }
 
         .pesquisa-consultas input {
             width: 500px;
@@ -138,6 +139,7 @@
             background-color: lightcyan;
             font-size: 1rem;
         }
+
 
         .pesquisa-consultas input::placeholder {
             color: #3C7182;
@@ -163,8 +165,8 @@
             justify-content: center; 
         }
 
-        .botao {
-            width: 400px;
+        button {
+            width: 200px;
             height: 50px;
             margin-right: 20px; 
             background-color: lightcyan;
@@ -191,13 +193,28 @@
             pointer-events: none; 
         }
 
+        .input-container input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
+
+        .input-error {
+            border: solid 1px red !important; 
+            background-color: #ffe9e9 !important;
+        }
+
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
             <h2>DDH</h2>
-
+            
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>
@@ -223,98 +240,45 @@
         
 
         <div class="pesquisa-consultas">
-            <div class="input-container">
-            <h2>Novo Usuário - Educador Físico</h2>
-                <div>
-                    <label for="nome">Nome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="nome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
+            <div style="width: 90%; margin-left: auto; margin-right: auto;">
 
+                <table border="1" width: 100%>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>CFN</th>
+                            <th>CPF</th>
+                            <th>Gênero</th>
+                            <th>Data de Nascimento</th>
+                            <th>CEP</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>                       
+                        </tr>
+                    </thead>
 
-               <div>
-                    <label for="sobrenome">Sobrenome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="sobrenome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="cref">CREF: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cref" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="cpf">CPF: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cpf" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="dataNascimento">Data de Nascimento: </label><br>
-                    <div class="input-with-icon">
-                        <input name="dataNascimento" type="date" placeholder="">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="genero">Gênero: </label><br>
-                    <div class="input-with-icon">
-                        <input name="genero" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="cep">CEP: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cep" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="telefone">Telefone: </label><br>
-                    <div class="input-with-icon">
-                        <input name="telefone" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="email">E-mail: </label><br>
-                    <div class="input-with-icon">
-                        <input name="email" type="email" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="senha">Senha: </label><br>
-                    <div class="input-with-icon">
-                        <input name="senha" type="password" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div class="botoes-container">
-                    <button class="botao">Cadastrar</button>
-                </div>
-
-            </div>
-            
+                    <tbody>
+                        @foreach ($nutricionistas as $nutricionista)
+                            <tr>
+                                <td>{{$nutricionista->nome}}</td>
+                                <td>{{$nutricionista->sobrenome}}</td>
+                                <td>{{$nutricionista->crm}}</td>
+                                <td>{{$nutricionista->cpf}}</td>
+                                <td>{{$nutricionista->genero}}</td>
+                                <td>{{$nutricionista->datanasc}}</td>
+                                <td>{{$nutricionista->cep}}</td>
+                                <td>{{$nutricionista->telefone}}</td>
+                                <td>{{$nutricionista->email}}</td>
+                                <td><a href="{{ route('site.nutricionista.editar', $nutricionista->id) }}">Editar</a></td>
+                                <td><a href="{{ route('site.nutricionista.excluir', $nutricionista->id) }}">Excluir</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>       
         </div>
     
     </div>
-
 
     <script>
         feather.replace();

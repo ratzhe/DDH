@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Cadastro - Nutricionista</title>
+    <title>Adicionar - Nutricionista</title>
 
     <style>
         * {
@@ -14,6 +14,7 @@
             box-sizing: border-box;
             margin: 0;
         }
+
 
         .consultas-container {
             display: flex;
@@ -125,7 +126,7 @@
         .pesquisa-consultas h2{
             color: lightcyan;
             padding: 20px;
-        }   
+        }
 
         .pesquisa-consultas input {
             width: 500px;
@@ -164,8 +165,8 @@
             justify-content: center; 
         }
 
-        .botao {
-            width: 400px;
+        button {
+            width: 200px;
             height: 50px;
             margin-right: 20px; 
             background-color: lightcyan;
@@ -192,13 +193,31 @@
             pointer-events: none; 
         }
 
+        .input-container input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
+
+        .input-error {
+            border: solid 1px red !important; 
+            background-color: #ffe9e9 !important;
+        }
+        .input-container input {
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
             <h2>DDH</h2>
-
+            
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>
@@ -224,99 +243,46 @@
         
 
         <div class="pesquisa-consultas">
-            <div class="input-container">
-                <h2>Novo Usuário - Nutricionista</h2>
-                <div>
-                    <label for="nome">Nome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="nome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-
-               <div>
-                    <label for="sobrenome">Sobrenome: </label><br>
-                    <div class="input-with-icon">
-                        <input name="sobrenome" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="cfn">CFN: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cfn" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="cpf">CPF: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cpf" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="dataNascimento">Data de Nascimento: </label><br>
-                    <div class="input-with-icon">
-                        <input name="dataNascimento" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="genero">Gênero: </label><br>
-                    <div class="input-with-icon">
-                        <input name="genero" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="cep">CEP: </label><br>
-                    <div class="input-with-icon">
-                        <input name="cep" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="telefone">Telefone: </label><br>
-                    <div class="input-with-icon">
-                        <input name="telefone" type="text" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="email">E-mail: </label><br>
-                    <div class="input-with-icon">
-                        <input name="email" type="email" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="senha">Senha: </label><br>
-                    <div class="input-with-icon">
-                        <input name="senha" type="password" placeholder="">
-                        <i class="icon" data-feather="edit-2"></i>
-                    </div>
-                </div>
-
-                <div class="botoes-container">
-                    <button class="botao">Cadastrar</button>
-                </div>
-
-            </div>
             
+           <div class="input-container">
+                
+                <form method="post" action="{{ route('site.nutricionista.adicionar') }}">
+                    @csrf
+                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
+                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                    <input value="{{ old('cfn') }}" name="cfn" type="text" placeholder="CFN">
+                    {{ $errors->has('cfn') ? $errors->first('cfn') : ''}}
+                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
+                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
+                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
+
+                    <label>Genero</label>
+                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
+                    <label for="genero_masculino">Masculino</label>
+                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
+                    <label for="genero_feminino">Feminino</label>
+
+
+
+                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
+                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
+                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
+                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
+                    {{ $errors->has('email') ? $errors->first('email') : ''}}
+                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
+                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
+                    <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
         </div>
     
     </div>
-
 
     <script>
         feather.replace();
