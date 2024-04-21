@@ -79,7 +79,7 @@ class EducadorController extends Controller
             } else{
                 echo 'não foi possível atualizar';
             }
-            return redirect()->route('site.educador.editar');
+            return redirect()->route('site.educador.listar');
         }
         return view('site.educador.editar');
     }
