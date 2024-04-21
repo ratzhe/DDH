@@ -69,8 +69,8 @@ Route::prefix('/site/nutricionista')->group(function () {
     Route::post('/index', [NutricionistaController::class, 'index'])->name('site.nutricionista.index');
     Route::get('/listar', [NutricionistaController::class, 'listar'])->name('site.nutricionista.listar');
     Route::post('/listar', [NutricionistaController::class, 'listar'])->name('site.nutricionista.listar');
-    Route::get('/incluir', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.incluir');
-    Route::post('/incluir', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.incluir');
+    Route::get('/adicionar', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.adicionar');
+    Route::post('/adicionar', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.adicionar');
     Route::get('/editar/{id}', [NutricionistaController::class, 'editar'])->name('site.nutricionista.editar');
     Route::get('/excluir/{id}', [NutricionistaController::class, 'excluir'])->name('site.nutricionista.excluir');
     Route::get('/teste', [NutricionistaController::class, 'teste'])->name('site.nutricionista.teste');

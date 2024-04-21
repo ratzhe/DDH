@@ -245,6 +245,7 @@
                 <table border="1" width: 100%>
                     <thead>
                         <tr>
+                            <th>Matrícula</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
                             <th>CFN</th>
@@ -260,9 +261,10 @@
                     <tbody>
                         @foreach ($nutricionistas as $nutricionista)
                             <tr>
+                                <td>{{$nutricionista->id}}</td>
                                 <td>{{$nutricionista->nome}}</td>
                                 <td>{{$nutricionista->sobrenome}}</td>
-                                <td>{{$nutricionista->crm}}</td>
+                                <td>{{$nutricionista->cfn}}</td>
                                 <td>{{$nutricionista->cpf}}</td>
                                 <td>{{$nutricionista->genero}}</td>
                                 <td>{{$nutricionista->datanasc}}</td>

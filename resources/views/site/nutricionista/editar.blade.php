@@ -246,15 +246,15 @@
             
            <div class="input-container">
                 
-                <form method="post" action="{{ route('site.nutricionista.incluir') }}">
+                <form method="post" action="{{ route('site.nutricionista.adicionar') }}">
                     <input type="hidden" name="id" value="{{ $nutricionista->id ?? ''}}">
                     @csrf
                     <input value="{{ $nutricionista->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
                     <input value="{{ $nutricionista->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ $nutricionista->crm ?? old('crm') }}" name="crm" type="text" placeholder="CRM">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
+                    <input value="{{ $nutricionista->cfn ?? old('cfn') }}" name="cfn" type="text" placeholder="CFN">
+                    {{ $errors->has('cfn') ? $errors->first('cfn') : ''}}
                     <input value="{{ $nutricionista->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     <input value="{{ $nutricionista->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">

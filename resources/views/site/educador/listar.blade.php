@@ -245,6 +245,7 @@
                 <table border="1" width: 100%>
                     <thead>
                         <tr>
+                            <th>Matrícula</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
                             <th>CRM</th>
@@ -260,6 +261,7 @@
                     <tbody>
                         @foreach ($educadores as $educador)
                             <tr>
+                                <td>{{$educador->id}}</td>
                                 <td>{{$educador->nome}}</td>
                                 <td>{{$educador->sobrenome}}</td>
                                 <td>{{$educador->cref}}</td>
