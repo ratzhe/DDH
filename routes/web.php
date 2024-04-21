@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\Educador;
+use App\Http\Controllers\EducadorController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\NovoeducadorController;
 use App\Http\Controllers\NovomedicoController;
@@ -28,12 +30,23 @@ Route::get('/site/cadastro', [CadastroController::class, 'cadastrar'])->name('si
 Route::post('/site/cadastro', [CadastroController::class, 'salvar'])->name('site.cadastro');
 
 // Perfil
-Route::get('/site/perfil', [PerfilController::class, 'index'])->name('site.perfil');
-Route::post('/site/perfil', [PerfilController::class, 'index'])->name('site.perfil');
 
 // Novo Usuário
 Route::get('/site/novousuario', [NovousuarioController::class, 'index'])->name('site.novousuario');
 Route::post('/site/novousuario', [NovousuarioController::class, 'index'])->name('site.novousuario');
+
+// Perfil 
+Route::prefix('/site/perfil')->group(function () {
+    Route::get('/', [PerfilController::class, 'index'])->name('site.perfil.index');
+    Route::get('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
+    Route::post('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
+    Route::get('/listar', [PerfilController::class, 'listar'])->name('site.perfil.listar');
+    Route::post('/listar', [PerfilController::class, 'listar'])->name('site.perfil.listar');
+    Route::get('/adicionar', [PerfilController::class, 'adicionar'])->name('site.perfil.adicionar');
+    Route::post('/adicionar', [PerfilController::class, 'adicionar'])->name('site.perfil.adicionar');
+    Route::get('/editar/{id}', [PerfilController::class, 'editar'])->name('site.perfil.editar');
+    Route::get('/excluir/{id}', [PerfilController::class, 'excluir'])->name('site.perfil.excluir');
+});
 
 // Médico
 Route::prefix('/site/medico')->group(function () {
@@ -56,10 +69,22 @@ Route::prefix('/site/nutricionista')->group(function () {
     Route::post('/index', [NutricionistaController::class, 'index'])->name('site.nutricionista.index');
     Route::get('/listar', [NutricionistaController::class, 'listar'])->name('site.nutricionista.listar');
     Route::post('/listar', [NutricionistaController::class, 'listar'])->name('site.nutricionista.listar');
-    Route::get('/adicionar', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.adicionar');
-    Route::post('/adicionar', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.adicionar');
+    Route::get('/incluir', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.incluir');
+    Route::post('/incluir', [NutricionistaController::class, 'adicionar'])->name('site.nutricionista.incluir');
     Route::get('/editar/{id}', [NutricionistaController::class, 'editar'])->name('site.nutricionista.editar');
     Route::get('/excluir/{id}', [NutricionistaController::class, 'excluir'])->name('site.nutricionista.excluir');
+    Route::get('/teste', [NutricionistaController::class, 'teste'])->name('site.nutricionista.teste');
 });
 
 // Educador Físico
+Route::prefix('/site/educador')->group(function () {
+    Route::get('/', [EducadorController::class, 'index'])->name('site.educador.index');
+    Route::get('/index', [EducadorController::class, 'index'])->name('site.educador.index');
+    Route::post('/index', [EducadorController::class, 'index'])->name('site.educador.index');
+    Route::get('/listar', [EducadorController::class, 'listar'])->name('site.educador.listar');
+    Route::post('/listar', [EducadorController::class, 'listar'])->name('site.educador.listar');
+    Route::get('/adicionar', [EducadorController::class, 'adicionar'])->name('site.educador.adicionar');
+    Route::post('/adicionar', [EducadorController::class, 'adicionar'])->name('site.educador.adicionar');
+    Route::get('/editar/{id}', [EducadorController::class, 'editar'])->name('site.educador.editar');
+    Route::get('/excluir/{id}', [EducadorController::class, 'excluir'])->name('site.educador.excluir');
+});

@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nutricionistas', function (Blueprint $table) {
-            $table->id();
+        Schema::table('nutricionistas', function (Blueprint $table) {
             $table->string('nome', 100);
             $table->string('sobrenome', 100);
             $table->string('cfn')->unique();
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->string('telefone', 15);
             $table->string('email')->unique();
             $table->string('senha');
-            $table->timestamps();
         });
     }
 
@@ -36,6 +34,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nutricionistas');
+        Schema::table('nutricionistas', function (Blueprint $table) {
+            //
+        });
     }
 };

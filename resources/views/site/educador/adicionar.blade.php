@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Editar - Nutricionista</title>
+    <title>Adicionar - Educador</title>
 
     <style>
         * {
@@ -246,18 +246,18 @@
             
            <div class="input-container">
                 
-                <form method="post" action="{{ route('site.nutricionista.incluir') }}">
-                    <input type="hidden" name="id" value="{{ $nutricionista->id ?? ''}}">
+                <form method="post" action="{{ route('site.educador.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $educador->id ?? ''}}">
                     @csrf
-                    <input value="{{ $nutricionista->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ $nutricionista->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ $nutricionista->crm ?? old('crm') }}" name="crm" type="text" placeholder="CRM">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ $nutricionista->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
+                    <input value="{{ old('cref') }}" name="cref" type="text" placeholder="CREF ">
+                    {{ $errors->has('cref') ? $errors->first('cref') : ''}}
+                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ $nutricionista->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
                     {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
 
                     <label>Genero</label>
@@ -267,13 +267,14 @@
                     <label for="genero_feminino">Feminino</label>
 
 
-                    <input value="{{  $nutricionista->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
+
+                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
                     {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{  $nutricionista->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
                     {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{  $nutricionista->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
+                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
                     {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{  $nutricionista->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
+                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
                     {{ $errors->has('senha') ? $errors->first('senha') : ''}}
                     <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
 

@@ -247,12 +247,13 @@
            <div class="input-container">
                 
                 <form method="post" action="{{ route('site.medico.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
                     @csrf
                     <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
                     <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM">
+                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM ">
                     {{ $errors->has('crm') ? $errors->first('crm') : ''}}
                     <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}

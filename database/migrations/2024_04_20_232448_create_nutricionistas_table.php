@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('cadastros', function (Blueprint $table) {
-            $table->string('token')->nullable()->after('email');
+        Schema::create('nutricionistas', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('nutricionistas');
     }
 };

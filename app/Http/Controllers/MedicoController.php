@@ -24,6 +24,7 @@ class MedicoController extends Controller
         // inclusão
         if($request->input('_token') != '' && $request->input('id') == ''){
             // validação
+            
             $regras = [
                 'nome' => 'required|min:3',
                 'sobrenome' => 'required|min:3',

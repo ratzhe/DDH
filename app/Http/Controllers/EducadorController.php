@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nutricionista;
+use App\Models\Educador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class NutricionistaController extends Controller
+
+class EducadorController extends Controller
 {
-    public function teste() {
-        return view('site.nutricionista.teste');
-    }
     public function index(){
-        return view('site.nutricionista.index');
-    }  
+        return view('site.educador.index');
+    }
 
     public function listar(Request $request){
-        $nutricionistas = Nutricionista::where('email', 'like', '%'.$request->input('email').'%')
+        $educadores = Educador::where('email', 'like', '%'.$request->input('email').'%')
             ->get();
-        return view('site.nutricionista.listar', ['nutricionistas' => $nutricionistas]);
+        return view('site.educador.listar', ['educadores' => $educadores]);
     }
 
     public function adicionar(Request $request){
@@ -26,11 +24,11 @@ class NutricionistaController extends Controller
         // inclusão
         if($request->input('_token') != '' && $request->input('id') == ''){
             // validação
-            //dd($request->all());
+            
             $regras = [
                 'nome' => 'required|min:3',
                 'sobrenome' => 'required|min:3',
-                'cfn' => 'required|unique:nutricionistas',
+                'cref' => 'required|unique:educadores',
                 'cpf' => 'required|unique:cadastros',
                 'datanasc' => 'required|date',
                 //'genero' => 'required|in:masculino,feminino',
@@ -45,8 +43,8 @@ class NutricionistaController extends Controller
                 'nome.min' => 'O nome precisa ter mais de 3 letras!',
                 'sobrenome.required' => 'O sobrenome é obrigatório!',
                 'sobrenome.min' => 'O sobrenome precisa ter mais de 3 letras!',
-                //'cfn.required' => 'O CFN é obrigatório!',
-                //'cfn.unique' => 'CFN já cadastrado!',
+                'cref.required' => 'O CRM é obrigatório!',
+                'cref.unique' => 'CRM já cadastrado!',
                 'cpf.required' => 'O CPF é obrigatório!',
                 'cpf.unique' => 'CPF já cadastrado!',
                 'datanasc.required' => 'A data de nascimento é obrigatória!',
@@ -67,34 +65,34 @@ class NutricionistaController extends Controller
 
             $request->validate($regras, $respostas);
 
-            $nutricionista = Nutricionista::create($request->all());
-            $nutricionista->senha = Hash::make($request->senha);
-            $nutricionista->save();
+            $educador = Educador::create($request->all());
+            $educador->senha = Hash::make($request->senha);
+            $educador->save();
         }
         // edição
         if($request->input('_token') != '' && $request->input('id') != ''){
-            $nutricionista = Nutricionista::find($request->input('id'));
-            $update = $nutricionista->update($request->all());
+            $educador = Educador::find($request->input('id'));
+            $update = $educador->update($request->all());
 
             if($update){
                 echo 'atualizado com sucesso';
             } else{
                 echo 'não foi possível atualizar';
             }
-            return redirect()->route('site.nutricionista.editar');
+            return redirect()->route('site.educador.editar');
         }
-        return view('site.nutricionista.editar');
+        return view('site.educador.editar');
     }
 
     public function editar($id){
-        $nutricionista = Nutricionista::find($id);
-        return view('site.nutricionista.editar', ['nutricionista' => $nutricionista]);
+        $educador = Educador::find($id);
+        return view('site.educador.editar', ['educador' => $educador]);
+        
     }
 
     public function excluir($id){
-        Nutricionista::find($id)->delete();
+        Educador::find($id)->delete();
 
-        return redirect()->route('site.nutricionista.index');
+        return redirect()->route('site.educador.index');
     }
-
 }
