@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Adicionar - Médico</title>
+    <title>Editar - Médico</title>
 
     <style>
         * {
@@ -246,20 +246,27 @@
             
            <div class="input-container">
                 
-                <form method="post" action="{{ route('site.medico.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
+                <form method="post" action="{{ route('site.profissional.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $profissional->id ?? ''}}">
                     @csrf
-
-
-                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    <input value="{{ $profissional->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                    <input value="{{ $profissional->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM ">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
+
+                    <label>Profissional</label>
+                    <input type="radio" id="medico" name="profissional" value="medico">
+                    <label for="medico">Médico</label>
+                    <input type="radio" id="nutricionista" name="profissional" value="nutricionista">
+                    <label for="nutricionista">Nutricionista</label>
+                    <input type="radio" id="educador" name="profissional" value="educador">
+                    <label for="educador">Educador Físico</label>
+                    
+                    <input value="{{ $profissional->registro ?? old('registro') }}" name="registro" type="text" placeholder="Registro Profissional (CRM ou CFN ou CREF)">
+                    {{ $errors->has('registro') ? $errors->first('registro') : ''}}
+                    <input value="{{ $profissional->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    <input value="{{ $profissional->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
                     {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
 
                     <label>Genero</label>
@@ -269,14 +276,13 @@
                     <label for="genero_feminino">Feminino</label>
 
 
-
-                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
+                    <input value="{{  $profissional->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
                     {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                    <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
                     {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
+                    <input value="{{  $profissional->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
                     {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
+                    <input value="{{  $profissional->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
                     {{ $errors->has('senha') ? $errors->first('senha') : ''}}
                     <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
 

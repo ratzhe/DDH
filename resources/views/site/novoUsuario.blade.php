@@ -210,9 +210,8 @@
 
             <div class="usuarios">
                 <div class="botoes-container">
-                    <a href="{{ route('site.medico.adicionar') }}" class="botao">Médico</a>
-                    <a href="{{ route('site.nutricionista.incluir') }}" class="botao">Nutricionista</a>
-                    <a href="{{ route('site.educador.adicionar') }}" class="botao">Educador Físico</a>
+                    <a href="{{ route('site.profissional.adicionar') }}" class="botao">Novo Profissional de Saúde</a>
+                    <a href="{{ route('site.agenda.adicionar') }}" class="botao">Nova Agenda</a>
                 </div>
             </div>
 
@@ -220,26 +219,19 @@
 
             <div class="usuarios">
                 <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar usuário">
-                    <a href="{{ route('site.medico.listar') }}" class="botao">Pesquisar</a>
+                    <input type="text" placeholder="Pesquisar profissional">
+                    <a href="{{ route('site.profissional.listar') }}" class="botao">Pesquisar</a>
                 </div>
             </div>
 
             <h3 class="titulo">Agendas</h3>
-
-            <div class="usuarios">
-                <div class="botoes-container">
-                    <a href="{{ route('site.medico.index') }}" class="botao">Nova Agenda</a>
-                </div>
-            </div>
-
-            <h3 class="titulo">Horários</h3>
-
             <div class="usuarios">
                 <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar usuário">
+                    <input type="text" placeholder="Pesquisar agenda">
+                    <a href="{{ route('site.agenda.listar') }}" class="botao">Pesquisar</a>
                 </div>
             </div>
+            
         </div>
     </div>  
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Adicionar - Médico</title>
+    <title>Editar - Médico</title>
 
     <style>
         * {
@@ -245,42 +246,75 @@
         <div class="pesquisa-consultas">
             
            <div class="input-container">
+                <form method="post" action="{{ route('site.agenda.adicionar') }}">
+                <input type="hidden" name="id" value="{{ $agenda->id ?? ''}}">
                 
-                <form method="post" action="{{ route('site.medico.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
                     @csrf
+                <div>
+                    <label>Dia da Semana</label>
+                    <input type="radio" id="segunda" name="dia" value="segunda">
+                    <label for="dia_segunda">Segunda-Feira</label>
+
+                    <input type="radio" id="terca" name="dia" value="terca">
+                    <label for="dia_tercao">Terça-Feira</label>
+
+                    <input type="radio" id="quarta" name="dia" value="quarta">
+                    <label for="dia_quarta">Quarta-Feira</label>
+
+                    <input type="radio" id="quinta" name="dia" value="quinta">
+                    <label for="dia_quinta">Quinta-Feira</label>
+
+                    <input type="radio" id="sexta" name="dia" value="sexta">
+                    <label for="dia_sexta">Sexta-Feira</label>
+                </div>
+
+                <div>
+                    <label>Horário de Início</label>
+                    <select name="hora_inicio" id="hora_inicio">
+                        <option value="08:00:00">08:00:00</option>
+                        <option value="09:00:00">09:00:00</option>
+                        <option value="10:00:00">10:00:00</option>
+                        <option value="11:00:00">11:00:00</option>
+                        <option value="12:00:00">12:00:00</option>
+                        <option value="13:00:00">13:00:00</option>
+                        <option value="14:00:00">14:00:00</option>
+                        <option value="15:00:00">15:00:00</option>
+                        <option value="16:00:00">16:00:00</option>
+                    </select>
+                </div>      
+
+                <div>
+                    <label>Horário de Fim</label>
+                    <select name="hora_fim" id="hora_fim">
+                        <option value="09:00:00">09:00:00</option>
+                        <option value="10:00:00">10:00:00</option>
+                        <option value="11:00:00">11:00:00</option>
+                        <option value="12:00:00">12:00:00</option>
+                        <option value="13:00:00">13:00:00</option>
+                        <option value="14:00:00">14:00:00</option>
+                        <option value="15:00:00">15:00:00</option>
+                        <option value="16:00:00">16:00:00</option>
+                        <option value="17:00:00">17:00:00</option>
+                    </select>
+                </div>   
 
 
-                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
-                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
-                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM ">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
-                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
-                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
+                <div class="select-container">
+                <select name="profissional_id" id="profissional_id">
+                        <option value="" selected disabled>Selecione uma opção</option>
+                        
+                        <option>
+                            @foreach ($profissionais as $profisional)                                
+                                <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
+                            @endforeach
+                        <option>
+                        
+                </select>
+                </div>
 
-                    <label>Genero</label>
-                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
-                    <label for="genero_masculino">Masculino</label>
-                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
-                    <label for="genero_feminino">Feminino</label>
-
-
-
-                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
-                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
-                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
-                    {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
-                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
-                    <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
-
-                    <button type="submit">Cadastrar</button>
+                <div class="botoes-container">
+                    <button class="botao">Cadastrar Agenda</button>
+                </div>
                 </form>
             </div>
         </div>

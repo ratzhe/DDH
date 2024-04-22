@@ -15,6 +15,10 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class LoginController extends Controller
 {
+    public function errorota(){
+        return view('site.errorota');
+    }
+
     public function index(Request $request){
         $erro = '';
 

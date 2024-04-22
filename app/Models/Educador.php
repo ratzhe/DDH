@@ -13,4 +13,6 @@ class Educador extends Model
 
     protected $table = 'educadores';
     protected $fillable =  ['nome', 'sobrenome', 'cref', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
+
+    
 }

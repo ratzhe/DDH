@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Adicionar - Médico</title>
+    <title>Adicionar - Profissional de Saúde</title>
 
     <style>
         * {
@@ -246,8 +246,8 @@
             
            <div class="input-container">
                 
-                <form method="post" action="{{ route('site.medico.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
+                <form method="post" action="{{ route('site.profissional.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $profissional->id ?? ''}}">
                     @csrf
 
 
@@ -255,8 +255,17 @@
                     {{ $errors->has('nome') ? $errors->first('nome') : ''}}
                     <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                     {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM ">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
+
+                    <label>Profissional</label>
+                    <input type="radio" id="medico" name="profissional" value="medico">
+                    <label for="medico">Médico</label>
+                    <input type="radio" id="nutricionista" name="profissional" value="nutricionista">
+                    <label for="nutricionista">Nutricionista</label>
+                    <input type="radio" id="educador" name="profissional" value="educador">
+                    <label for="educador">Educador Físico</label>
+
+                    <input value="{{ old('registro') }}" name="registro" type="text" placeholder="Registro Profissional (CRM ou CFN ou CREF)">
+                    {{ $errors->has('registro') ? $errors->first('registro') : ''}}
                     <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
                     {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">

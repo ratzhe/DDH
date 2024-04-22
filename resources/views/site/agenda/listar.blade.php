@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Adicionar - Médico</title>
+    <title>Listar - Agenda</title>
 
     <style>
         * {
@@ -207,9 +207,6 @@
             border: solid 1px red !important; 
             background-color: #ffe9e9 !important;
         }
-        .input-container input {
-            margin-bottom: 10px;
-        }
 
     </style>
 </head>
@@ -243,46 +240,37 @@
         
 
         <div class="pesquisa-consultas">
-            
-           <div class="input-container">
-                
-                <form method="post" action="{{ route('site.medico.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $medico->id ?? ''}}">
-                    @csrf
+            <div style="width: 90%; margin-left: auto; margin-right: auto;">
 
+                <table border="1" width: 100%>
+                    <thead>
+                        <tr>
+                            <th>Código Agenda</th>
+                            <th>Dia da Semana</th>
+                            <th>Horário Início Atendimento</th>
+                            <th>Horário Fim Atendimento</th>
+                            <th>Profissional</th>                       
+                        </tr>
+                    </thead>
 
-                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
-                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
-                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
-                    <input value="{{ old('crm') }}" name="crm" type="text" placeholder="CRM ">
-                    {{ $errors->has('crm') ? $errors->first('crm') : ''}}
-                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
-                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
-                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
-
-                    <label>Genero</label>
-                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
-                    <label for="genero_masculino">Masculino</label>
-                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
-                    <label for="genero_feminino">Feminino</label>
-
-
-
-                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
-                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
-                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
-                    {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
-                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
-                    <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
-
-                    <button type="submit">Cadastrar</button>
-                </form>
-            </div>
+                    <tbody>
+                        @foreach ($agendas as $agenda)
+                            <tr>
+                                <td>{{$agenda->id}}</td>
+                                <td>{{$agenda->dia}}</td>
+                                <td>{{$agenda->hora_inicio}}</td>
+                                <td>{{$agenda->hora_fim}}</td>
+                                <td>{{$agenda->profissional_id}}</td>
+                                
+                                
+                                <td><a href="{{ route('site.agenda.editar', $agenda->id) }}">Editar</a></td>
+                                <td><a href="{{ route('site.agenda.excluir', $agenda->id) }}">Excluir</a></td>
+                        
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>       
         </div>
     
     </div>

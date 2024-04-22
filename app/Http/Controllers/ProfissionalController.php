@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medico;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class MedicoController extends Controller
+class ProfissionalController extends Controller
 {
     public function index(){
-        return view('site.medico.index');
+        return view('site.profissional.index');
     }
 
     public function listar(Request $request){
-        $medicos = Medico::where('email', 'like', '%'.$request->input('email').'%')
+        $profissionais = Profissional::where('email', 'like', '%'.$request->input('email').'%')
             ->get();
-        return view('site.medico.listar', ['medicos' => $medicos]);
+        return view('site.profissional.listar', ['profissionais' => $profissionais]);
     }
     
 
@@ -28,10 +28,11 @@ class MedicoController extends Controller
             $regras = [
                 'nome' => 'required|min:3',
                 'sobrenome' => 'required|min:3',
-                'crm' => 'required|unique:medicos',
+                'registro' => 'required|unique:profissionais',
                 'cpf' => 'required|unique:cadastros',
                 'datanasc' => 'required|date',
-                //'genero' => 'required|in:masculino,feminino',
+                'profissional' => 'required',
+                
                 'cep' => 'required|regex:/^\d{5}-?\d{3}$/',
                 'telefone' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/',
                 'email' => 'required|email|unique:cadastros',
@@ -49,8 +50,7 @@ class MedicoController extends Controller
                 'cpf.unique' => 'CPF já cadastrado!',
                 'datanasc.required' => 'A data de nascimento é obrigatória!',
                 'datanasc.date' => 'Por favor, insira uma data de nascimento válida!',
-                //'genero.required' => 'Informe o gênero!',
-                //'genero.in' => 'Gênero inválido!',
+                'profissional.required' => 'Informe o tipo de profissional!',
                 'cep.required' => 'O CEP é obrigatório!',
                 'cep.regex' => 'Por favor, insira um CEP válido!',
                 'telefone.required' => 'O telefone é obrigatório!',
@@ -65,38 +65,35 @@ class MedicoController extends Controller
 
             $request->validate($regras, $respostas);
 
-            $medico = Medico::create($request->all());
-            $medico->senha = Hash::make($request->senha);
-            $medico->save();
+            $profissional = Profissional::create($request->all());
+            $profissional->senha = Hash::make($request->senha);
+            $profissional->save();
 
-            //$medicos = Medico::all(); 
-            //return view('site.medico.listar', ['medicos' => $medicos]);
+           
         }
         // edição
         if($request->input('_token') != '' && $request->input('id') != ''){
-            $medico = Medico::find($request->input('id'));
-            $update = $medico->update($request->all());
+            $profissional = Profissional::find($request->input('id'));
+            $update = $profissional->update($request->all());
 
             if($update){
                 echo 'atualizado com sucesso';
             } else{
                 echo 'não foi possível atualizar';
             }
-            return redirect()->route('site.medico.listar');
+            return redirect()->route('site.profissional.listar');
         }
-        return view('site.medico.editar');
+        return view('site.profissional.editar');
     }
 
     public function editar($id){
-        $medico = Medico::find($id);
-        return view('site.medico.editar', ['medico' => $medico]);
+        $profissional = Profissional::find($id);
+        return view('site.profissional.editar', ['profissional' => $profissional]);
     }
 
     public function excluir($id){
-        Medico::find($id)->delete();
+        Profissional::find($id)->delete();
 
-        return redirect()->route('site.medico.index');
+        return redirect()->route('site.profissional.index');
     }
-    
-    
 }

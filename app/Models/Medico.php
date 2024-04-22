@@ -14,4 +14,6 @@ class Medico extends Model
 
    protected $table = 'medicos';
    protected $fillable = ['nome', 'sobrenome', 'crm', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
+
+   
 }

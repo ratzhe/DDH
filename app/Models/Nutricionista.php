@@ -16,4 +16,5 @@ class Nutricionista extends Model
     protected $table = 'nutricionistas';
     protected $fillable = ['nome', 'sobrenome', 'cfn', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
 
+    
 }
