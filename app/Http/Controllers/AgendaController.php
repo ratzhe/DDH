@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
-use App\Models\Medico;
-use App\Models\Educador;
-use App\Models\Nutricionista;
 use App\Models\Profissional;
 use Illuminate\Http\Request;
 

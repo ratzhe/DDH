@@ -249,7 +249,8 @@
                             <th>Dia da Semana</th>
                             <th>Horário Início Atendimento</th>
                             <th>Horário Fim Atendimento</th>
-                            <th>Profissional</th>                       
+                            <th>Nome do profissional</th>         
+                            <th>Tipo de profissional</th>                   
                         </tr>
                     </thead>
 
@@ -260,7 +261,8 @@
                                 <td>{{$agenda->dia}}</td>
                                 <td>{{$agenda->hora_inicio}}</td>
                                 <td>{{$agenda->hora_fim}}</td>
-                                <td>{{$agenda->profissional_id}}</td>
+                                <td>{{$agenda->profissional->nome}} {{$agenda->profissional->sobrenome}}</td>
+                                <td>{{$agenda->profissional->profissional}}</td>
                                 
                                 
                                 <td><a href="{{ route('site.agenda.editar', $agenda->id) }}">Editar</a></td>

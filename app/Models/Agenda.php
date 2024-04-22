@@ -12,4 +12,7 @@ class Agenda extends Model
     protected $table = 'agendas';
     protected $fillable =  ['dia', 'hora_inicio', 'hora_fim', 'profissional_id'];
 
+    public function profissional(){
+        return $this->belongsTo('App\Models\Profissional');
+    }
 }
