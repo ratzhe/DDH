@@ -19,6 +19,7 @@
         .consultas-container {
             display: flex;
             flex-direction: column; 
+            min-height: 100vh;
         }
 
         .paciente {
@@ -111,16 +112,17 @@
             
         }
 
-        .menu a {
+        a {
             text-decoration: none;
+            color: #3C7182;
         }
 
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
-            
             align-items: center;
             padding: 20px;
+            flex-grow: 1;
         }
 
         .pesquisa-consultas h2{
@@ -128,84 +130,18 @@
             padding: 20px;
         }
 
-        .pesquisa-consultas input {
-            width: 500px;
-            height: 43px;
-            color: #cdf2ff;
-            padding: 0 15px;
-            border-radius: 5px;
+        table {
+            width: 100%;
+            border-collapse: separate; 
+            border-spacing: 0;
+        }
+
+        th, td {
+            padding: 10px; 
+            text-align: center; 
+            background-color: lightcyan; 
+            color: #3C7182; 
             border: none;
-            color: #3C7182;
-            background-color: lightcyan;
-            font-size: 1rem;
-        }
-
-
-        .pesquisa-consultas input::placeholder {
-            color: #3C7182;
-        }
-
-        .pesquisa-consultas label {
-            color: lightcyan;
-            margin-bottom: 20px;
-        }
-        
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .input-container input {
-            margin-bottom: 10px; 
-        }
-
-        .botoes-container {
-            display: flex;
-            justify-content: center; 
-        }
-
-        button {
-            width: 200px;
-            height: 50px;
-            margin-right: 20px; 
-            background-color: lightcyan;
-            color: #3C7182;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-        }
-
-        .input-with-icon {
-            position: relative;
-        }
-
-        .input-with-icon input {
-            padding-right: 20px; 
-        }
-
-        .input-with-icon .icon {
-            position: absolute;
-            top: 50%;
-            right: 10px; 
-            transform: translateY(-50%);
-            color: #3C7182;
-            pointer-events: none; 
-        }
-
-        .input-container input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        .error-message {
-            color: red; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
-        }
-
-        .input-error {
-            border: solid 1px red !important; 
-            background-color: #ffe9e9 !important;
         }
 
     </style>
@@ -241,7 +177,7 @@
 
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
-
+                <h2>Usuários Cadastrados</h2>
                 <table border="1" width: 100%>
                     <thead>
                         <tr>
@@ -255,7 +191,9 @@
                             <th>Data de Nascimento</th>
                             <th>CEP</th>
                             <th>Telefone</th>
-                            <th>E-mail</th>                       
+                            <th>E-mail</th>  
+                            <th>Editar</th>  
+                            <th>Excluir</th>                    
                         </tr>
                     </thead>
 
@@ -274,8 +212,8 @@
                                 <td>{{$profissional->telefone}}</td>
                                 <td>{{$profissional->email}}</td>
                                 
-                                <td><a href="{{ route('site.profissional.editar', $profissional->id) }}">Editar</a></td>
-                                <td><a href="{{ route('site.profissional.excluir', $profissional->id) }}">Excluir</a></td>
+                                <td><a href="{{ route('site.profissional.editar', $profissional->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
+                                <td><a href="{{ route('site.profissional.excluir', $profissional->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
                         
                             </tr>
                         @endforeach

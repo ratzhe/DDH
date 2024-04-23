@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfissionalController extends Controller
 {
-    public function index(){
-        return view('site.profissional.index');
-    }
+    
 
     public function listar(Request $request){
         $profissionais = Profissional::where('email', 'like', '%'.$request->input('email').'%')
@@ -31,8 +29,8 @@ class ProfissionalController extends Controller
                 'registro' => 'required|unique:profissionais',
                 'cpf' => 'required|unique:cadastros',
                 'datanasc' => 'required|date',
-                'profissional' => 'required',
-                
+                'profissional' => 'required_without_all:medico,nutricionista,educador',
+                'genero' => 'required_without_all:masculino,feminino',
                 'cep' => 'required|regex:/^\d{5}-?\d{3}$/',
                 'telefone' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/',
                 'email' => 'required|email|unique:cadastros',
@@ -44,13 +42,13 @@ class ProfissionalController extends Controller
                 'nome.min' => 'O nome precisa ter mais de 3 letras!',
                 'sobrenome.required' => 'O sobrenome é obrigatório!',
                 'sobrenome.min' => 'O sobrenome precisa ter mais de 3 letras!',
-                'crm.required' => 'O CRM é obrigatório!',
-                'crm.unique' => 'CRM já cadastrado!',
+                'registro.required' => 'O registro é obrigatório!',
+                'registro.unique' => 'Registro já cadastrado!',
                 'cpf.required' => 'O CPF é obrigatório!',
                 'cpf.unique' => 'CPF já cadastrado!',
                 'datanasc.required' => 'A data de nascimento é obrigatória!',
-                'datanasc.date' => 'Por favor, insira uma data de nascimento válida!',
-                'profissional.required' => 'Informe o tipo de profissional!',
+                'profissional.required_without_all' => 'Por favor, selecione o tipo de profissional!',
+                'genero.required_without_all' => 'Por favor, selecione o gênero!',
                 'cep.required' => 'O CEP é obrigatório!',
                 'cep.regex' => 'Por favor, insira um CEP válido!',
                 'telefone.required' => 'O telefone é obrigatório!',
@@ -69,6 +67,7 @@ class ProfissionalController extends Controller
             $profissional->senha = Hash::make($request->senha);
             $profissional->save();
 
+            return redirect()->route('site.profissional.listar');
            
         }
         // edição
@@ -93,7 +92,7 @@ class ProfissionalController extends Controller
 
     public function excluir($id){
         Profissional::find($id)->delete();
-
-        return redirect()->route('site.profissional.index');
+        
+        return redirect()->route('site.profissional.listar');
     }
 }

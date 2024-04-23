@@ -19,6 +19,7 @@
         .consultas-container {
             display: flex;
             flex-direction: column; 
+            min-height: 100vh;
         }
 
         .paciente {
@@ -90,8 +91,8 @@
 
         .menu a{
             text-decoration: none;
-            color: #3C7182;
-            background-color: lightcyan;
+            color: lightcyan;
+            background-color: #3C7182;
         }
 
         .menu a:hover {
@@ -113,41 +114,30 @@
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
-            
             align-items: center;
             padding: 20px;
+            flex-grow: 1;
         }
 
-        .pesquisa-consultas input {
-            width: 500px;
-            height: 43px;
-            color: #cdf2ff;
-            padding: 0 15px;
-            border-radius: 5px;
-            border: none;
-            color: #3C7182;
-            background-color: lightcyan;
-            font-size: 1rem;
+        .dia-semana-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+            grid-gap: 10px; 
+            margin-bottom: 50px;
         }
 
-
-        .pesquisa-consultas input::placeholder {
-            color: #3C7182;
-        }
-
-        .pesquisa-consultas label {
+        h2 {
+            margin: 20px;
             color: lightcyan;
-            margin-bottom: 20px;
-        }
-        
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .input-container input {
-            margin-bottom: 10px; 
+        input[type="radio"] {
+            transform: scale(1.4); 
+        }
+
+        label {
+            color: lightcyan;
+            font-size: 1.2rem;
         }
 
         .botoes-container {
@@ -165,6 +155,34 @@
             border-radius: 5px;
             font-size: 1.1rem;
         }
+
+        select {
+            width: 400px; 
+            height: 50px; 
+            background-color: lightcyan;
+            color: #3C7182;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .menu a {
+            color: lightcyan;
+        }
+
+        .menu a #menu{
+            text-decoration: none;
+            color: #3C7182;
+        } 
+        .menu a:hover {
+            color: lightcyan;
+        }
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
       
     </style>
 </head>
@@ -179,7 +197,7 @@
         </div>
 
         <div class="menu">
-            <div class="menu-consultas" >
+            <div class="menu-consultas"  id="menu">
                 <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
         
@@ -195,8 +213,8 @@
                 <p>Treinamento</p>
             </div>
         
-            <div class="menu-consultas" id="menu">
-                <p>Perfil</p>
+            <div class="menu-consultas">
+                <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
         
@@ -206,13 +224,13 @@
             <form method="post" action="{{ route('site.agenda.adicionar') }}">
                
                 @csrf
-                <div>
-                    <label>Dia da Semana</label>
+                <h2>Dia da Semana</h2>
+                <div class="dia-semana-container">
                     <input type="radio" id="segunda" name="dia" value="segunda">
                     <label for="dia_segunda">Segunda-Feira</label>
 
                     <input type="radio" id="terca" name="dia" value="terca">
-                    <label for="dia_tercao">Terça-Feira</label>
+                    <label for="dia_terca">Terça-Feira</label>
 
                     <input type="radio" id="quarta" name="dia" value="quarta">
                     <label for="dia_quarta">Quarta-Feira</label>
@@ -223,10 +241,14 @@
                     <input type="radio" id="sexta" name="dia" value="sexta">
                     <label for="dia_sexta">Sexta-Feira</label>
                 </div>
+                @error('dia')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
 
                 <div>
-                    <label>Horário de Início</label>
+                    <h2>Horário de Início</h2>
                     <select name="hora_inicio" id="hora_inicio">
+                        <option value="" selected disabled>Selecione o horário de início do atendimento: </option>
                         <option value="08:00:00">08:00:00</option>
                         <option value="09:00:00">09:00:00</option>
                         <option value="10:00:00">10:00:00</option>
@@ -237,11 +259,15 @@
                         <option value="15:00:00">15:00:00</option>
                         <option value="16:00:00">16:00:00</option>
                     </select>
-                </div>      
+                </div>   
+                @error('hora_inicio')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror   
 
                 <div>
-                    <label>Horário de Fim</label>
+                    <h2>Horário de Fim</h2>
                     <select name="hora_fim" id="hora_fim">
+                        <option value="" selected disabled>Selecione o horário de término do atendimento: </option>
                         <option value="09:00:00">09:00:00</option>
                         <option value="10:00:00">10:00:00</option>
                         <option value="11:00:00">11:00:00</option>
@@ -253,20 +279,26 @@
                         <option value="17:00:00">17:00:00</option>
                     </select>
                 </div>   
+                @error('hora_fim')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
 
-
+                <h2>Profissional</h2>
                 <div class="select-container">
-                <select name="profissional_id" id="profissional_id">
-                        <option value="" selected disabled>Selecione uma opção</option>
-                        
-                        <option>
-                            @foreach ($profissionais as $profisional)                                
-                                <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
-                            @endforeach
-                        <option>
-                        
-                </select>
+                    <select name="profissional_id" id="profissional_id">
+                            <option value="" selected disabled>Selecione o profissional: </option>
+                            
+                            <option>
+                                @foreach ($profissionais as $profisional)                                
+                                    <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
+                                @endforeach
+                            <option>
+                            
+                    </select>
                 </div>
+                @error('profissional_id')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
 
                 <div class="botoes-container">
                     <button class="botao">Cadastrar Agenda</button>

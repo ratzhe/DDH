@@ -22,13 +22,15 @@ class CadastroController extends Controller
 
     public function salvar(Request $request)
     {
-        $request->validate([
+        $regras = [
             'nome' => 'required',
             'sobrenome' => 'required',
             'cpf' => 'required|unique:cadastros',
             'email' => 'email|unique:cadastros',
             'senha' => 'required|min:8|confirmed',
-        ], [
+        ];
+
+        $feedback = [
             'nome.required' => 'O nome é obrigatório!',
             'sobrenome.required' => 'O sobrenome é obrigatório!',
             'cpf.required' => 'O CPF é obrigatório!',
@@ -38,7 +40,9 @@ class CadastroController extends Controller
             'senha.required' => 'A senha é obrigatória!',
             'senha.min' => 'A senha precisa ter 8 ou mais caracteres!',
             'senha.confirmed' => 'As senhas estão divergentes!'
-        ]);
+        ];
+
+        $request->validate($regras, $feedback);
 
         $cadastro = new Cadastro();
         $cadastro->fill($request->all());

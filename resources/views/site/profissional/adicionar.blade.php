@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 
@@ -29,9 +28,7 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -118,7 +115,6 @@
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
-            
             align-items: center;
             padding: 20px;
         }
@@ -126,43 +122,6 @@
         .pesquisa-consultas h2{
             color: lightcyan;
             padding: 20px;
-        }
-
-        .pesquisa-consultas input {
-            width: 500px;
-            height: 43px;
-            color: #cdf2ff;
-            padding: 0 15px;
-            border-radius: 5px;
-            border: none;
-            color: #3C7182;
-            background-color: lightcyan;
-            font-size: 1rem;
-        }
-
-
-        .pesquisa-consultas input::placeholder {
-            color: #3C7182;
-        }
-
-        .pesquisa-consultas label {
-            color: lightcyan;
-            margin-bottom: 20px;
-        }
-        
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .input-container input {
-            margin-bottom: 10px; 
-        }
-
-        .botoes-container {
-            display: flex;
-            justify-content: center; 
         }
 
         button {
@@ -174,41 +133,55 @@
             border: none;
             border-radius: 5px;
             font-size: 1.1rem;
+            margin: 0 auto; 
+            display: block; 
         }
 
-        .input-with-icon {
-            position: relative;
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); 
+            grid-gap: 1px; 
+            margin-bottom: 5px;
+             
         }
 
-        .input-with-icon input {
-            padding-right: 20px; 
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .input-with-icon .icon {
-            position: absolute;
-            top: 50%;
-            right: 10px; 
-            transform: translateY(-50%);
-            color: #3C7182;
-            pointer-events: none; 
+        .input-container label,
+        .input-container input {
+            display: block;
+            margin-bottom: 10px;
         }
 
         .input-container input[type="radio"] {
-            margin-right: 5px;
+            width: 20px; 
+            height: 20px; 
         }
+
+        label {
+            color: lightcyan; 
+        }
+
+        .input-container input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
+            width: 500px;
+            height: 43px;
+            color: #cdf2ff;
+            padding: 0 15px;
+            border-radius: 5px;
+            border: none;
+            color: #3C7182;
+            background-color: lightcyan;
+            font-size: 1rem;    
+        }  
 
         .error-message {
-            color: red; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
-        }
-
-        .input-error {
-            border: solid 1px red !important; 
-            background-color: #ffe9e9 !important;
-        }
-        .input-container input {
-            margin-bottom: 10px;
+                color: red; 
+                font-size: 0.8rem; 
+                margin-top: 5px; 
         }
 
     </style>
@@ -249,44 +222,89 @@
                 <form method="post" action="{{ route('site.profissional.adicionar') }}">
                     <input type="hidden" name="id" value="{{ $profissional->id ?? ''}}">
                     @csrf
+                    <label>Nome: </label>
+                    <input value="{{ $profissional->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    <div class="error-message">
+                        {{ $errors->has('nome') ? $errors->first('nome') : ''}}
+                    </div>
 
-
-                    <input value="{{ old('nome') }}" name="nome" type="text" placeholder="Nome">
-                    {{ $errors->has('nome') ? $errors->first('nome') : ''}}
-                    <input value="{{ old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
-                    {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                    <label>Sobrenome:</label>
+                    <input value="{{ $profissional->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                     <div class="error-message">
+                        {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                    </div>
 
                     <label>Profissional</label>
-                    <input type="radio" id="medico" name="profissional" value="medico">
-                    <label for="medico">Médico</label>
-                    <input type="radio" id="nutricionista" name="profissional" value="nutricionista">
-                    <label for="nutricionista">Nutricionista</label>
-                    <input type="radio" id="educador" name="profissional" value="educador">
-                    <label for="educador">Educador Físico</label>
+                    <div class="radio-group">
+                        <input type="radio" id="medico" name="profissional" value="medico">
+                        <label for="medico">Médico</label>
+                        <input type="radio" id="nutricionista" name="profissional" value="nutricionista">
+                        <label for="nutricionista">Nutricionista</label>
+                        <input type="radio" id="educador" name="profissional" value="educador">
+                        <label for="educador">Educador Físico</label><br>
+                    </div>
+                    @error('profissional')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
+                    
+                    <label>Registro:</label>
+                    <input value="{{ $profissional->registro ?? old('registro') }}" name="registro" type="text" placeholder="Registro Profissional (CRM ou CFN ou CREF)">
+                    <div class="error-message">
+                        {{ $errors->has('registro') ? $errors->first('registro') : ''}}
+                    </div>
+                    
+                    <label>CPF: </label>
+                    <input value="{{ $profissional->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
+                     <div class="error-message">
+                        {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
+                    </div>
 
-                    <input value="{{ old('registro') }}" name="registro" type="text" placeholder="Registro Profissional (CRM ou CFN ou CREF)">
-                    {{ $errors->has('registro') ? $errors->first('registro') : ''}}
-                    <input value="{{ old('cpf') }}" name="cpf" type="text" placeholder="CPF">
-                    {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
-                    <input value="{{ old('datanasc') }}" name="datanasc" type="date" placeholder="">
-                    {{ $errors->has('datanasc') ? $errors->first('datanasc') : ''}}
+                    <label>Data de Nascimento: </label>
+                    <input value="{{ $profissional->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    @error('datanasc')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
 
-                    <label>Genero</label>
-                    <input type="radio" id="genero_masculino" name="genero" value="masculino">
-                    <label for="genero_masculino">Masculino</label>
-                    <input type="radio" id="genero_feminino" name="genero" value="feminino">
-                    <label for="genero_feminino">Feminino</label>
+                    <label>Gênero</label>
+                    <div class="radio-group">
+                        
+                        <input type="radio" id="genero_masculino" name="genero" value="masculino">
+                        <label for="genero_masculino">Masculino</label>
+
+                        <input type="radio" id="genero_feminino" name="genero" value="feminino">
+                        <label for="genero_feminino">Feminino</label>
+
+                    </div>
+                    @error('genero')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
 
 
+                    <label>CEP:</label>
+                    <input value="{{  $profissional->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
+                     <div class="error-message">
+                        {{ $errors->has('cep') ? $errors->first('cep') : ''}}
+                    </div>
 
-                    <input value="{{ old('cep') }}" name="cep" type="text" placeholder="CEP">
-                    {{ $errors->has('cep') ? $errors->first('cep') : ''}}
-                    <input value="{{ old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
-                    {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
-                    <input value="{{ old('email') }}" name="email" type="email" placeholder="E-mail">
-                    {{ $errors->has('email') ? $errors->first('email') : ''}}
-                    <input value="{{ old('senha') }}" name="senha" type="password" placeholder="Senha">
-                    {{ $errors->has('senha') ? $errors->first('senha') : ''}}
+                    <label>Telefone:</label>
+                    <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                     <div class="error-message">
+                        {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
+                    </div>
+
+                    <label>E-mail:</label>
+                    <input value="{{  $profissional->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
+                     <div class="error-message">
+                        {{ $errors->has('email') ? $errors->first('email') : ''}}
+                    </div>
+
+                    <label>Senha: </label>
+                    <input value="{{  $profissional->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
+                     <div class="error-message">
+                        {{ $errors->has('senha') ? $errors->first('senha') : ''}}
+                    </div>
+
+                    <label>Confirmar Senha: </label>
                     <input name="senha_confirmation" type="password" placeholder="Confirmar Senha">
 
                     <button type="submit">Cadastrar</button>

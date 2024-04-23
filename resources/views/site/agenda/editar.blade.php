@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Editar - Médico</title>
+    <title>Agenda</title>
 
     <style>
         * {
@@ -20,6 +19,7 @@
         .consultas-container {
             display: flex;
             flex-direction: column; 
+            min-height: 100vh;
         }
 
         .paciente {
@@ -71,12 +71,7 @@
             height: 30px;
         }
 
-        .menu #menu {
-            color: lightcyan;
-            background-color: #3C7182;   
-        }
-
-        .menu-cadastros {
+        .menu-consultas {
             background-color: lightcyan;
             height: 100%;
             width: 180px;
@@ -89,15 +84,15 @@
             cursor: pointer;
         }
 
-        .menu-cadastros:hover {
+        .menu-consultas:hover {
             color: lightcyan;
             background-color: #3C7182;
         }
 
         .menu a{
             text-decoration: none;
-            color: #3C7182;
-            background-color: lightcyan;
+            color: lightcyan;
+            background-color: #3C7182;
         }
 
         .menu a:hover {
@@ -119,46 +114,30 @@
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
-            
             align-items: center;
             padding: 20px;
+            flex-grow: 1;
         }
 
-        .pesquisa-consultas h2{
+        .dia-semana-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+            grid-gap: 10px; 
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            margin: 20px;
             color: lightcyan;
-            padding: 20px;
         }
 
-        .pesquisa-consultas input {
-            width: 500px;
-            height: 43px;
-            color: #cdf2ff;
-            padding: 0 15px;
-            border-radius: 5px;
-            border: none;
-            color: #3C7182;
-            background-color: lightcyan;
-            font-size: 1rem;
+        input[type="radio"] {
+            transform: scale(1.4); 
         }
 
-
-        .pesquisa-consultas input::placeholder {
-            color: #3C7182;
-        }
-
-        .pesquisa-consultas label {
+        label {
             color: lightcyan;
-            margin-bottom: 20px;
-        }
-        
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .input-container input {
-            margin-bottom: 10px; 
+            font-size: 1.2rem;
         }
 
         .botoes-container {
@@ -166,8 +145,8 @@
             justify-content: center; 
         }
 
-        button {
-            width: 200px;
+        .botao {
+            width: 400px;
             height: 50px;
             margin-right: 20px; 
             background-color: lightcyan;
@@ -177,86 +156,75 @@
             font-size: 1.1rem;
         }
 
-        .input-with-icon {
-            position: relative;
-        }
-
-        .input-with-icon input {
-            padding-right: 20px; 
-        }
-
-        .input-with-icon .icon {
-            position: absolute;
-            top: 50%;
-            right: 10px; 
-            transform: translateY(-50%);
+        select {
+            width: 400px; 
+            height: 50px; 
+            background-color: lightcyan;
             color: #3C7182;
-            pointer-events: none; 
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
         }
 
-        .input-container input[type="radio"] {
-            margin-right: 5px;
+        .menu a {
+            color: lightcyan;
         }
 
-        .error-message {
-            color: red; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
+        .menu a #menu{
+            text-decoration: none;
+            color: #3C7182;
+        } 
+        .menu a:hover {
+            color: lightcyan;
         }
-
-        .input-error {
-            border: solid 1px red !important; 
-            background-color: #ffe9e9 !important;
-        }
-        .input-container input {
-            margin-bottom: 10px;
-        }
-
+      
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
             <h2>DDH</h2>
-            
+
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
-            </div>
+            </div>  
         </div>
 
         <div class="menu">
-            <div class="menu-cadastros" id="menu">
-                <p>Cadastros</p>
+            <div class="menu-consultas"  id="menu">
+                <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
-            <div class="menu-cadastros">
+        
+            <div class="menu-consultas">
                 <p>Exames</p>
             </div>
-            <div class="menu-cadastros">
+        
+            <div class="menu-consultas">
                 <p>Alimentação</p>
             </div>
-            <div class="menu-cadastros">
+        
+            <div class="menu-consultas">
                 <p>Treinamento</p>
             </div>
-            <div class="menu-cadastros">
-                <p>Perfil</p>
+        
+            <div class="menu-consultas">
+                <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
         
 
         <div class="pesquisa-consultas">
-            
-           <div class="input-container">
-                <form method="post" action="{{ route('site.agenda.adicionar') }}">
-                <input type="hidden" name="id" value="{{ $agenda->id ?? ''}}">
-                
-                    @csrf
-                <div>
-                    <label>Dia da Semana</label>
-                    <input type="radio" id="segunda" name="dia" value="segunda">
+            <div class="input-container">
+            <form method="post" action="{{ route('site.agenda.adicionar') }}">
+               
+                @csrf
+                <h2>Dia da Semana</h2>
+                <div class="dia-semana-container">
+                    <input type="radio" id="segunda" name="dia" value="segunda" >
                     <label for="dia_segunda">Segunda-Feira</label>
 
                     <input type="radio" id="terca" name="dia" value="terca">
-                    <label for="dia_tercao">Terça-Feira</label>
+                    <label for="dia_terca">Terça-Feira</label>
 
                     <input type="radio" id="quarta" name="dia" value="quarta">
                     <label for="dia_quarta">Quarta-Feira</label>
@@ -269,7 +237,7 @@
                 </div>
 
                 <div>
-                    <label>Horário de Início</label>
+                    <h2>Horário de Início</h2>
                     <select name="hora_inicio" id="hora_inicio">
                         <option value="08:00:00">08:00:00</option>
                         <option value="09:00:00">09:00:00</option>
@@ -284,7 +252,7 @@
                 </div>      
 
                 <div>
-                    <label>Horário de Fim</label>
+                    <h2>Horário de Fim</h2>
                     <select name="hora_fim" id="hora_fim">
                         <option value="09:00:00">09:00:00</option>
                         <option value="10:00:00">10:00:00</option>
@@ -298,10 +266,10 @@
                     </select>
                 </div>   
 
-
+                <h2>Profissional</h2>
                 <div class="select-container">
                 <select name="profissional_id" id="profissional_id">
-                        <option value="" selected disabled>Selecione uma opção</option>
+                        <option value="" selected disabled>Selecione o profissional: </option>
                         
                         <option>
                             @foreach ($profissionais as $profisional)                                
@@ -315,11 +283,13 @@
                 <div class="botoes-container">
                     <button class="botao">Cadastrar Agenda</button>
                 </div>
-                </form>
+            </form>
             </div>
+            
         </div>
     
     </div>
+
 
     <script>
         feather.replace();

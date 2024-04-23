@@ -104,30 +104,6 @@
             padding:  1px 0 0 20px;
         }
 
-        .usuarios input {
-            width: 600px;
-            height: 50px;
-            color: #cdf2ff;
-            padding: 0 15px;
-            border-radius: 5px;
-            border: none;
-            color: #3C7182;
-            background-color: lightcyan;
-            font-size: 1rem;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-        }
-
-
-        .usuarios input::placeholder {
-            color: #3C7182;
-        }
-
-        .usuarios label {
-            color: lightcyan;
-        }
         .botoes-container {
             display: flex;
             justify-content: center; 
@@ -165,23 +141,22 @@
             padding: 35px;
         }
 
-        .input-wrapper {
-            display: flex;
-            justify-content: center;
-            margin: 20px 20px 0; 
+        .menu a {
+            text-decoration: none;
+            color: #3C7182;
         }
 
-        .input-wrapper input {
-            width: 70%; 
+        .menu a:hover {
+            color: lightcyan;
         }
-        
+
 
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
-            <h2>Olá, Paciente!</h2>
+            <h2>Olá, {{ isset($nome) ? $nome : 'Paciente' }}!</h2>
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>
@@ -201,34 +176,26 @@
                 <p>Treinamento</p>
             </div>
             <div class="menu-cadastros">
-                <p>Perfil</p>
+                <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
 
         <div class="conteudo">
-            <h3 class="titulo">Novos Usuários</h3>
+            <h3 class="titulo">Usuários</h3>
 
             <div class="usuarios">
                 <div class="botoes-container">
                     <a href="{{ route('site.profissional.adicionar') }}" class="botao">Novo Profissional de Saúde</a>
-                    <a href="{{ route('site.agenda.adicionar') }}" class="botao">Nova Agenda</a>
-                </div>
-            </div>
-
-            <h3 class="titulo">Usuários</h3>
-
-            <div class="usuarios">
-                <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar profissional">
-                    <a href="{{ route('site.profissional.listar') }}" class="botao">Pesquisar</a>
+                    <a href="{{ route('site.profissional.listar') }}" class="botao">Ver Profissionais de Saúde</a>
                 </div>
             </div>
 
             <h3 class="titulo">Agendas</h3>
+
             <div class="usuarios">
-                <div class="input-wrapper">
-                    <input type="text" placeholder="Pesquisar agenda">
-                    <a href="{{ route('site.agenda.listar') }}" class="botao">Pesquisar</a>
+                <div class="botoes-container">
+                    <a href="{{ route('site.agenda.adicionar') }}" class="botao">Nova Agenda</a>
+                    <a href="{{ route('site.agenda.listar') }}" class="botao">Ver Agendas</a>
                 </div>
             </div>
             

@@ -131,7 +131,7 @@
                 color: red; 
                 font-size: 0.8rem; 
                 margin-top: 5px; 
-            }
+        }
 
     </style>
 </head>

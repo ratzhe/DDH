@@ -8,6 +8,7 @@ use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\NovousuarioController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfissionalController;
+use App\Http\Middleware\AuthenticateCustom;
 
 
 //Login
@@ -31,20 +32,12 @@ Route::prefix('/site/perfil')->group(function () {
     Route::get('/', [PerfilController::class, 'index'])->name('site.perfil');
     Route::get('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
     Route::post('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
-    Route::get('/listar', [PerfilController::class, 'listar'])->name('site.perfil.listar');
-    Route::post('/listar', [PerfilController::class, 'listar'])->name('site.perfil.listar');
-    Route::get('/adicionar', [PerfilController::class, 'adicionar'])->name('site.perfil.adicionar');
-    Route::post('/adicionar', [PerfilController::class, 'adicionar'])->name('site.perfil.adicionar');
     Route::get('/editar/{id}', [PerfilController::class, 'editar'])->name('site.perfil.editar');
-    Route::get('/excluir/{id}', [PerfilController::class, 'excluir'])->name('site.perfil.excluir');
 });
 
 
 // Profissional
 Route::prefix('/site/profissional')->group(function () {
-    Route::get('/', [ProfissionalController::class, 'index'])->name('site.profissional');
-    Route::get('/index', [ProfissionalController::class, 'index'])->name('site.profissional.index');
-    Route::post('/index', [ProfissionalController::class, 'index'])->name('site.profissional.index');
     Route::get('/listar', [ProfissionalController::class, 'listar'])->name('site.profissional.listar');
     Route::post('/listar', [ProfissionalController::class, 'listar'])->name('site.profissional.listar');
     Route::get('/adicionar', [ProfissionalController::class, 'adicionar'])->name('site.profissional.adicionar');
