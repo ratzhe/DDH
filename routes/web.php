@@ -28,7 +28,7 @@ Route::get('/site/cadastro', [CadastroController::class, 'cadastrar'])->name('si
 Route::post('/site/cadastro', [CadastroController::class, 'salvar'])->name('site.cadastro');
 
 // Perfil 
-Route::prefix('/site/perfil')->group(function () {
+Route::prefix('/site/perfil')->middleware([AuthenticateCustom::class])->group(function () {
     Route::get('/', [PerfilController::class, 'index'])->name('site.perfil');
     Route::get('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
     Route::post('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
@@ -37,7 +37,7 @@ Route::prefix('/site/perfil')->group(function () {
 
 
 // Profissional
-Route::prefix('/site/profissional')->group(function () {
+Route::prefix('/site/profissional')->middleware([AuthenticateCustom::class])->group(function () {
     Route::get('/listar', [ProfissionalController::class, 'listar'])->name('site.profissional.listar');
     Route::post('/listar', [ProfissionalController::class, 'listar'])->name('site.profissional.listar');
     Route::get('/adicionar', [ProfissionalController::class, 'adicionar'])->name('site.profissional.adicionar');
@@ -47,11 +47,13 @@ Route::prefix('/site/profissional')->group(function () {
 });
 
 // Novo Usuário
-Route::get('/site/novousuario', [NovousuarioController::class, 'index'])->name('site.novousuario');
-Route::post('/site/novousuario', [NovousuarioController::class, 'index'])->name('site.novousuario');
+Route::prefix('/site/novousuario')->middleware([AuthenticateCustom::class])->group(function () {
+    Route::get('/', [NovousuarioController::class, 'index'])->name('site.novousuario');
+    Route::post('/', [NovousuarioController::class, 'index']);
+});
 
 // agenda 
-Route::prefix('/site/agenda')->group(function () {
+Route::prefix('/site/agenda')->middleware([AuthenticateCustom::class])->group(function () {
     Route::get('/', [AgendaController::class, 'adicionar'])->name('site.agenda');
     Route::get('/adicionar', [AgendaController::class, 'adicionar'])->name('site.agenda.adicionar');
     Route::post('/adicionar', [AgendaController::class, 'adicionar'])->name('site.agenda.adicionar');

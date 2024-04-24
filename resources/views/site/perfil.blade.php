@@ -151,7 +151,7 @@
 <body>
     <div class="consultas-container">
         <div class="paciente">
-            <h2>DDH</h2>
+            <h2>Olá, {{ $nome != '' ? $nome : 'Paciente' }}!</h2>
 
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>

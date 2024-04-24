@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use Mockery\Generator\StringManipulation\Pass\Pass;
+use Illuminate\Support\Facades\Session;
+
 
 
 class LoginController extends Controller
@@ -17,17 +19,29 @@ class LoginController extends Controller
             return view('site.errorota');
         }
 
-        public function index(Request $request){
+        public function index(Request $request)
+        {
             $erro = '';
 
-            if($request->get('erro') == 1){
+            if ($request->get('erro') == 1) {
                 $erro = "Usuário e/ou senha não existe";
             }
 
-            if($request->get('erro') == 2){
-                $erro = "Necessário relizar login para ter acesso a página";
+            if ($request->get('erro') == 2) {
+                $erro = "Necessário realizar login para ter acesso à página";
             }
-            return view('site.login', ['erro' => $erro]);
+
+            $nome = '';
+
+            if (Session::has('email')) {
+                $email = Session::get('email');
+                $cadastro = Cadastro::where('email', $email)->first();
+                if ($cadastro) {
+                    $nome = $cadastro->nome; 
+                }
+            }
+
+            return view('site.login', ['erro' => $erro, 'nome' => $nome]);
         }
 
         public function autenticar(Request $request){
@@ -50,7 +64,7 @@ class LoginController extends Controller
             $cadastro = Cadastro::where('email', $email)->first();
         
             if($cadastro && Hash::check($senha, $cadastro->senha)){
-                $_SESSION['email'] =  $cadastro->email;
+                Session::put('email', $cadastro->email);
                 
                 return redirect()->route('site.perfil');
             } else {

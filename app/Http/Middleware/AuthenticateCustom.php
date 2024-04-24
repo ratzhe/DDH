@@ -15,7 +15,7 @@ class AuthenticateCustom
         if (Session::has('email') && Session::get('email') != '') {
             return $next($request);
         } else {
-            return redirect()->route('site.login', ['erro' => 2]);
+            return redirect()->route('site.errorota', ['erro' => 2]);
         }
     }
 }
