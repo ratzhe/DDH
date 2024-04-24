@@ -151,7 +151,7 @@
 <body>
     <div class="consultas-container">
         <div class="paciente">
-            <h2>Olá, {{ $nome != '' ? $nome : 'Paciente' }}!</h2>
+            <h2>Olá, {{ $usuario->nome }}!</h2>
 
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
@@ -183,59 +183,59 @@
 
         <div class="pesquisa-consultas">
             <div class="input-container">
-                <div>
-                    <label for="nome">Nome: </label><br>
-                    <input name="nome" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                <form action="{{ route('site.perfil.editar') }}" method="post">
 
-                <div>
-                    <label for="sobrenome">Sobrenome: </label><br>
-                    <input name="sobrenome" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
-                
-                <div>
-                    <label for="cpf">CPF: </label><br>
-                    <input name="cpf" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="lock"></i>
-                </div>
+                    @csrf
+                    <div style="position: relative;">
+                    <p>Nome: </p>
+                    <input value="{{ $usuario->nome }}"  name="nome" type="text" placeholder="Nome" class="{{ $errors->has('nome') ? 'input-error' : '' }}">
+                        <div class="error-message">
+                            {{$errors->has('nome') ? $errors->first('nome') : ''}}
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="dataNascimento">Data de Nascimento: </label><br>
-                    <input name="dataNascimento" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                    <div style="position: relative;">
+                    <p>Sobrenome:</p>
+                        <input value="{{ $usuario->sobrenome }}" name="sobrenome" type="text" placeholder="Sobrenome" class="{{ $errors->has('sobrenome') ? 'input-error' : '' }}">
+                        <div class="error-message">
+                            {{$errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
+                        </div>
+                    </div>
+                    
+                    <div style="position: relative;">
+                    <p>CPF: </p>
+                        <input value="{{ $usuario->cpf }}" name="cpf" type="text" placeholder="CPF" class="{{ $errors->has('cpf') ? 'input-error' : '' }}">
+                        <div class="error-message">
+                            {{$errors->has('cpf') ? $errors->first('cpf') : ''}}
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="genero">Gênero: </label><br>
-                    <input name="genero" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                    <div style="position: relative;">
+                        <p>E-mail</p>
+                        <input value="{{ $usuario->email }}" name="email" type="email" placeholder="E-mail" class="{{ $errors->has('email') ? 'input-error' : '' }}" >
+                        <div class="error-message">
+                            {{$errors->has('email') ? $errors->first('email') : ''}}
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="cep">CEP: </label><br>
-                    <input name="cep" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                    <div style="position: relative;">
+                        <p>Senha: </p>
+                        <input value="{{ $usuario->senha }}" id="senha" name="senha" type="password" placeholder="Senha" class="{{ $errors->has('senha') ? 'input-error' : '' }}">
+                        <div class="error-message">
+                            {{$errors->has('senha') ? $errors->first('senha') : ''}}
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="telefone">Telefone: </label><br>
-                    <input name="telefone" type="text" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                    <div style="position: relative;">
+                        <p>Confirmar Senha: </p>
+                        <input id="senha_confirmation" name="senha_confirmation" type="password" placeholder="Confirme a senha" class="{{ $errors->has('confirmarsenha') ? 'input-error' : '' }}">
+                        <div class="error-message">
+                            {{$errors->has('senha_confirmation') ? $errors->first('senha_confirmation') : ''}}
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="email">E-Mail: </label><br>
-                    <input name="email" type="email" placeholder=""><br><br>
-                    <i class="icon" data-feather="lock"></i>
-                </div>
-
-                <div>
-                    <label for="senha">Senha: </label><br>
-                    <input name="senha" type="password" placeholder=""><br><br>
-                    <i class="icon" data-feather="edit-2"></i>
-                </div>
+                    <button type="submit">Atualizar</button>
+                </form>
 
             </div>
             

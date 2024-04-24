@@ -156,7 +156,7 @@
 <body>
     <div class="consultas-container">
         <div class="paciente">
-            <h2>Olá, {{ isset($nome) ? $nome : 'Paciente' }}!</h2>
+            <h2>DDH</h2>
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>

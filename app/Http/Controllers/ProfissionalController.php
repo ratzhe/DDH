@@ -85,8 +85,15 @@ class ProfissionalController extends Controller
         return view('site.profissional.editar');
     }
 
-    public function editar($id){
+    public function editar($id, Request $request){
         $profissional = Profissional::find($id);
+
+        if ($request->filled('senha')) {
+            $profissional->senha = Hash::make($request->senha);
+        }
+
+        $profissional->fill($request->except('senha'));
+        $profissional->save();
         return view('site.profissional.editar', ['profissional' => $profissional]);
     }
 

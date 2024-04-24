@@ -30,10 +30,9 @@ Route::post('/site/cadastro', [CadastroController::class, 'salvar'])->name('site
 // Perfil 
 Route::prefix('/site/perfil')->middleware([AuthenticateCustom::class])->group(function () {
     Route::get('/', [PerfilController::class, 'index'])->name('site.perfil');
-    Route::get('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
-    Route::post('/index', [PerfilController::class, 'index'])->name('site.perfil.index');
-    Route::get('/editar/{id}', [PerfilController::class, 'editar'])->name('site.perfil.editar');
+    Route::post('/', [PerfilController::class, 'editar'])->name('site.perfil.editar');
 });
+
 
 
 // Profissional
