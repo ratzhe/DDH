@@ -312,6 +312,35 @@
 
 
     <script>
+        document.getElementById('hora_inicio').addEventListener('change', function() {
+            var selectFim = document.getElementById('hora_fim');
+            selectFim.innerHTML = '';
+
+            var horaInicio = this.value;
+
+            var opcoesFim = [
+                '09:00:00',
+                '10:00:00',
+                '11:00:00',
+                '12:00:00',
+                '13:00:00',
+                '14:00:00',
+                '15:00:00',
+                '16:00:00',
+                '17:00:00'
+            ];
+
+            var opcoesFiltradas = opcoesFim.filter(function(opcao) {
+                return opcao > horaInicio;
+            });
+
+            opcoesFiltradas.forEach(function(opcao) {
+                var option = document.createElement('option');
+                option.text = opcao;
+                option.value = opcao;
+                selectFim.add(option);
+            });
+        });
         feather.replace();
     </script>
 </body>
