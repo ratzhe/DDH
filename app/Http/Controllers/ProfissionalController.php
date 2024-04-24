@@ -27,13 +27,13 @@ class ProfissionalController extends Controller
                 'nome' => 'required|min:3',
                 'sobrenome' => 'required|min:3',
                 'registro' => 'required|unique:profissionais',
-                'cpf' => 'required|unique:cadastros',
+                'cpf' => 'required|unique:usuarios',
                 'datanasc' => 'required|date',
                 'profissional' => 'required_without_all:medico,nutricionista,educador',
                 'genero' => 'required_without_all:masculino,feminino',
                 'cep' => 'required|regex:/^\d{5}-?\d{3}$/',
                 'telefone' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/',
-                'email' => 'required|email|unique:cadastros',
+                'email' => 'required|email|unique:usuarios',
                 'senha' => 'required|min:8|confirmed',
             ];
 

@@ -25,8 +25,8 @@ class CadastroController extends Controller
         $regras = [
             'nome' => 'required',
             'sobrenome' => 'required',
-            'cpf' => 'required|unique:cadastros',
-            'email' => 'email|unique:cadastros',
+            'cpf' => 'required|unique:usuarios',
+            'email' => 'email|unique:usuarios',
             'senha' => 'required|min:8|confirmed',
         ];
 

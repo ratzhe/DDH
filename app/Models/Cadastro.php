@@ -12,6 +12,7 @@ class Cadastro extends Model implements CanResetPassword
 {
     use HasFactory, CanResetPasswordTrait, Notifiable;
 
+    protected $table = 'usuarios';
     protected $fillable = [
         'nome', 'sobrenome', 'cpf', 'email', 'senha'
     ];
