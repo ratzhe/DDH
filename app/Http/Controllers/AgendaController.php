@@ -32,7 +32,7 @@ class AgendaController extends Controller
             'profissional_id.required' => 'Indique o profissional!',
         ]);
 
-        // Verificar se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário
+        // Verifica se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário
         $agendaExistente = Agenda::where('dia', $request->input('dia'))
                                   ->where('profissional_id', $request->input('profissional_id'))
                                   ->where(function($query) use ($request) {
@@ -47,12 +47,11 @@ class AgendaController extends Controller
                                   })
                                   ->exists();
 
-        // Se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário, exibir uma mensagem de erro
+        // Se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário, exibe uma mensagem de erro
         if ($agendaExistente) {
             return redirect()->route('site.agenda.listar')->with('error', 'Já existe uma agenda cadastrada para esse profissional no mesmo dia e intervalo de horário!');
         }
 
-        // Criar a nova entrada na agenda
         $agenda = new Agenda([
             'dia' => $request->input('dia'),
             'hora_inicio' => $request->input('hora_inicio'),
@@ -61,14 +60,11 @@ class AgendaController extends Controller
         ]);
         $agenda->save();
 
-        // Redirecionar após adicionar a agenda
         return redirect()->route('site.agenda.listar')->with('success', 'Agenda adicionada com sucesso!');
     }
 
-    // Obter os profissionais
     $profissionais = Profissional::all();
 
-    // Retornar a view com os profissionais
     return view('site.agenda.adicionar', [
         'profissionais' => $profissionais,
     ]);
@@ -78,7 +74,7 @@ class AgendaController extends Controller
     public function editar($id){
         
         $agenda = Agenda::find($id);
-        $profissionais = Profissional::all(); // Obter os profissionais
+        $profissionais = Profissional::all(); 
 
         return view('site.agenda.editar', [
             'agenda' => $agenda,
@@ -91,10 +87,10 @@ class AgendaController extends Controller
     
         if($agenda) {
             $agenda->delete();
-            // Redirecionar após a exclusão
+
             return redirect()->route('site.agenda.listar')->with('success', 'Agenda excluída com sucesso!');
         } else {
-            // Se o modelo não for encontrado, redirecionar com uma mensagem de erro
+
             return redirect()->route('site.agenda.listar')->with('error', 'Agenda não encontrada!');
         }
     }

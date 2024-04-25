@@ -254,7 +254,7 @@
                     </div>
                     
                     <label>CPF: </label>
-                    <input value="{{ $profissional->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="CPF">
+                    <input value="{{ $profissional->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="Apenas os números">
                      <div class="error-message">
                         {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     </div>
@@ -287,7 +287,7 @@
                     </div>
 
                     <label>Telefone:</label>
-                    <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
+                    <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="(00) 0000-0000">
                      <div class="error-message">
                         {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
                     </div>
