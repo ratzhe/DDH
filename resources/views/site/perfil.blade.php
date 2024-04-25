@@ -106,19 +106,48 @@
             
         }
 
-        .menu a {
-            text-decoration: none;
-        }
-
         .pesquisa-consultas {
             background-color: #3C7182;
             width: 100%;
-            
             align-items: center;
             padding: 20px;
         }
 
-        .pesquisa-consultas input {
+        .pesquisa-consultas h2{
+            color: lightcyan;
+            padding: 20px;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            margin-right: 20px; 
+            background-color: lightcyan;
+            color: #3C7182;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            margin: 0 auto; 
+            display: block; 
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container label,
+        .input-container input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        label {
+            color: lightcyan; 
+        }
+
+        .input-container input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
             width: 500px;
             height: 43px;
             color: #cdf2ff;
@@ -127,28 +156,28 @@
             border: none;
             color: #3C7182;
             background-color: lightcyan;
-            font-size: 1rem;
+            font-size: 1rem;    
+        }  
+
+       .icon {
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            right: 13px; 
+            color: #3C7182;;
         }
 
-
-        .pesquisa-consultas input::placeholder {
-            color: #3C7182;
-        }
-
-        .pesquisa-consultas label {
-            color: lightcyan;
-            margin-bottom: 20px ;
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
         }
         
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
     </style>
 </head>
 <body>
+
     <div class="consultas-container">
         <div class="paciente">
             <h2>Olá, {{ $usuario->nome }}!</h2>
@@ -184,54 +213,65 @@
         <div class="pesquisa-consultas">
             <div class="input-container">
                 <form action="{{ route('site.perfil.editar') }}" method="post">
-
+                @if (session('success'))
+                    <div style="background-color: green; color: white; padding: 20px; margin-bottom: 10px; text-align:center; border-radius: 5px">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <h2>Perfil</h2>
                     @csrf
                     <div style="position: relative;">
-                    <p>Nome: </p>
-                    <input value="{{ $usuario->nome }}"  name="nome" type="text" placeholder="Nome" class="{{ $errors->has('nome') ? 'input-error' : '' }}">
+                    <label>Nome: </label>
+                    <input value="{{ $usuario->nome }}" name="nome" type="text" placeholder="Nome" class="{{ $errors->has('nome') ? 'input-error' : '' }}">
                         <div class="error-message">
                             {{$errors->has('nome') ? $errors->first('nome') : ''}}
                         </div>
+                        <i id="nome" class="icon" data-feather="edit-2"></i>
                     </div>
 
                     <div style="position: relative;">
-                    <p>Sobrenome:</p>
+                    <label>Sobrenome:</label>
                         <input value="{{ $usuario->sobrenome }}" name="sobrenome" type="text" placeholder="Sobrenome" class="{{ $errors->has('sobrenome') ? 'input-error' : '' }}">
                         <div class="error-message">
                             {{$errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
                         </div>
+                        <i id="sobrenome" class="icon" data-feather="edit-2"></i>
                     </div>
                     
                     <div style="position: relative;">
-                    <p>CPF: </p>
-                        <input value="{{ $usuario->cpf }}" name="cpf" type="text" placeholder="CPF" class="{{ $errors->has('cpf') ? 'input-error' : '' }}">
+                    <label>CPF: </label>
+                        <input value="{{ $usuario->cpf }}" name="cpf" type="text" placeholder="CPF" class="{{ $errors->has('cpf') ? 'input-error' : '' }}" disabled>
                         <div class="error-message">
                             {{$errors->has('cpf') ? $errors->first('cpf') : ''}}
                         </div>
+                        <i id="cpf" class="icon" data-feather="lock"></i>
                     </div>
 
                     <div style="position: relative;">
-                        <p>E-mail</p>
-                        <input value="{{ $usuario->email }}" name="email" type="email" placeholder="E-mail" class="{{ $errors->has('email') ? 'input-error' : '' }}" >
+                        <label>E-mail</label>
+                        <input value="{{ $usuario->email }}" name="email" type="email" placeholder="E-mail" class="{{ $errors->has('email') ? 'input-error' : '' }}" disabled>
                         <div class="error-message">
                             {{$errors->has('email') ? $errors->first('email') : ''}}
                         </div>
+                        <i id="email" class="icon" data-feather="lock"></i>
                     </div>
 
                     <div style="position: relative;">
-                        <p>Senha: </p>
+                        <label>Senha: </label>
                         <input value="{{ $usuario->senha }}" id="senha" name="senha" type="password" placeholder="Senha" class="{{ $errors->has('senha') ? 'input-error' : '' }}">
                         <div class="error-message">
                             {{$errors->has('senha') ? $errors->first('senha') : ''}}
                         </div>
+                        <i id="senha" class="icon" data-feather="edit-2"></i>
                     </div>
 
                     <div style="position: relative;">
-                        <p>Confirmar Senha: </p>
+                        <label>Confirmar Senha: </label>
                         <input id="senha_confirmation" name="senha_confirmation" type="password" placeholder="Confirme a senha" class="{{ $errors->has('confirmarsenha') ? 'input-error' : '' }}">
                         <div class="error-message">
                             {{$errors->has('senha_confirmation') ? $errors->first('senha_confirmation') : ''}}
                         </div>
+                        <i id="senha_confirmation" class="icon" data-feather="edit-2"></i>
                     </div>
 
                     <button type="submit">Atualizar</button>

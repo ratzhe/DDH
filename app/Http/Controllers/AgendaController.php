@@ -32,6 +32,26 @@ class AgendaController extends Controller
             'profissional_id.required' => 'Indique o profissional!',
         ]);
 
+        // Verificar se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário
+        $agendaExistente = Agenda::where('dia', $request->input('dia'))
+                                  ->where('profissional_id', $request->input('profissional_id'))
+                                  ->where(function($query) use ($request) {
+                                      $query->where(function($q) use ($request) {
+                                          $q->where('hora_inicio', '<=', $request->input('hora_inicio'))
+                                            ->where('hora_fim', '>=', $request->input('hora_inicio'));
+                                      })
+                                      ->orWhere(function($q) use ($request) {
+                                          $q->where('hora_inicio', '<=', $request->input('hora_fim'))
+                                            ->where('hora_fim', '>=', $request->input('hora_fim'));
+                                      });
+                                  })
+                                  ->exists();
+
+        // Se já existe uma agenda para esse profissional no mesmo dia e intervalo de horário, exibir uma mensagem de erro
+        if ($agendaExistente) {
+            return redirect()->route('site.agenda.listar')->with('error', 'Já existe uma agenda cadastrada para esse profissional no mesmo dia e intervalo de horário!');
+        }
+
         // Criar a nova entrada na agenda
         $agenda = new Agenda([
             'dia' => $request->input('dia'),
@@ -54,17 +74,16 @@ class AgendaController extends Controller
     ]);
 }
 
-    public function editar($id){
-        //$agenda = Agenda::find($id);
-        //return view('site.agenda.editar', ['agenda' => $agenda]);
 
+    public function editar($id){
+        
         $agenda = Agenda::find($id);
         $profissionais = Profissional::all(); // Obter os profissionais
 
         return view('site.agenda.editar', [
             'agenda' => $agenda,
-            'profissionais' => $profissionais, // Passar os profissionais para a view
-        ]);
+            'profissionais' => $profissionais, 
+        ])->with('success', 'Agenda editada com sucesso!');
     }
 
     public function excluir($id){

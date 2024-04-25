@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 

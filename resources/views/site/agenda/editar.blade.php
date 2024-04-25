@@ -253,7 +253,7 @@
 
                 <div>
                     <h2>Horário de Fim</h2>
-                    <select name="hora_fim" id="hora_fim">
+                    <select name="hora_fim" id="hora_fim" >
                         <option value="09:00:00">09:00:00</option>
                         <option value="10:00:00">10:00:00</option>
                         <option value="11:00:00">11:00:00</option>

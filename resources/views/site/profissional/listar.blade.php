@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Cadastro - Médico</title>
+    <title>Listar - Profissional de Saúde</title>
 
     <style>
         * {
@@ -177,7 +177,12 @@
 
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
-                <h2>Usuários Cadastrados</h2>
+                @if (session('success'))
+                    <div style="background-color: green; color: white; padding: 20px; margin-bottom: 10px; text-align:center; border-radius: 5px">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <h2>Profissionais Cadastrados</h2>
                 <table border="1" width: 100%>
                     <thead>
                         <tr>

@@ -67,7 +67,8 @@ class ProfissionalController extends Controller
             $profissional->senha = Hash::make($request->senha);
             $profissional->save();
 
-            return redirect()->route('site.profissional.listar');
+            return redirect()->route('site.profissional.listar')->with('success', 'Profissional cadastrado com sucesso!');
+            
            
         }
         // edição
@@ -75,31 +76,36 @@ class ProfissionalController extends Controller
             $profissional = Profissional::find($request->input('id'));
             $update = $profissional->update($request->all());
 
+            if ($request->filled('senha')) {
+                $profissional->senha = Hash::make($request->senha);
+            }
+            $update = $profissional->save();
             if($update){
                 echo 'atualizado com sucesso';
             } else{
                 echo 'não foi possível atualizar';
             }
-            return redirect()->route('site.profissional.listar');
+            return redirect()->route('site.profissional.listar')->with('success', 'Profissional editado com sucesso!');
         }
         return view('site.profissional.editar');
     }
 
     public function editar($id, Request $request){
-        $profissional = Profissional::find($id);
+    $profissional = Profissional::find($id);
 
-        if ($request->filled('senha')) {
-            $profissional->senha = Hash::make($request->senha);
-        }
+    if ($request->filled('senha')) {
+        $profissional->senha = Hash::make($request->senha);
+    }
 
-        $profissional->fill($request->except('senha'));
-        $profissional->save();
-        return view('site.profissional.editar', ['profissional' => $profissional]);
+    $profissional->fill($request->except('senha'));
+    $profissional->save();
+    return view('site.profissional.editar', ['profissional' => $profissional]);
     }
 
     public function excluir($id){
         Profissional::find($id)->delete();
         
-        return redirect()->route('site.profissional.listar');
+        return redirect()->route('site.profissional.listar')->with('success', 'Profissional excluído com sucesso!');
+        
     }
 }

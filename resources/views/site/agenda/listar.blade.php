@@ -177,6 +177,17 @@
 
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
+                @if (session('success'))
+                    <div style="background-color: green; color: white; padding: 10px; margin-bottom: 10px; text-align:center; border-radius: 5px">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div style="background-color: red; color: white; padding: 20px; margin-bottom: 10px; text-align:center; border-radius: 5px">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <h2>Agendas Cadastradas</h2>
                 <table border="1" width: 100%>
                     <thead>
