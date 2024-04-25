@@ -70,7 +70,6 @@ class AgendaController extends Controller
     ]);
 }
 
-
     public function editar($id){
         
         $agenda = Agenda::find($id);

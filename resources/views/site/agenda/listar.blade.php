@@ -158,7 +158,7 @@
 
         <div class="menu">
             <div class="menu-cadastros" id="menu">
-                <p>Cadastros</p>
+                <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
             <div class="menu-cadastros">
                 <p>Exames</p>
@@ -170,7 +170,7 @@
                 <p>Treinamento</p>
             </div>
             <div class="menu-cadastros">
-                <p>Perfil</p>
+                <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
         

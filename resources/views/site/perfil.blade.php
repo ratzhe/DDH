@@ -185,6 +185,7 @@
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
             </div>
+
         </div>
 
         <div class="menu">
@@ -207,6 +208,8 @@
             <div class="menu-consultas" id="menu">
                 <p>Perfil</p>
             </div>
+
+            
         </div>
         
 

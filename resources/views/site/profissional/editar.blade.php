@@ -210,7 +210,7 @@
                 <p>Treinamento</p>
             </div>
             <div class="menu-cadastros">
-                <p>Perfil</p>
+                <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
         

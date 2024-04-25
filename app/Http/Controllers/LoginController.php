@@ -136,4 +136,5 @@ class LoginController extends Controller
             return back()->withErrors(['site.login' => 'E-mail ou token inválido.']);
         }
     }
+    
 }
