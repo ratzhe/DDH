@@ -198,6 +198,15 @@
                     <a href="{{ route('site.agenda.listar') }}" class="botao">Ver Agendas</a>
                 </div>
             </div>
+
+            <h3 class="titulo">Protocolos</h3>
+
+            <div class="usuarios">
+                <div class="botoes-container">
+                    <a href="{{ route('site.agenda.adicionar') }}" class="botao">Novo Protocolo</a>
+                    <a href="{{ route('site.agenda.listar') }}" class="botao">Ver Protocolos</a>
+                </div>
+            </div>
             
         </div>
     </div>  

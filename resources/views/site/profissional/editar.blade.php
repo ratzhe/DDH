@@ -259,6 +259,12 @@
                         {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     </div>
 
+                    <label>Nacionalidade: </label>
+                    <input value="{{  $profissional->nacionalidade ?? old('nacionalidade') }}" name="nacionalidade" type="text" placeholder="Nacionalidade">
+                     <div class="error-message">
+                        {{ $errors->has('nacionalidade') ? $errors->first('nacionalidade') : ''}}
+                    </div>
+
                     <label>Data de Nascimento: </label>
                     <input value="{{ $profissional->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
                     @error('datanasc')

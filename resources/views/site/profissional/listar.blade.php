@@ -131,13 +131,13 @@
         }
 
         table {
-            width: 100%;
+            width: 70%;
             border-collapse: separate; 
             border-spacing: 0;
         }
 
         th, td {
-            padding: 10px; 
+            padding: 8-px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
@@ -195,6 +195,7 @@
                             <th>Gênero</th>
                             <th>Data de Nascimento</th>
                             <th>CEP</th>
+                            <th>Nacionalidade</th>
                             <th>Telefone</th>
                             <th>E-mail</th>  
                             <th>Editar</th>  
@@ -214,6 +215,7 @@
                                 <td>{{$profissional->genero}}</td>
                                 <td>{{$profissional->datanasc}}</td>
                                 <td>{{$profissional->cep}}</td>
+                                <td>{{$profissional->nacionalidade}}</td>
                                 <td>{{$profissional->telefone}}</td>
                                 <td>{{$profissional->email}}</td>
                                 
