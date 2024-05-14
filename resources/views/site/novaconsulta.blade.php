@@ -143,12 +143,9 @@
 
         .menu a {
             text-decoration: none;
-            color: #3C7182;
-        }
-
-        .menu a:hover {
             color: lightcyan;
         }
+
 
 
     </style>
@@ -163,10 +160,10 @@
         </div>
 
         <div class="menu">
-            <div class="menu-cadastros" id="menu">
-                <p>Cadastros</p>
-            </div>
             <div class="menu-cadastros">
+                <a href="{{ route('site.novousuario') }}">Cadastros</a>
+            </div>
+            <div class="menu-cadastros" id="menu">
                 <a href="{{ route('site.novaconsulta') }}">Consultas</a>
             </div>
             <div class="menu-cadastros">
@@ -184,34 +181,15 @@
         </div>
 
         <div class="conteudo">
-            <h3 class="titulo">Profissionais de Saúde</h3>
+            <h3 class="titulo">Consultas</h3>
 
             <div class="usuarios">
                 <div class="botoes-container">
-                    <a href="{{ route('site.profissional.adicionar') }}" class="botao">Novo Profissional de Saúde</a>
-                    <a href="{{ route('site.profissional.listar') }}" class="botao">Ver Profissionais de Saúde</a>
+                    <a href="{{ route('site.profissional.listar') }}" class="botao">Nova Consulta</a>
                 </div>
             </div>
 
-            <h3 class="titulo">Pacientes</h3>
-
-            <div class="usuarios">
-                <div class="botoes-container">
-                    <a href="{{ route('site.paciente.adicionar') }}" class="botao">Novo Paciente</a>
-                    <a href="{{ route('site.paciente.listar') }}" class="botao">Ver Paciente</a>
-                </div>
-            </div>
-
-            <h3 class="titulo">Agendas</h3>
-
-            <div class="usuarios">
-                <div class="botoes-container">
-                    <a href="{{ route('site.agenda.adicionar') }}" class="botao">Nova Agenda</a>
-                    <a href="{{ route('site.agenda.listar') }}" class="botao">Ver Agendas</a>
-                </div>
-            </div>
-
-
+            
             
         </div>
     </div>  

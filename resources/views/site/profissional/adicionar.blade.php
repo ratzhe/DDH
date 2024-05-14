@@ -286,12 +286,6 @@
                         {{ $errors->has('cep') ? $errors->first('cep') : ''}}
                     </div>
 
-                    <label>Nacionalidade: </label>
-                    <input value="{{  $profissional->nacionalidade ?? old('nacionalidade') }}" name="nacionalidade" type="text" placeholder="Nacionalidade">
-                     <div class="error-message">
-                        {{ $errors->has('nacionalidade') ? $errors->first('nacionalidade') : ''}}
-                    </div>
-
                     <label>Telefone:</label>
                     <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
                      <div class="error-message">

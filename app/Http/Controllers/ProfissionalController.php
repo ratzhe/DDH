@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfissionalController extends Controller
 {
-    
 
     public function listar(Request $request){
         $profissionais = Profissional::where('email', 'like', '%'.$request->input('email').'%')
@@ -27,14 +26,13 @@ class ProfissionalController extends Controller
                 'nome' => 'required|min:3',
                 'sobrenome' => 'required|min:3',
                 'registro' => 'required|unique:profissionais',
-                'cpf' => 'required|unique:usuarios',
+                'cpf' => 'required|unique:profissionais',
                 'datanasc' => 'required|date',
                 'profissional' => 'required_without_all:medico,nutricionista,educador',
                 'genero' => 'required_without_all:masculino,feminino',
                 'cep' => 'required|regex:/^\d{5}-?\d{3}$/',
-                'nacionalidade' => 'required',
                 'telefone' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/',
-                'email' => 'required|email|unique:usuarios',
+                'email' => 'required|email|unique:profissionais',
                 'senha' => 'required|min:8|confirmed',
             ];
 
@@ -52,7 +50,6 @@ class ProfissionalController extends Controller
                 'genero.required_without_all' => 'Por favor, selecione o gênero!',
                 'cep.required' => 'O CEP é obrigatório!',
                 'cep.regex' => 'Por favor, insira um CEP válido!',
-                'nacionalidade' => 'A nacionalidade é obrigatória!',
                 'telefone.required' => 'O telefone é obrigatório!',
                 'telefone.regex' => 'Por favor, insira um telefone válido!',
                 'email.required' => 'O e-mail é obrigatório!',

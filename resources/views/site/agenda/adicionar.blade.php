@@ -286,13 +286,7 @@
                 <div class="select-container">
                     <select name="profissional_id" id="profissional_id">
                             <option value="" selected disabled>Selecione o profissional: </option>
-                            
-                            <option>
-                                @foreach ($profissionais as $profisional)                                
-                                    <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
-                                @endforeach
-                            <option>
-                            
+                                  
                     </select>
                 </div>
                 @error('profissional_id')
@@ -300,7 +294,7 @@
                 @enderror
 
                 <div class="botoes-container">
-                    <button class="botao">Cadastrar Agenda</button>
+                    <button class="botao">Cadastrar Protocolo</button>
                 </div>
             </form>
             </div>

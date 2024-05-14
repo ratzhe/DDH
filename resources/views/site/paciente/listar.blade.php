@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Listar - Profissional de Saúde</title>
+    <title>Listar - Paciente</title>
 
     <style>
         * {
@@ -182,15 +182,14 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <h2>Profissionais Cadastrados</h2>
+                <h2>Pacientes Cadastrados</h2>
                 <table border="1" width: 100%>
                     <thead>
                         <tr>
                             <th>Matrícula</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
-                            <th>Tipo de Profissional</th>
-                            <th>Registro Profissional</th>
+                            <th>RG</th>
                             <th>CPF</th>
                             <th>Gênero</th>
                             <th>Data de Nascimento</th>
@@ -203,22 +202,21 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($profissionais as $profissional)
+                        @foreach ($pacientes as $paciente)
                             <tr>
-                                <td>{{$profissional->id}}</td>
-                                <td>{{$profissional->nome}}</td>
-                                <td>{{$profissional->sobrenome}}</td>
-                                <td>{{$profissional->profissional}}</td>
-                                <td>{{$profissional->registro}}</td>
-                                <td>{{$profissional->cpf}}</td>
-                                <td>{{$profissional->genero}}</td>
-                                <td>{{$profissional->datanasc}}</td>
-                                <td>{{$profissional->cep}}</td>
-                                <td>{{$profissional->telefone}}</td>
-                                <td>{{$profissional->email}}</td>
+                                <td>{{$paciente->id}}</td>
+                                <td>{{$paciente->nome}}</td>
+                                <td>{{$paciente->sobrenome}}</td>
+                                <td>{{$paciente->rg}}</td>
+                                <td>{{$paciente->cpf}}</td>
+                                <td>{{$paciente->genero}}</td>
+                                <td>{{$paciente->datanasc}}</td>
+                                <td>{{$paciente->cep}}</td>
+                                <td>{{$paciente->telefone}}</td>
+                                <td>{{$paciente->email}}</td>
                                 
-                                <td><a href="{{ route('site.profissional.editar', $profissional->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
-                                <td><a href="{{ route('site.profissional.excluir', $profissional->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
+                                <td><a href="{{ route('site.paciente.editar', $paciente->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
+                                <td><a href="{{ route('site.paciente.excluir', $paciente->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
                         
                             </tr>
                         @endforeach

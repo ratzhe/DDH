@@ -10,5 +10,5 @@ class Profissional extends Model
     use HasFactory;
 
     protected $table = 'profissionais';
-    protected $fillable = ['nome', 'sobrenome', 'profissional', 'registro', 'cpf', 'datanasc', 'genero', 'cep', 'nacionalidade', 'telefone', 'email', 'senha'];
+    protected $fillable = ['nome', 'sobrenome', 'profissional', 'registro', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
 }

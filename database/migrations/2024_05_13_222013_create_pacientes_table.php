@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('educadores', function (Blueprint $table) {
+        Schema::create('pacientes', function (Blueprint $table) {
+            $table->id();
             $table->string('nome', 100);
             $table->string('sobrenome', 100);
-            $table->string('cref')->unique();
+            $table->string('rg')->unique();
             $table->string('cpf', 14)->unique();
             $table->date('datanasc');  
             $table->enum('genero', ['masculino', 'feminino']);
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('telefone', 15);
             $table->string('email')->unique();
             $table->string('senha');
+            $table->timestamps();
         });
     }
 
@@ -34,8 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('educadores', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pacientes');
     }
 };

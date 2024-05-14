@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Editar - Profissional de Saúde</title>
+    <title>Adicionar - Paciente</title>
 
     <style>
         * {
@@ -179,9 +179,9 @@
         }  
 
         .error-message {
-            color: red; 
-            font-size: 0.8rem; 
-            margin-top: 5px; 
+                color: red; 
+                font-size: 0.8rem; 
+                margin-top: 5px; 
         }
 
     </style>
@@ -198,7 +198,7 @@
 
         <div class="menu">
             <div class="menu-cadastros" id="menu">
-                <p>Cadastros</p>
+                <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
             <div class="menu-cadastros">
                 <p>Exames</p>
@@ -219,48 +219,35 @@
             
            <div class="input-container">
                 
-                <form method="post" action="{{ route('site.profissional.adicionar') }}">
-                    <input type="hidden" name="id" value="{{ $profissional->id ?? ''}}">
+                <form method="post" action="{{ route('site.paciente.adicionar') }}">
+                    <input type="hidden" name="id" value="{{ $paciente->id ?? ''}}">
                     @csrf
                     <label>Nome: </label>
-                    <input value="{{ $profissional->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
+                    <input value="{{ $paciente->nome ?? old('nome') }}" name="nome" type="text" placeholder="Nome">
                     <div class="error-message">
                         {{ $errors->has('nome') ? $errors->first('nome') : ''}}
                     </div>
 
                     <label>Sobrenome:</label>
-                    <input value="{{ $profissional->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
+                    <input value="{{ $paciente->sobrenome ?? old('sobrenome') }}" name="sobrenome" type="text" placeholder="Sobrenome">
                      <div class="error-message">
                         {{ $errors->has('sobrenome') ? $errors->first('sobrenome') : ''}}
                     </div>
-
-                    <label>Profissional</label>
-                    <div class="radio-group">
-                        <input type="radio" id="medico" name="profissional" value="medico">
-                        <label for="medico">Médico</label>
-                        <input type="radio" id="nutricionista" name="profissional" value="nutricionista">
-                        <label for="nutricionista">Nutricionista</label>
-                        <input type="radio" id="educador" name="profissional" value="educador">
-                        <label for="educador">Educador Físico</label><br>
-                    </div>
-                    @error('profissional')
-                        <div class="error-message">{{ $message }}</div>
-                    @enderror
                     
-                    <label>Registro:</label>
-                    <input value="{{ $profissional->registro ?? old('registro') }}" name="registro" type="text" placeholder="Registro Profissional (CRM ou CFN ou CREF)">
+                    <label>RG:</label>
+                    <input value="{{ $paciente->rg ?? old('rg') }}" name="rg" type="text" placeholder="RG">
                     <div class="error-message">
-                        {{ $errors->has('registro') ? $errors->first('registro') : ''}}
+                        {{ $errors->has('rg') ? $errors->first('rg') : ''}}
                     </div>
                     
                     <label>CPF: </label>
-                    <input value="{{ $profissional->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="Apenas os números">
+                    <input value="{{ $paciente->cpf ?? old('cpf') }}" name="cpf" type="text" placeholder="Apenas os números">
                      <div class="error-message">
                         {{ $errors->has('cpf') ? $errors->first('cpf') : ''}}
                     </div>
 
                     <label>Data de Nascimento: </label>
-                    <input value="{{ $profissional->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
+                    <input value="{{ $paciente->datanasc ?? old('datanasc') }}" name="datanasc" type="date" placeholder="">
                     @error('datanasc')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
@@ -281,25 +268,25 @@
 
 
                     <label>CEP:</label>
-                    <input value="{{  $profissional->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
+                    <input value="{{  $paciente->cep ?? old('cep') }}" name="cep" type="text" placeholder="CEP">
                      <div class="error-message">
                         {{ $errors->has('cep') ? $errors->first('cep') : ''}}
                     </div>
 
                     <label>Telefone:</label>
-                    <input value="{{  $profissional->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="(00) 0000-0000">
+                    <input value="{{  $paciente->telefone ?? old('telefone') }}" name="telefone" type="text" placeholder="Telefone">
                      <div class="error-message">
                         {{ $errors->has('telefone') ? $errors->first('telefone') : ''}}
                     </div>
 
                     <label>E-mail:</label>
-                    <input value="{{  $profissional->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
+                    <input value="{{  $paciente->email ?? old('email') }}" name="email" type="email" placeholder="E-mail">
                      <div class="error-message">
                         {{ $errors->has('email') ? $errors->first('email') : ''}}
                     </div>
 
                     <label>Senha: </label>
-                    <input value="{{  $profissional->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
+                    <input value="{{  $paciente->senha ?? old('senha') }}" name="senha" type="password" placeholder="Senha">
                      <div class="error-message">
                         {{ $errors->has('senha') ? $errors->first('senha') : ''}}
                     </div>
@@ -315,8 +302,6 @@
     </div>
 
     <script>
-        
-
         feather.replace();
     </script>
 </body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cadastro;
+use App\Models\Profissional;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -62,11 +63,20 @@ class LoginController extends Controller
             $senha = $request->get('senha');
         
             $cadastro = Cadastro::where('email', $email)->first();
+
+            if (!$cadastro) {
+                $profissional = Profissional::where('email', $email)->first();
+            }
         
-            if($cadastro && Hash::check($senha, $cadastro->senha)){
-                Session::put('email', $cadastro->email);
+            if(($cadastro && Hash::check($senha, $cadastro->senha)) || ($profissional && Hash::check($senha, $profissional->senha))){
+                if ($cadastro){
+                    Session::put('email', $cadastro->email);
+                    return redirect()->route('site.perfil');
+                } elseif ($profissional){
+                    Session::put('email', $profissional->email);
+                    return redirect()->route('site.alimentacao.adicionar');
+                }               
                 
-                return redirect()->route('site.perfil');
             } else {
                 return redirect()->route('site.login', ['erro' => 1]);
             };
