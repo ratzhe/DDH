@@ -156,13 +156,14 @@
         }
 
         select {
-            width: 400px; 
+            width: 1460px; 
             height: 50px; 
             background-color: lightcyan;
             color: #3C7182;
             font-size: 1rem;
             padding: 10px;
             border-radius: 5px;
+            margin: 10px;
         }
 
         .menu a {
@@ -187,7 +188,21 @@
             color: #3C7182;
             background-color: lightcyan;
         }
-      
+
+        h1, h2, h3 {
+            color: lightcyan;
+            margin: 0 10px;
+        }
+
+        .plano input{
+            width: 470px;
+            height: 100px;
+            background-color: lightcyan;
+            border-radius: 5px;
+            border: none;
+            padding: 20px;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -222,14 +237,13 @@
             </div>
         </div>
         
-
         <div class="pesquisa-consultas">
             <div class="input-container">
             <form method="post" action="{{ route('site.paciente.adicionar') }}">
                
                 @csrf
-                <h1>Plano Alimentar</h1>
-                <h2>Paciente</h2>
+                <h1>Plano Alimentar</h1><br><br>
+                <h3>Paciente</h3>
                 <div class="select-container">
                     <select name="paciente_id" id="paciente_id">
                             <option value="" selected disabled>Selecione o paciente: </option>
@@ -238,214 +252,62 @@
                                     <option value="{{$paciente->id}}">{{$paciente->nome}} {{$paciente->sobrenome}}</option>
                                 @endforeach
                             <option>
-                           
-                            
                     </select>
                 </div>
+                <br><br>
                 
                 <div class="plano">
                     <h3>Café da Manhã</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="cafe_1" id="cafe_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
+                    <input name="cafe_1" type="text" placeholder="Opção I">
+                    <input name="cafe_2" type="text" placeholder="Opção II">
+                    <input name="cafe_3" type="text" placeholder="Opção III">
 
-                    <h4>Opção II</h4>
-                    <textarea name="cafe_2" id="cafe_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="cafe_3" id="cafe_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
                 </div>
-                @error('cafe_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('cafe_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('cafe_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-
+                
                 <div class="plano">
                     <h3>Lanche da Manhã</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="lanche_m_1" id="lanche_m_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção II</h4>
-                    <textarea name="lanche_m_2" id="lanche_m_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="lanche_m_3" id="lanche_m_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-                </div>
-                @error('lanche_m_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('lanche_m_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('lanche_m_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
+                    <input name="lanche_m_1" type="text" placeholder="Opção I">
+                    <input name="lanche_m_2" type="text" placeholder="Opção II">
+                    <input name="lanche_m_3" type="text" placeholder="Opção III">
+                </div>                
 
                 <div class="plano">
                     <h3>Almoço</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="almoco_1" id="almoco_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção II</h4>
-                    <textarea name="almoco_2" id="almoco_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="almoco_3" id="almoco_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-                </div>
-                @error('almoco_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('almoco_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('almoco_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
+                    <input name="almoco_1" type="text" placeholder="Opção I">
+                    <input name="almoco_2" type="text" placeholder="Opção II">
+                    <input name="almoco_3" type="text" placeholder="Opção III">
+                </div>      
 
                 <div class="plano">
                     <h3>Lanche da Tarde</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="lanche_1" id="lanche_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção II</h4>
-                    <textarea name="lanche_2" id="lanche_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="lanche_3" id="lanche_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
+                    <input name="lanche_1" type="text" placeholder="Opção I">
+                    <input name="lanche_2" type="text" placeholder="Opção II">
+                    <input name="lanche_3" type="text" placeholder="Opção III">
                 </div>
-                @error('lanche_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('lanche_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('lanche_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-
+            
                 <div class="plano">
                     <h3>Jantar</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="jantar_1" id="jantar_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção II</h4>
-                    <textarea name="jantar_2" id="jantar_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="jantar_3" id="jantar_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
+                    <input name="jantar_1" type="text" placeholder="Opção I">
+                    <input name="jantar_2" type="text" placeholder="Opção II">
+                    <input name="jantar_3" type="text" placeholder="Opção III">
                 </div>
-                @error('jantar_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('jantar_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('jantar_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
 
                 <div class="plano">
                     <h3>Ceia</h3>
-                    <h4>Opção I</h4>
-                    <textarea name="ceia_1" id="ceia_1" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção II</h4>
-                    <textarea name="ceia_2" id="ceia_2" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
-
-                    <h4>Opção III</h4>
-                    <textarea name="ceia_3" id="ceia_3" rows="5" cols="60">
-                         Escreva Aqui
-                    </textarea>
+                    <input name="ceia_1" type="text" placeholder="Opção I">
+                    <input name="ceia_2" type="text" placeholder="Opção II">
+                    <input name="ceia_3" type="text" placeholder="Opção III"><br><br><br>
                 </div>
-                @error('ceia_1')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('ceia_2')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-                @error('ceia_3')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
 
                  <div class="botoes-container">
                     <button class="botao">Cadastrar Plano Alimentar</button>
                 </div>
             </form>
             </div>
-            
         </div>
-    
     </div>
 
-
     <script>
-        document.getElementById('hora_inicio').addEventListener('change', function() {
-            var selectFim = document.getElementById('hora_fim');
-            selectFim.innerHTML = '';
-
-            var horaInicio = this.value;
-
-            var opcoesFim = [
-                '09:00:00',
-                '10:00:00',
-                '11:00:00',
-                '12:00:00',
-                '13:00:00',
-                '14:00:00',
-                '15:00:00',
-                '16:00:00',
-                '17:00:00'
-            ];
-
-            var opcoesFiltradas = opcoesFim.filter(function(opcao) {
-                return opcao > horaInicio;
-            });
-
-            opcoesFiltradas.forEach(function(opcao) {
-                var option = document.createElement('option');
-                option.text = opcao;
-                option.value = opcao;
-                selectFim.add(option);
-            });
-        });
         feather.replace();
     </script>
 </body>

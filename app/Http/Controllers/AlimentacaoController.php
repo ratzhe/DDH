@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AlimentacaoController extends Controller
 {
+    public function listar(Request $request){
+        $alimentacoes = Alimentacao::where('id', 'like', '%'.$request->input('id').'%')
+            ->get();
+        return view('site.alimentacao.listar', ['alimentacoes' => $alimentacoes]);
+    }
 
     public function adicionar(Request $request)
 {
@@ -17,44 +22,20 @@ class AlimentacaoController extends Controller
         $request->validate([
             'paciente_id' => 'required',
             'cafe_1' => 'required',
-            'cafe_2' => 'required',
-            'cafe_3' => 'required',
             'lanche_m_1' => 'required',
-            'lanche_m_2' => 'required',
-            'lanche_m_3' => 'required',
             'almoco_1' => 'required',
-            'almoco_2' => 'required',
-            'almoco_3' => 'required',
             'lanche_1' => 'required',
-            'lanche_2' => 'required',
-            'lanche_3' => 'required',
             'jantar_1' => 'required',
-            'jantar_2' => 'required',
-            'jantar_3' => 'required',
             'ceia_1' => 'required', 
-            'ceia_2' => 'required', 
-            'ceia_3' => 'required', 
-
+            
         ], [
             'paciente_id.required' => 'Indique o paciente!',
             'cafe_1.required' => 'Indique a opção de Café da Manhã!',
-            'cafe_2.required' => 'Indique a opção de Café da Manhã!',
-            'cafe_3.required' => 'Indique a opção de Café da Manhã!',
             'lanche_m_1.required' => 'Indique a opção de Lanche da Manhã!',
-            'lanche_m_2.required' => 'Indique a opção de Lanche da Manhã!',
-            'lanche_m_3.required' => 'Indique a opção de Lanche da Manhã!',
             'almoco_1.required' => 'Indique a opção de Almoço!',
-            'almoco_2.required' => 'Indique a opção de Almoço!',
-            'almoco_3.required' => 'Indique a opção de Almoço!',
             'lanche_1.required' => 'Indique a opção de Lanche da Tarde!',
-            'lanche_2.required' => 'Indique a opção de Lanche da Tarde!',
-            'lanche_3.required' => 'Indique a opção de Lanche da Tarde!',
             'jantar_1.required' => 'Indique a opção de Jantar',
-            'jantar_2.required' => 'Indique a opção de Jantar!',
-            'jantar_3.required' => 'Indique a opção de Jantar!',
             'ceia_1.required' => 'Indique a opção de Ceia!', 
-            'ceia_2.required' => 'Indique a opção de Ceia!', 
-            'ceia_3.required' => 'Indique a opção de Ceia!', 
         ]);
 
         $alimentacao = new Alimentacao([
@@ -71,6 +52,12 @@ class AlimentacaoController extends Controller
             'lanche_1' => $request->input('lanche_1'),
             'lanche_2' => $request->input('lanche_2'),
             'lanche_3' => $request->input('lanche_3'),
+            'jantar_1' => $request->input('jantar_1'),
+            'jantar_2' => $request->input('jantar_2'),
+            'jantar_3' => $request->input('jantar_3'),
+            'ceia_1' => $request->input('ceia_1'),
+            'ceia_2' => $request->input('ceia_2'),
+            'ceia_3' => $request->input('ceia_3'),
         ]);
         $alimentacao->save();
 

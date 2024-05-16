@@ -286,7 +286,12 @@
                 <div class="select-container">
                     <select name="profissional_id" id="profissional_id">
                             <option value="" selected disabled>Selecione o profissional: </option>
-                                  
+
+                            <option>
+                                @foreach ($profissionais as $profisional)                                
+                                    <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
+                                @endforeach
+                        <option>
                     </select>
                 </div>
                 @error('profissional_id')
