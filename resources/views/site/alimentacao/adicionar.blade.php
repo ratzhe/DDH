@@ -7,7 +7,6 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
     <title>Agenda</title>
-
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -144,7 +143,7 @@
             justify-content: center; 
         }
 
-        .botao {
+        button {
             width: 400px;
             height: 50px;
             margin-right: 20px; 
@@ -209,104 +208,150 @@
     <div class="consultas-container">
         <div class="paciente">
             <h2>DDH</h2>
-
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
-            </div>  
+            </div>
         </div>
 
         <div class="menu">
             <div class="menu-consultas">
                 <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
-        
             <div class="menu-consultas">
                 <p>Exames</p>
             </div>
-        
-            <div class="menu-consultas"   id="menu">
+            <div class="menu-consultas" id="menu">
                 <p>Alimentação</p>
             </div>
-        
             <div class="menu-consultas">
                 <p>Treinamento</p>
             </div>
-        
             <div class="menu-consultas">
                 <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
-        
+
         <div class="pesquisa-consultas">
             <div class="input-container">
-            <form method="post" action="{{ route('site.paciente.adicionar') }}">
-               
-                @csrf
-                <h1>Plano Alimentar</h1><br><br>
-                <h3>Paciente</h3>
-                <div class="select-container">
-                    <select name="paciente_id" id="paciente_id">
+                <form method="post" action="{{ route('site.alimentacao.adicionar') }}">
+                    @csrf
+                    <h1>Plano Alimentar</h1><br><br>
+                    <h3>Paciente</h3>
+                    <div class="select-container">
+                        <select name="paciente_id" id="paciente_id">
                             <option value="" selected disabled>Selecione o paciente: </option>
-                            <option>
-                                @foreach ($pacientes as $paciente)                                
-                                    <option value="{{$paciente->id}}">{{$paciente->nome}} {{$paciente->sobrenome}}</option>
-                                @endforeach
-                            <option>
-                    </select>
-                </div>
-                <br><br>
+                            @foreach ($pacientes as $paciente)
+                                <option value="{{ $paciente->id }}">{{ $paciente->nome }} {{ $paciente->sobrenome }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('paciente_id'))
+                            <span class="error-message">{{ $errors->first('paciente_id') }}</span>
+                        @endif
+                    </div>
+                    
+                    <div class="plano">
+                        <h3>Café da Manhã</h3>
+                        <input name="cafe_1" type="text" placeholder="Opção I">
+                        @error('cafe_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="cafe_2" type="text" placeholder="Opção II">
+                        @error('cafe_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="cafe_3" type="text" placeholder="Opção III">
+                        @error('cafe_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div class="plano">
+                        <h3>Lanche da Manhã</h3>
+                        <input name="lanche_m_1" type="text" placeholder="Opção I">
+                        @error('lanche_m_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="lanche_m_2" type="text" placeholder="Opção II">
+                        @error('lanche_m_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="lanche_m_3" type="text" placeholder="Opção III">
+                        @error('lanche_m_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>                
+
+                    <div class="plano">
+                        <h3>Almoço</h3>
+                        <input name="almoco_1" type="text" placeholder="Opção I">
+                        @error('almoco_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="almoco_2" type="text" placeholder="Opção II">
+                        @error('almoco_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="almoco_3" type="text" placeholder="Opção III">
+                        @error('almoco_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>      
+
+                    <div class="plano">
+                        <h3>Lanche da Tarde</h3>
+                        <input name="lanche_1" type="text" placeholder="Opção I">
+                        @error('lanche_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="lanche_2" type="text" placeholder="Opção II">
+                        @error('lanche_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="lanche_3" type="text" placeholder="Opção III">
+                        @error('lanche_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
                 
-                <div class="plano">
-                    <h3>Café da Manhã</h3>
-                    <input name="cafe_1" type="text" placeholder="Opção I">
-                    <input name="cafe_2" type="text" placeholder="Opção II">
-                    <input name="cafe_3" type="text" placeholder="Opção III">
+                    <div class="plano">
+                        <h3>Jantar</h3>
+                        <input name="jantar_1" type="text" placeholder="Opção I">
+                        @error('jantar_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="jantar_2" type="text" placeholder="Opção II">
+                        @error('jantar_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="jantar_3" type="text" placeholder="Opção III">
+                        @error('jantar_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                </div>
-                
-                <div class="plano">
-                    <h3>Lanche da Manhã</h3>
-                    <input name="lanche_m_1" type="text" placeholder="Opção I">
-                    <input name="lanche_m_2" type="text" placeholder="Opção II">
-                    <input name="lanche_m_3" type="text" placeholder="Opção III">
-                </div>                
+                    <div class="plano">
+                        <h3>Ceia</h3>
+                        <input name="ceia_1" type="text" placeholder="Opção I">
+                        @error('ceia_1')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="ceia_2" type="text" placeholder="Opção II">
+                        @error('ceia_2')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <input name="ceia_3" type="text" placeholder="Opção III"><br><br><br>
+                        @error('ceia_3')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="plano">
-                    <h3>Almoço</h3>
-                    <input name="almoco_1" type="text" placeholder="Opção I">
-                    <input name="almoco_2" type="text" placeholder="Opção II">
-                    <input name="almoco_3" type="text" placeholder="Opção III">
-                </div>      
-
-                <div class="plano">
-                    <h3>Lanche da Tarde</h3>
-                    <input name="lanche_1" type="text" placeholder="Opção I">
-                    <input name="lanche_2" type="text" placeholder="Opção II">
-                    <input name="lanche_3" type="text" placeholder="Opção III">
-                </div>
-            
-                <div class="plano">
-                    <h3>Jantar</h3>
-                    <input name="jantar_1" type="text" placeholder="Opção I">
-                    <input name="jantar_2" type="text" placeholder="Opção II">
-                    <input name="jantar_3" type="text" placeholder="Opção III">
-                </div>
-
-                <div class="plano">
-                    <h3>Ceia</h3>
-                    <input name="ceia_1" type="text" placeholder="Opção I">
-                    <input name="ceia_2" type="text" placeholder="Opção II">
-                    <input name="ceia_3" type="text" placeholder="Opção III"><br><br><br>
-                </div>
-
-                 <div class="botoes-container">
-                    <button class="botao">Cadastrar Plano Alimentar</button>
-                </div>
-            </form>
+                    <div class="botoes-container">
+                        <button type="submit">Adicionar Plano Alimentar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
     <script>
         feather.replace();
     </script>

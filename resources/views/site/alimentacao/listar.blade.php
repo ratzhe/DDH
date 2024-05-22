@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 
@@ -26,13 +25,10 @@
             position: relative;
             width: 100%; 
             height: 115px;
-            float: left; 
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -57,10 +53,6 @@
         .circulo-foto .icon {
             height: 50px;
             width: 50px;
-            position: absolute;
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
             color: lightcyan;
         }
 
@@ -69,11 +61,6 @@
             flex-wrap: wrap; 
             width: 100%;
             height: 30px;
-        }
-
-        .menu #menu {
-            color: lightcyan;
-            background-color: #3C7182;   
         }
 
         .menu-cadastros {
@@ -85,7 +72,6 @@
             border-radius: 5px 5px 0 0;
             color: #3C7182;
             margin: 0 7px;
-            margin-top: auto; 
             cursor: pointer;
         }
 
@@ -94,27 +80,14 @@
             background-color: #3C7182;
         }
 
-        .menu a{
+        .menu a {
             text-decoration: none;
             color: #3C7182;
-            background-color: lightcyan;
         }
 
         .menu a:hover {
-            text-decoration: none;
             color: lightcyan;
             background-color: #3C7182;
-        }
-
-        .menu #menu {
-            color: lightcyan;
-            background-color: #3C7182;
-            
-        }
-
-        a {
-            text-decoration: none;
-            color: #3C7182;
         }
 
         .pesquisa-consultas {
@@ -125,25 +98,69 @@
             flex-grow: 1;
         }
 
-        .pesquisa-consultas h2{
+        .pesquisa-consultas h2 {
             color: lightcyan;
             padding: 20px;
         }
 
         table {
             width: 100%;
-            border-collapse: separate; 
-            border-spacing: 0;
+            border-collapse: collapse; 
+            margin-bottom: 20px;
         }
 
         th, td {
-            padding: 10px; 
+            padding: 15px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
-            border: none;
+            border: 1px solid #ddd;
         }
 
+        th {
+            background-color: #3C7182; 
+            color: lightcyan;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .icon-action {
+            cursor: pointer;
+            color: #3C7182;
+        }
+
+        .icon-action:hover {
+            color: #F44336; 
+        }
+
+        .meal-options {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            th, td {
+                padding: 10px;
+            }
+
+            .menu-cadastros {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .paciente h2, .circulo-foto {
+                margin: 0 auto;
+                display: block;
+                text-align: center;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -173,7 +190,6 @@
                 <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
-        
 
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
@@ -189,17 +205,17 @@
                     </div>
                 @endif
                 <h2>Plano Cadastrado</h2>
-                <table border="1" width: 100%>
+                <table>
                     <thead>
                         <tr>
                             <th>Código</th>
                             <th>Paciente</th>
-                            <th>Café da manhã I</th>
-                            <th>Lanche da Manhã I</th>
-                            <th>Almoço I</th>         
-                            <th>Lanche da Tarde I</th>  
-                            <th>Jantar I</th>  
-                            <th>Ceia I</th>       
+                            <th>Café da manhã</th>
+                            <th>Lanche da Manhã</th>
+                            <th>Almoço</th>         
+                            <th>Lanche da Tarde</th>  
+                            <th>Jantar</th>  
+                            <th>Ceia</th>       
                             <th>Editar</th>        
                             <th>Excluir</th>                   
                         </tr>
@@ -210,24 +226,62 @@
                             <tr>
                                 <td>{{$alimentacao->id}}</td>
                                 <td>{{$alimentacao->paciente->nome}} {{$alimentacao->paciente->sobrenome}}</td>
-                                <td>{{$alimentacao->cafe_1}}</td>
-                                <td>{{$alimentacao->lanche_m_1}}</td>
-                                <td>{{$alimentacao->almoco_1}}</td>
-                                <td>{{$alimentacao->lanche_1}}</td>
-                                <td>{{$alimentacao->jantar_1}}</td>
-                                <td>{{$alimentacao->ceia_1}}</td>
-                                
-                                
-                                <td><a href="{{ route('site.alimentacao.editar', $alimentacao->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
-                                <td><a href="{{ route('site.alimentacao.excluir', $alimentacao->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
-                        
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->cafe_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->cafe_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->cafe_3}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->lanche_m_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->lanche_m_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->lanche_m_3}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->almoco_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->almoco_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->almoco_3}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->lanche_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->lanche_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->lanche_3}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->jantar_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->jantar_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->jantar_3}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">1. </span>
+                                    {{$alimentacao->ceia_1}}<br><br>
+                                    <span style="font-weight: bold;">2. </span>
+                                    {{$alimentacao->ceia_2}}<br><br>
+                                    <span style="font-weight: bold;">3. </span>
+                                    {{$alimentacao->ceia_3}}
+                                </td>
+                                <td><a href="{{ route('site.alimentacao.editar', $alimentacao->id) }}"><i class="icon icon-action" data-feather="edit-2"></i></a></td>
+                                <td><a href="{{ route('site.alimentacao.excluir', $alimentacao->id) }}"><i class="icon icon-action" data-feather="trash"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>       
         </div>
-    
     </div>
 
     <script>
