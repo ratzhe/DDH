@@ -122,4 +122,5 @@ class AlimentacaoController extends Controller
             return redirect()->route('site.alimentacao.listar')->with('error', 'Plano alimentar não encontrado!');
         }
     }
+
 }
