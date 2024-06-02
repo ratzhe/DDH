@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 
@@ -30,9 +29,7 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -177,7 +174,12 @@
         .menu a:hover {
             color: lightcyan;
         }
-      
+
+        .error-message {
+            color: red; 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+        }
     </style>
 </head>
 <body>
@@ -191,7 +193,7 @@
         </div>
 
         <div class="menu">
-            <div class="menu-consultas"  id="menu">
+            <div class="menu-consultas" id="menu">
                 <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
         
@@ -215,83 +217,138 @@
 
         <div class="pesquisa-consultas">
             <div class="input-container">
-            <form method="post" action="{{ route('site.agenda.adicionar') }}">
-               
-                @csrf
-                <h2>Dia da Semana</h2>
-                <div class="dia-semana-container">
-                    <input type="radio" id="segunda" name="dia" value="segunda" >
-                    <label for="dia_segunda">Segunda-Feira</label>
+                <form method="post" action="{{ route('site.agenda.adicionar') }}">
+                    @csrf
+                    <h2>Dia da Semana</h2>
+                    <div class="dia-semana-container">
+                        <input type="radio" id="segunda" name="dia" value="segunda">
+                        <label for="dia_segunda">Segunda-Feira</label>
 
-                    <input type="radio" id="terca" name="dia" value="terca">
-                    <label for="dia_terca">Terça-Feira</label>
+                        <input type="radio" id="terca" name="dia" value="terca">
+                        <label for="dia_terca">Terça-Feira</label>
 
-                    <input type="radio" id="quarta" name="dia" value="quarta">
-                    <label for="dia_quarta">Quarta-Feira</label>
+                        <input type="radio" id="quarta" name="dia" value="quarta">
+                        <label for="dia_quarta">Quarta-Feira</label>
 
-                    <input type="radio" id="quinta" name="dia" value="quinta">
-                    <label for="dia_quinta">Quinta-Feira</label>
+                        <input type="radio" id="quinta" name="dia" value="quinta">
+                        <label for="dia_quinta">Quinta-Feira</label>
 
-                    <input type="radio" id="sexta" name="dia" value="sexta">
-                    <label for="dia_sexta">Sexta-Feira</label>
-                </div>
+                        <input type="radio" id="sexta" name="dia" value="sexta">
+                        <label for="dia_sexta">Sexta-Feira</label>
+                    </div>
+                    @error('dia')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
 
-                <div>
-                    <h2>Horário de Início</h2>
-                    <select name="hora_inicio" id="hora_inicio">
-                        <option value="08:00:00">08:00:00</option>
-                        <option value="09:00:00">09:00:00</option>
-                        <option value="10:00:00">10:00:00</option>
-                        <option value="11:00:00">11:00:00</option>
-                        <option value="12:00:00">12:00:00</option>
-                        <option value="13:00:00">13:00:00</option>
-                        <option value="14:00:00">14:00:00</option>
-                        <option value="15:00:00">15:00:00</option>
-                        <option value="16:00:00">16:00:00</option>
-                    </select>
-                </div>      
+                    <div>
+                        <h2>Horário de Início</h2>
+                        <select value="{{ old('hora_inicio')}}" name="hora_inicio" id="hora_inicio">
+                            <option value="" selected disabled>Selecione o horário de início do atendimento: </option>
+                            <option value="08:00:00">08:00:00</option>
+                            <option value="09:00:00">09:00:00</option>
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="11:00:00">11:00:00</option>
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="13:00:00">13:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="15:00:00">15:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                        </select>
+                    </div>   
+                    @error('hora_inicio')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror   
 
-                <div>
-                    <h2>Horário de Fim</h2>
-                    <select name="hora_fim" id="hora_fim" >
-                        <option value="09:00:00">09:00:00</option>
-                        <option value="10:00:00">10:00:00</option>
-                        <option value="11:00:00">11:00:00</option>
-                        <option value="12:00:00">12:00:00</option>
-                        <option value="13:00:00">13:00:00</option>
-                        <option value="14:00:00">14:00:00</option>
-                        <option value="15:00:00">15:00:00</option>
-                        <option value="16:00:00">16:00:00</option>
-                        <option value="17:00:00">17:00:00</option>
-                    </select>
-                </div>   
+                    <div>
+                        <h2>Horário de Fim</h2>
+                        <select  value="{{ old('hora_fim')}}" name="hora_fim" id="hora_fim">
+                            <option value="" selected disabled>Selecione o horário de término do atendimento: </option>
+                            <option value="09:00:00">09:00:00</option>
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="11:00:00">11:00:00</option>
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="13:00:00">13:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="15:00:00">15:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                            <option value="17:00:00">17:00:00</option>
+                        </select>
+                    </div>   
+                    @error('hora_fim')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
 
-                <h2>Profissional</h2>
-                <div class="select-container">
-                <select name="profissional_id" id="profissional_id">
-                        <option value="" selected disabled>Selecione o profissional: </option>
-                        
-                        <option>
-                            @foreach ($profissionais as $profisional)                                
-                                <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
+                    <h2>Profissional</h2>
+                    <div class="select-container">
+                        <select name="profissional_id" id="profissional_id">
+                            <option value="" selected disabled>Selecione o profissional: </option>
+                            @foreach ($profissionais as $profissional)
+                                <option value="{{ $profissional->id }}" @if(old('profissional_id') == $profissional->id) selected @endif>
+                                    {{ $profissional->nome }} {{ $profissional->sobrenome }} ({{ $profissional->profissional }})
+                                </option>
                             @endforeach
-                        <option>
-                        
-                </select>
-                </div>
+                        </select>
+                    </div>
+                    @error('profissional_id')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
 
-                <div class="botoes-container">
-                    <button class="botao">Cadastrar Agenda</button>
-                </div>
-            </form>
+                    <h2>Protocolo</h2>
+                    <div class="select-container">
+                        <select name="protocolo_id" id="protocolo_id">
+                            <option value="" selected disabled>Selecione o protocolo: </option>
+                            @foreach ($protocolos as $protocolo)
+                                <option value="{{ $protocolo->id }}" @if(old('protocolo_id') == $protocolo->id) selected @endif>
+                                    {{ $protocolo->especialidade }} 
+                                </option>
+                            @endforeach'1
+                        </select>
+                    </div>
+                    @error('profissional_id')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
+                    
+
+                    <div class="botoes-container">
+                        <button type="submit" class="botao">Cadastrar Agenda</button>
+                    </div>
+                </form>
             </div>
-            
         </div>
-    
     </div>
 
-
     <script>
+    
+        document.getElementById('hora_inicio').addEventListener('change', function() {
+            var selectFim = document.getElementById('hora_fim');
+            selectFim.innerHTML = '';
+
+            var horaInicio = this.value;
+
+            var opcoesFim = [
+                '09:00:00',
+                '10:00:00',
+                '11:00:00',
+                '12:00:00',
+                '13:00:00',
+                '14:00:00',
+                '15:00:00',
+                '16:00:00',
+                '17:00:00'
+            ];
+
+            var opcoesFiltradas = opcoesFim.filter(function(opcao) {
+                return opcao > horaInicio;
+            });
+
+            opcoesFiltradas.forEach(function(opcao) {
+                var option = document.createElement('option');
+                option.text = opcao;
+                option.value = opcao;
+                selectFim.add(option);
+            });
+        });
+
         feather.replace();
     </script>
 </body>

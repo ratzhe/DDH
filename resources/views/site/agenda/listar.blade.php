@@ -197,7 +197,9 @@
                             <th>Horário Início Atendimento</th>
                             <th>Horário Fim Atendimento</th>
                             <th>Nome do profissional</th>         
-                            <th>Tipo de profissional</th>        
+                            <th>Tipo de profissional</th>
+                            <th>Código Protocolo</th>   
+                            <th>Especialidade Protocolo</th>         
                             <th>Editar</th>        
                             <th>Excluir</th>                   
                         </tr>
@@ -212,11 +214,41 @@
                                 <td>{{$agenda->hora_fim}}</td>
                                 <td>{{$agenda->profissional->nome}} {{$agenda->profissional->sobrenome}}</td>
                                 <td>{{$agenda->profissional->profissional}}</td>
-                                
+                                <td>
+                                    @php
+                                        $protocolo = json_decode($agenda->protocolo);
+                                    @endphp
+                                    {{ $protocolo ? $protocolo->id : 'N/A' }} 
+                                </td>
+                                <td>
+                                    @php
+                                        $protocolo = json_decode($agenda->protocolo);
+                                    @endphp
+                                    {{ $protocolo ? $protocolo->especialidade : 'N/A' }} 
+                                </td>
+
+                                <td>
+                                    @php
+                                        $protocolo = json_decode($agenda->protocolo);
+                                    @endphp
+                                    {{ $protocolo ? $protocolo->profissional_id : 'N/A' }} 
+                                </td>
+
+                                <td>
+                                    @php
+                                        $protocolo = json_decode($agenda->protocolo);
+                                        if ($protocolo) {
+                                            $profissional = App\Models\Profissional::find($protocolo->profissional_id);
+                                            echo $profissional ? $profissional->nome . ' ' . $profissional->sobrenome : 'N/A';
+                                        } else {
+                                            echo 'N/A';
+                                        }
+                                    @endphp
+                                </td>
+
                                 
                                 <td><a href="{{ route('site.agenda.editar', $agenda->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
                                 <td><a href="{{ route('site.agenda.excluir', $agenda->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
-                        
                             </tr>
                         @endforeach
                     </tbody>

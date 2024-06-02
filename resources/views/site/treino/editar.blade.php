@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Agenda</title>
-
+    <title>Treinamentos</title>
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
             box-sizing: border-box;
             margin: 0;
+            padding: 0;
         }
 
         .consultas-container {
@@ -29,9 +29,7 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -102,12 +100,7 @@
 
         .menu #menu {
             color: lightcyan;
-            background-color: #3C7182;
-            
-        }
-
-        .menu a {
-            text-decoration: none;
+            background-color: #3C7182;   
         }
 
         .pesquisa-consultas {
@@ -119,9 +112,9 @@
         }
 
         .dia-semana-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
-            grid-gap: 10px; 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             margin-bottom: 50px;
         }
 
@@ -144,7 +137,7 @@
             justify-content: center; 
         }
 
-        .botao {
+        button {
             width: 400px;
             height: 50px;
             margin-right: 20px; 
@@ -156,13 +149,14 @@
         }
 
         select {
-            width: 400px; 
+            width: 1460px; 
             height: 50px; 
             background-color: lightcyan;
             color: #3C7182;
             font-size: 1rem;
             padding: 10px;
             border-radius: 5px;
+            margin: 10px;
         }
 
         .menu a {
@@ -182,106 +176,139 @@
             font-size: 0.8rem; 
             margin-top: 5px; 
         }
-      
+
+        .menu a {
+            color: #3C7182;
+            background-color: lightcyan;
+        }
+
+        h1, h2, h3 {
+            color: lightcyan;
+            margin: 0 10px;
+        }
+
+        .plano {
+            width: calc(33.33% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .plano input {
+            width: 100%;
+            height: 100px;
+            background-color: lightcyan;
+            border-radius: 5px;
+            border: none;
+            padding: 20px;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="consultas-container">
         <div class="paciente">
             <h2>DDH</h2>
-
             <div class="circulo-foto">
                 <i class="icon" data-feather="user"></i>
-            </div>  
+            </div>
         </div>
 
         <div class="menu">
-            <div class="menu-consultas"  id="menu">
+            <div class="menu-consultas">
                 <a href="{{ route('site.novousuario') }}">Cadastros</a>
             </div>
-        
             <div class="menu-consultas">
                 <p>Exames</p>
             </div>
-        
             <div class="menu-consultas">
                 <p>Alimentação</p>
             </div>
-        
-            <div class="menu-consultas">
+            <div class="menu-consultas" id="menu">
                 <p>Treinamento</p>
             </div>
-        
             <div class="menu-consultas">
                 <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
-        
 
         <div class="pesquisa-consultas">
             <div class="input-container">
-            <form method="post" action="{{ route('site.protocolo.adicionar') }}">
-                @csrf
-                
-                <h2>Profissional</h2>
-                <div class="select-container">
-                    <select name="profissional_id" id="profissional_id">
-                            <option value="" selected disabled>Selecione o profissional: </option>
-                            
-                            <option>
-                                @foreach ($profissionais as $profisional)                                
-                                    <option value="{{$profisional->id}}">{{$profisional->nome}} {{$profisional->sobrenome}}  ({{$profisional->profissional}}) </option>
-                                @endforeach
-                            <option>             
-                    </select>
-                </div>
-                @error('profissional_id')
-                        <div class="error-message">{{ $message }}</div>
-                @enderror
+                <form method="post" action="{{ route('site.treino.adicionar') }}">
+                    @csrf
+                    <h1>Plano de Treinamento</h1><br><br>
+                    <h3>Paciente</h3>
+                    <div class="select-container">
+                        <select name="paciente_id" id="paciente_id">
+                            <option value="" selected disabled>Selecione o paciente:</option>
+                            @foreach ($pacientes as $paciente)
+    <option value="{{ $paciente->id }}">{{ $paciente->nome }} {{ $paciente->sobrenome }}</option>
+@endforeach
+</select>
+@if ($errors->has('paciente_id'))
+    <span class="error-message">{{ $errors->first('paciente_id') }}</span>
+@endif
+</div>
 
-                <div>
-                    <h2>Especilidade</h2>
-                    <select name="especialidade" id="especialidade">
-                        <option value="" selected disabled>Selecione a especialidade: </option>
-                        <option value="anestesiologia">Anestesiologia</option>
-                        <option value="cardiologia">Cardiologia</option>
-                        <option value="clinica">Clinica Médica</option>
-                        <option value="dermatologia">Dermatologia</option>
-                        <option value="endocrionolia">Endocrionolia</option>
-                        <option value="gastroenterologia">Gastroenterologia</option>
-                        <option value="geriatria">Geriatria</option>
-                        <option value="ginecologia">Ginecologia e Obstetrícia</option>
-                        <option value="hematologia">Hematologia</option>
-                        <option value="infectologia">Infectologia</option>
-                        <option value="nefrologia">Nefrologia</option>
-                        <option value="neurologia">Neurologia</option>
-                        <option value="oftalmologia">Oftalmologia</option>
-                        <option value="oncologia">Oncologia</option>
-                        <option value="ortopedia">Ortopedia e Traumatologia</option>
-                        <option value="otorrinolaringologia">Otorrinolaringologia</option>
-                        <option value="patologia">Patologia</option>
-                        <option value="pedriatria">Pedriatria</option>
-                        <option value="pneumologia">Pneumologia</option>
-                        <option value="psiquiatria">Psiquiatria</option>
-                        <option value="reumatologia">Reumatologia</option>
-                        <option value="urologia">Urologia</option>
-                        <option value="nutricao">Nutrição</option>
-                        <option value="avalicaoFisica">Avaliação Física</option>
-                    </select>
-                </div>   
-                @error('especialidade')
-                        <div class="error-message">{{ $message }}</div>
-                @enderror   
-
-                <div class="botoes-container">
-                    <button class="botao">Cadastrar Protocolo</button>
-                </div>
-            </form>
-            </div>
-            
-        </div>
-    
+<div class="dia-semana-container">
+    <div class="plano">
+        <h3>Treino Dia 1</h3>
+        <input name="treino_1" type="text" placeholder="Opção I">
+        @error('treino_1')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
     </div>
 
+    <div class="plano">
+        <h3>Treino Dia 2</h3>
+        <input name="treino_2" type="text" placeholder="Opção II">
+        @error('treino_2')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="plano">
+        <h3>Treino Dia 3</h3>
+        <input name="treino_3" type="text" placeholder="Opção III">
+        @error('treino_3')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="plano">
+        <h3>Treino Dia 4</h3>
+        <input name="treino_4" type="text" placeholder="Opção IV">
+        @error('treino_4')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="plano">
+        <h3>Treino Dia 5</h3>
+        <input name="treino_5" type="text" placeholder="Opção V">
+        @error('treino_5')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="plano">
+        <h3>Treino Dia 6</h3>
+        <input name="treino_6" type="text" placeholder="Opção VI">
+        @error('treino_6')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<div class="botoes-container">
+    <button type="submit">Adicionar Plano de Treinamento</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+    feather.replace();
+</script>
 </body>
 </html>
+
+                            

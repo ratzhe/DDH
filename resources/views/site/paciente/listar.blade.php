@@ -209,6 +209,7 @@
                                 <td>{{$paciente->sobrenome}}</td>
                                 <td>{{$paciente->rg}}</td>
                                 <td>{{$paciente->cpf}}</td>
+                                <td>{{$paciente->tiposang}}</td>
                                 <td>{{$paciente->genero}}</td>
                                 <td>{{$paciente->datanasc}}</td>
                                 <td>{{$paciente->cep}}</td>

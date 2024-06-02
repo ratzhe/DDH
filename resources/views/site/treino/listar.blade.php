@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" />
-    <title>Listar - Agenda</title>
+    <title>Listar - Plano de Treinamento</title>
 
     <style>
         * {
@@ -14,7 +14,6 @@
             box-sizing: border-box;
             margin: 0;
         }
-
 
         .consultas-container {
             display: flex;
@@ -26,13 +25,10 @@
             position: relative;
             width: 100%; 
             height: 115px;
-            float: left; 
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -57,10 +53,6 @@
         .circulo-foto .icon {
             height: 50px;
             width: 50px;
-            position: absolute;
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
             color: lightcyan;
         }
 
@@ -69,11 +61,6 @@
             flex-wrap: wrap; 
             width: 100%;
             height: 30px;
-        }
-
-        .menu #menu {
-            color: lightcyan;
-            background-color: #3C7182;   
         }
 
         .menu-cadastros {
@@ -85,7 +72,6 @@
             border-radius: 5px 5px 0 0;
             color: #3C7182;
             margin: 0 7px;
-            margin-top: auto; 
             cursor: pointer;
         }
 
@@ -94,27 +80,14 @@
             background-color: #3C7182;
         }
 
-        .menu a{
+        .menu a {
             text-decoration: none;
             color: #3C7182;
-            background-color: lightcyan;
         }
 
         .menu a:hover {
-            text-decoration: none;
             color: lightcyan;
             background-color: #3C7182;
-        }
-
-        .menu #menu {
-            color: lightcyan;
-            background-color: #3C7182;
-            
-        }
-
-        a {
-            text-decoration: none;
-            color: #3C7182;
         }
 
         .pesquisa-consultas {
@@ -125,25 +98,69 @@
             flex-grow: 1;
         }
 
-        .pesquisa-consultas h2{
+        .pesquisa-consultas h2 {
             color: lightcyan;
             padding: 20px;
         }
 
         table {
             width: 100%;
-            border-collapse: separate; 
-            border-spacing: 0;
+            border-collapse: collapse; 
+            margin-bottom: 20px;
         }
 
         th, td {
-            padding: 10px; 
+            padding: 15px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
-            border: none;
+            border: 1px solid #ddd;
         }
 
+        th {
+            background-color: #3C7182; 
+            color: lightcyan;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .icon-action {
+            cursor: pointer;
+            color: #3C7182;
+        }
+
+        .icon-action:hover {
+            color: #F44336; 
+        }
+
+        .meal-options {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            th, td {
+                padding: 10px;
+            }
+
+            .menu-cadastros {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .paciente h2, .circulo-foto {
+                margin: 0 auto;
+                display: block;
+                text-align: center;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -173,7 +190,6 @@
                 <a href="{{ route('site.perfil') }}">Perfil</a>
             </div>
         </div>
-        
 
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
@@ -188,34 +204,54 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                <h2>Agendas Cadastradas</h2>
-                <table border="1" width: 100%>
+                <h2>Plano Cadastrado</h2>
+                <table>
                     <thead>
                         <tr>
-                            <th>Código Protocolo</th>
-                            <th>Especialidade</th>
-                            <th>Profissional</th>         
+                            <th>Código</th>
+                            <th>Paciente</th>
+                            <th>Treino I</th>
+                            <th>Treino II</th>
+                            <th>Treino III</th>
+                            <th>Treino IV</th>
+                            <th>Treino V</th>
+                            <th>Treino VI</th>
                             <th>Editar</th>        
                             <th>Excluir</th>                   
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($protocolos as $protocolo)
+                        @foreach ($treinos as $treino)
                             <tr>
-                                <td>{{$protocolo->id}}</td>
-                                <td>{{$protocolo->especialidade}}</td>
-                                <td>{{$protocolo->profissional->nome}} {{$protocolo->profissional->sobrenome}}</td>   
-                                <td><a href="{{ route('site.protocolo.editar', $protocolo->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
-                                <td><a href="{{ route('site.protocolo.excluir', $protocolo->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
-                        
+                                <td>{{$treino->id}}</td>
+                                <td>{{$treino->paciente->nome}} {{$treino->paciente->sobrenome}}</td>
+                                <td class="meal-options">
+                                    {{$treino->treino_1}}<br><br>
+                                </td>
+                               <td class="meal-options">
+                                    {{$treino->treino_2}}<br><br>
+                                </td>
+                                <td class="meal-options">
+                                    {{$treino->treino_3}}<br><br>
+                                </td>
+                                <td class="meal-options">
+                                    {{$treino->treino_4}}<br><br>
+                                </td>
+                               <td class="meal-options">
+                                    {{$treino->treino_5}}<br><br>
+                                </td>
+                                 <td class="meal-options">
+                                    {{$treino->treino_6}}<br><br>
+                                </td>
+                                <td><a href="{{ route('site.treino.editar', $treino->id) }}"><i class="icon icon-action" data-feather="edit-2"></i></a></td>
+                                <td><a href="{{ route('site.treino.excluir', $treino->id) }}"><i class="icon icon-action" data-feather="trash"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>       
         </div>
-    
     </div>
 
     <script>

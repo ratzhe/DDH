@@ -11,4 +11,15 @@ class Profissional extends Model
 
     protected $table = 'profissionais';
     protected $fillable = ['nome', 'sobrenome', 'profissional', 'registro', 'cpf', 'datanasc', 'genero', 'cep', 'telefone', 'email', 'senha'];
+
+    public function protocolos()
+    {
+        return $this->hasMany(Protocolo::class);
+    }
+
+    public function agendas()
+    {
+        return $this->hasMany(Agenda::class);
+    }
+
 }

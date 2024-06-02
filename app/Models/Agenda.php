@@ -10,9 +10,15 @@ class Agenda extends Model
     use HasFactory;
 
     protected $table = 'agendas';
-    protected $fillable =  ['dia', 'hora_inicio', 'hora_fim', 'profissional_id'];
+    protected $fillable = ['dia', 'hora_inicio', 'hora_fim', 'profissional_id', 'protocolo_id'];
 
-    public function profissional(){
-        return $this->belongsTo('App\Models\Profissional');
+    public function protocolo()
+    {
+        return $this->belongsTo(Protocolo::class);
+    }
+
+    public function profissional()
+    {
+        return $this->belongsTo(Profissional::class);
     }
 }

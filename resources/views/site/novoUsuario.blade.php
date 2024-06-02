@@ -167,16 +167,16 @@
                 <p>Cadastros</p>
             </div>
             <div class="menu-cadastros">
-                <a href="{{ route('site.novaconsulta') }}">Consultas</a>
+                <a href="{{ route('site.consulta.adicionar') }}">Consultas</a>
             </div>
             <div class="menu-cadastros">
                 <p>Exames</p>
             </div>
             <div class="menu-cadastros">
-                <p>Alimentação</p>
+                <a href="{{ route('site.alimentacao.adicionar') }}">Alimentação</a>
             </div>
             <div class="menu-cadastros">
-                <p>Treinamento</p>
+                 <a href="{{ route('site.treino.adicionar') }}">Treinos</a>
             </div>
             <div class="menu-cadastros">
                 <a href="{{ route('site.perfil') }}">Perfil</a>
@@ -208,6 +208,15 @@
                 <div class="botoes-container">
                     <a href="{{ route('site.agenda.adicionar') }}" class="botao">Nova Agenda</a>
                     <a href="{{ route('site.agenda.listar') }}" class="botao">Ver Agendas</a>
+                </div>
+            </div>
+
+            <h3 class="titulo">Protocolos</h3>
+
+            <div class="usuarios">
+                <div class="botoes-container">
+                    <a href="{{ route('site.protocolo.adicionar') }}" class="botao">Novo Protocolo</a>
+                    <a href="{{ route('site.protocolo.listar') }}" class="botao">Ver Protocolo</a>
                 </div>
             </div>
 

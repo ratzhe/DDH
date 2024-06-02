@@ -12,6 +12,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ProtocoloController;
+use App\Http\Controllers\TreinoController;
 use App\Http\Middleware\AuthenticateCustom;
 
 
@@ -73,6 +74,7 @@ Route::prefix('/site/agenda')->middleware([AuthenticateCustom::class])->group(fu
     Route::post('/listar', [AgendaController::class, 'listar'])->name('site.agenda.listar');
     Route::get('/editar/{id}', [AgendaController::class, 'editar'])->name('site.agenda.editar');
     Route::get('/excluir/{id}', [AgendaController::class, 'excluir'])->name('site.agenda.excluir');
+    Route::get('/get-protocolos/{profissional_id}', [AgendaController::class, 'getProtocolos']);
 });
 
 // protocolo
@@ -88,7 +90,13 @@ Route::prefix('/site/protocolo')->middleware([AuthenticateCustom::class])->group
 
 // consulta
 Route::prefix('/site/consulta')->middleware([AuthenticateCustom::class])->group(function () {
-    Route::get('/', [ConsultaController::class, 'index'])->name('site.novaconsulta');
+    Route::get('/', [ConsultaController::class, 'adicionar'])->name('site.consulta');
+    Route::get('/adicionar', [ConsultaController::class, 'adicionar'])->name('site.consulta.adicionar');
+    Route::post('/adicionar', [ConsultaController::class, 'adicionar'])->name('site.consulta.adicionar');
+    Route::get('/listar', [ConsultaController::class, 'listar'])->name('site.consulta.listar');
+    Route::post('/listar', [ConsultaController::class, 'listar'])->name('site.consulta.listar');
+    Route::get('/editar/{id}', [ConsultaController::class, 'editar'])->name('site.consulta.editar');
+    Route::get('/excluir/{id}', [ConsultaController::class, 'excluir'])->name('site.consulta.excluir');
 });
 
 // alimentação
@@ -99,4 +107,14 @@ Route::prefix('/site/alimentacao')->middleware([AuthenticateCustom::class])->gro
     Route::post('/adicionar', [AlimentacaoController::class, 'adicionar'])->name('site.alimentacao.adicionar');
     Route::get('/editar/{id}', [AlimentacaoController::class, 'editar'])->name('site.alimentacao.editar');
     Route::get('/excluir/{id}', [AlimentacaoController::class, 'excluir'])->name('site.alimentacao.excluir');
+});
+
+// alimentação
+Route::prefix('/site/treino')->middleware([AuthenticateCustom::class])->group(function () {
+    Route::get('/listar', [TreinoController::class, 'listar'])->name('site.treino.listar');
+    Route::post('/listar', [TreinoController::class, 'listar'])->name('site.treino.listar');
+    Route::get('/adicionar', [TreinoController::class, 'adicionar'])->name('site.treino.adicionar');
+    Route::post('/adicionar', [TreinoController::class, 'adicionar'])->name('site.treino.adicionar');
+    Route::get('/editar/{id}', [TreinoController::class, 'editar'])->name('site.treino.editar');
+    Route::get('/excluir/{id}', [TreinoController::class, 'excluir'])->name('site.treino.excluir');
 });
