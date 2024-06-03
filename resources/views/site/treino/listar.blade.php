@@ -143,7 +143,7 @@
             text-align: left;
             padding-left: 10px;
         }
-
+    
         @media screen and (max-width: 768px) {
             th, td {
                 padding: 10px;
@@ -227,22 +227,52 @@
                                 <td>{{$treino->id}}</td>
                                 <td>{{$treino->paciente->nome}} {{$treino->paciente->sobrenome}}</td>
                                 <td class="meal-options">
+                                    <span style="font-weight: bold;">Treino:  </span>
                                     {{$treino->treino_1}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_1}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_1}}
                                 </td>
-                               <td class="meal-options">
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">Treino:  </span>
                                     {{$treino->treino_2}}<br><br>
-                                </td>
-                                <td class="meal-options">
-                                    {{$treino->treino_3}}<br><br>
-                                </td>
-                                <td class="meal-options">
-                                    {{$treino->treino_4}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_2}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_2}}
                                 </td>
                                <td class="meal-options">
-                                    {{$treino->treino_5}}<br><br>
+                                    <span style="font-weight: bold;">Treino:  </span>
+                                    {{$treino->treino_3}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_3}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_3}}
                                 </td>
-                                 <td class="meal-options">
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">Treino:  </span>
+                                    {{$treino->treino_4}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_4}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_4}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">Treino:  </span>
+                                    {{$treino->treino_5}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_5}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_5}}
+                                </td>
+                                <td class="meal-options">
+                                    <span style="font-weight: bold;">Treino:  </span>
                                     {{$treino->treino_6}}<br><br>
+                                    <span style="font-weight: bold;">Repetições: </span>
+                                    {{$treino->rep_6}}<br><br>
+                                    <span style="font-weight: bold;">Séries: </span>
+                                    {{$treino->serie_6}}
                                 </td>
                                 <td><a href="{{ route('site.treino.editar', $treino->id) }}"><i class="icon icon-action" data-feather="edit-2"></i></a></td>
                                 <td><a href="{{ route('site.treino.excluir', $treino->id) }}"><i class="icon icon-action" data-feather="trash"></i></a></td>

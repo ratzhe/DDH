@@ -11,7 +11,9 @@ class Treino extends Model
 
     use HasFactory;
     protected $table = 'treinos';
-    protected $fillable =  ['paciente_id', 'treino_1', 'treino_2', 'treino_3', 'treino_4', 'treino_5', 'treino_6'];
+    protected $fillable =  ['paciente_id', 'treino_1', 'rep_1', 'serie_1', 'treino_2', 'rep_2', 'serie_2',
+        'treino_3', 'rep_3', 'serie_3', 'treino_4', 'rep_4', 'serie_4', 'treino_5', 'rep_5', 'serie_5',
+        'treino_6', 'rep_6', 'serie_6'];
 
     public function paciente(){
         return $this->belongsTo('App\Models\Paciente');

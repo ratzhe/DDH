@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 
@@ -30,9 +29,7 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -109,7 +106,6 @@
         .menu #menu {
             color: lightcyan;
             background-color: #3C7182;
-            
         }
 
         a {
@@ -131,19 +127,36 @@
         }
 
         table {
-            width: 70%;
-            border-collapse: separate; 
-            border-spacing: 0;
+            width: 100%;
+            border-collapse: collapse; 
+            margin-bottom: 20px;
         }
 
         th, td {
-            padding: 8-px; 
+            padding: 15px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
-            border: none;
+            border: 1px solid #ddd;
         }
 
+        th {
+            background-color: #3C7182; 
+            color: lightcyan;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .icon {
+            height: 20px;
+            width: 20px;
+        }
     </style>
 </head>
 <body>
@@ -174,7 +187,6 @@
             </div>
         </div>
         
-
         <div class="pesquisa-consultas">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
                 @if (session('success'))
@@ -183,7 +195,7 @@
                     </div>
                 @endif
                 <h2>Pacientes Cadastrados</h2>
-                <table border="1" width: 100%>
+                <table border="1">
                     <thead>
                         <tr>
                             <th>Matrícula</th>
@@ -209,7 +221,6 @@
                                 <td>{{$paciente->sobrenome}}</td>
                                 <td>{{$paciente->rg}}</td>
                                 <td>{{$paciente->cpf}}</td>
-                                <td>{{$paciente->tiposang}}</td>
                                 <td>{{$paciente->genero}}</td>
                                 <td>{{$paciente->datanasc}}</td>
                                 <td>{{$paciente->cep}}</td>
@@ -218,14 +229,12 @@
                                 
                                 <td><a href="{{ route('site.paciente.editar', $paciente->id) }}"><i id="editar" class="icon" data-feather="edit-2"></i></a></td>
                                 <td><a href="{{ route('site.paciente.excluir', $paciente->id) }}"><i id="excluir" class="icon" data-feather="trash"></i></a></td>
-                        
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>       
         </div>
-    
     </div>
 
     <script>

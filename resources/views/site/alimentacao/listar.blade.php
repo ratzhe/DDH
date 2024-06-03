@@ -271,7 +271,7 @@
                                     {{$alimentacao->ceia_1}}<br><br>
                                     <span style="font-weight: bold;">2. </span>
                                     {{$alimentacao->ceia_2}}<br><br>
-                                    <span style="font-weight: bold;">3. </span>
+                                    <span style="font-weight: bold;">3  . </span>
                                     {{$alimentacao->ceia_3}}
                                 </td>
                                 <td><a href="{{ route('site.alimentacao.editar', $alimentacao->id) }}"><i class="icon icon-action" data-feather="edit-2"></i></a></td>

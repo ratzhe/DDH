@@ -202,6 +202,16 @@
             padding: 20px;
             margin: 10px;
         }
+
+        .plano_rep input {
+            width: 100%;
+            height: 50px;
+            background-color: lightcyan;
+            border-radius: 5px;
+            border: none;
+            padding: 20px;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -241,13 +251,13 @@
                         <select name="paciente_id" id="paciente_id">
                             <option value="" selected disabled>Selecione o paciente:</option>
                             @foreach ($pacientes as $paciente)
-    <option value="{{ $paciente->id }}">{{ $paciente->nome }} {{ $paciente->sobrenome }}</option>
-@endforeach
-</select>
-@if ($errors->has('paciente_id'))
-    <span class="error-message">{{ $errors->first('paciente_id') }}</span>
-@endif
-</div>
+                            <option value="{{ $paciente->id }}">{{ $paciente->nome }} {{ $paciente->sobrenome }}</option>
+                        @endforeach
+                        </select>
+                        @if ($errors->has('paciente_id'))
+                            <span class="error-message">{{ $errors->first('paciente_id') }}</span>
+                        @endif
+                        </div>
 
 <div class="dia-semana-container">
     <div class="plano">
@@ -256,6 +266,16 @@
         @error('treino_1')
             <div class="error-message">{{ $message }}</div>
         @enderror
+        <div class="plano_rep">
+            <input name="rep_1" type="number" placeholder="Repetições">
+            @error('rep_1')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_1" type="numbet" placeholder="Séries">
+            @error('serie_1')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="plano">
@@ -264,6 +284,16 @@
         @error('treino_2')
             <div class="error-message">{{ $message }}</div>
         @enderror
+        <div class="plano_rep">
+            <input name="rep_2" type="number" placeholder="Repetições">
+            @error('rep_2')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_2" type="numbet" placeholder="Séries">
+            @error('serie_2')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="plano">
@@ -272,6 +302,16 @@
         @error('treino_3')
             <div class="error-message">{{ $message }}</div>
         @enderror
+        <div class="plano_rep">
+            <input name="rep_3" type="number" placeholder="Repetições">
+            @error('rep_3')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_3" type="numbet" placeholder="Séries">
+            @error('serie_3')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="plano">
@@ -280,6 +320,16 @@
         @error('treino_4')
             <div class="error-message">{{ $message }}</div>
         @enderror
+        <div class="plano_rep">
+            <input name="rep_4" type="number" placeholder="Repetições">
+            @error('rep_4')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_4" type="numbet" placeholder="Séries">
+            @error('serie_4')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="plano">
@@ -288,14 +338,34 @@
         @error('treino_5')
             <div class="error-message">{{ $message }}</div>
         @enderror
+        <div class="plano_rep">
+            <input name="rep_5" type="number" placeholder="Repetições">
+            @error('rep_5')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_5" type="numbet" placeholder="Séries">
+            @error('serie_5')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="plano">
         <h3>Treino Dia 6</h3>
         <input name="treino_6" type="text" placeholder="Opção VI">
+        <div class="plano_rep">
         @error('treino_6')
             <div class="error-message">{{ $message }}</div>
         @enderror
+            <input name="rep_6" type="number" placeholder="Repetições">
+            @error('rep_6')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input name="serie_6" type="numbet" placeholder="Séries">
+            @error('serie_6')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 </div>
 

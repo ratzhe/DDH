@@ -105,10 +105,14 @@ class AgendaController extends Controller
             return redirect()->route('site.agenda.listar')->with('error', 'Agenda não encontrada!');
         }
     }
-
+    
     public function getProtocolos($profissional_id)
     {
+        // Busque os protocolos associados ao profissional
         $protocolos = Protocolo::where('profissional_id', $profissional_id)->get();
+        
+        // Retorne os protocolos como uma resposta JSON
         return response()->json($protocolos);
     }
+    
 }

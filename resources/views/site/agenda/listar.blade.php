@@ -132,17 +132,31 @@
 
         table {
             width: 100%;
-            border-collapse: separate; 
-            border-spacing: 0;
+            border-collapse: collapse; 
+            margin-bottom: 20px;
         }
 
         th, td {
-            padding: 10px; 
+            padding: 15px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
-            border: none;
+            border: 1px solid #ddd;
         }
+
+        th {
+            background-color: #3C7182; 
+            color: lightcyan;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+  
 
     </style>
 </head>
@@ -199,7 +213,9 @@
                             <th>Nome do profissional</th>         
                             <th>Tipo de profissional</th>
                             <th>Código Protocolo</th>   
-                            <th>Especialidade Protocolo</th>         
+                            <th>Especialidade Protocolo</th>   
+                            <th>Cód Prof Protocolo</th> 
+                            <th>Nome Prof Protocolo</th>      
                             <th>Editar</th>        
                             <th>Excluir</th>                   
                         </tr>

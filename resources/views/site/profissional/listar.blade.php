@@ -15,7 +15,6 @@
             margin: 0;
         }
 
-
         .consultas-container {
             display: flex;
             flex-direction: column; 
@@ -30,9 +29,7 @@
             padding-right: 20px; 
             display: flex; 
             align-items: center; 
-
         }
-
 
         .paciente h2 {
             text-align: left;
@@ -109,7 +106,6 @@
         .menu #menu {
             color: lightcyan;
             background-color: #3C7182;
-            
         }
 
         a {
@@ -131,19 +127,36 @@
         }
 
         table {
-            width: 70%;
-            border-collapse: separate; 
-            border-spacing: 0;
+            width: 100%;
+            border-collapse: collapse; 
+            margin-bottom: 20px;
         }
 
         th, td {
-            padding: 8-px; 
+            padding: 10px; 
             text-align: center; 
             background-color: lightcyan; 
             color: #3C7182; 
-            border: none;
+            border: 1px solid #ddd;
         }
 
+        th {
+            background-color: #3C7182; 
+            color: lightcyan;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .icon {
+            height: 20px;
+            width: 20px;
+        }
     </style>
 </head>
 <body>

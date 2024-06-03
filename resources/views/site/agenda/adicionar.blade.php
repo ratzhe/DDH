@@ -300,15 +300,21 @@
                             @foreach ($protocolos as $protocolo)
                                 <option value="{{ $protocolo->id }}" @if(old('protocolo_id') == $protocolo->id) selected @endif>
                                     {{ $protocolo->especialidade }} 
+
+                                    @if($protocolo->profissionais) <!-- Verifica se $protocolo->profissionais não é null -->
+                                        @foreach($protocolo->profissionais as $profissional)
+                                            {{ $profissional->nome }}
+                                        @endforeach
+                                    @endif
+
                                 </option>
-                            @endforeach'1
+                            @endforeach
                         </select>
                     </div>
                     @error('profissional_id')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
                     
-
                     <div class="botoes-container">
                         <button type="submit" class="botao">Cadastrar Agenda</button>
                     </div>
@@ -350,6 +356,29 @@
         });
 
         feather.replace();
+
+        document.getElementById('profissional_id').addEventListener('change', function() {
+        var profissionalId = this.value;
+
+        // Faça uma solicitação AJAX para buscar os protocolos associados a esse profissional
+        fetch('/get-protocolos/' + profissionalId)
+            .then(response => response.json())
+            .then(data => {
+                // Limpe o dropdown de protocolos
+                var selectProtocolo = document.getElementById('protocolo_id');
+                selectProtocolo.innerHTML = '';
+
+                // Adicione os novos protocolos ao dropdown
+                data.forEach(protocolo => {
+                    var option = document.createElement('option');
+                    option.text = protocolo.especialidade;
+                    option.value = protocolo.id;
+                    selectProtocolo.add(option);    
+                });
+            })
+            .catch(error => console.error('Erro ao buscar os protocolos: ', error));
+    });
+
     </script>
 </body>
 </html>
