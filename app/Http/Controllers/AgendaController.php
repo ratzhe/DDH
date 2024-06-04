@@ -26,12 +26,14 @@ class AgendaController extends Controller
                 'dia' => 'required',
                 'hora_inicio' => 'required',
                 'hora_fim' => 'required',
+                'periodo' => 'required',
                 'protocolo_id' => 'required',
                 'profissional_id' => 'required'
             ], [
                 'dia.required' => 'Indique o dia da semana!',
                 'hora_inicio.required' => 'Indique o horário de início de atendimento!',
                 'hora_fim.required' => 'Indique o horário de fim de atendimento!',
+                'periodo.required' => 'Indique o período de atendimento!',
                 'protocolo_id.required' => 'Indique o protocolo!',
                 'profissional_id.required' => 'Indique o profissional!',
             ]);
@@ -59,6 +61,7 @@ class AgendaController extends Controller
                 'dia' => $request->input('dia'),
                 'hora_inicio' => $request->input('hora_inicio'),
                 'hora_fim' => $request->input('hora_fim'),
+                'periodo' => $request->input('periodo'),
                 'protocolo_id' => $request->input('protocolo_id'),
                 'profissional_id' => $request->input('profissional_id'),
             ]);

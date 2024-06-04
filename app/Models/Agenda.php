@@ -10,7 +10,7 @@ class Agenda extends Model
     use HasFactory;
 
     protected $table = 'agendas';
-    protected $fillable = ['dia', 'hora_inicio', 'hora_fim', 'profissional_id', 'protocolo_id'];
+    protected $fillable = ['dia', 'hora_inicio', 'hora_fim', 'periodo', 'profissional_id', 'protocolo_id'];
 
     public function protocolo()
     {

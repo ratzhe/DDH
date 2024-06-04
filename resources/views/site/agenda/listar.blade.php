@@ -196,6 +196,7 @@
                             <th>Dia da Semana</th>
                             <th>Horário Início Atendimento</th>
                             <th>Horário Fim Atendimento</th>
+                            <th>Período</th>
                             <th>Nome do profissional</th>         
                             <th>Tipo de profissional</th>
                             <th>Código Protocolo</th>   
@@ -212,6 +213,7 @@
                                 <td>{{$agenda->dia}}</td>
                                 <td>{{$agenda->hora_inicio}}</td>
                                 <td>{{$agenda->hora_fim}}</td>
+                                <td>{{$agenda->periodo}}</td>
                                 <td>{{$agenda->profissional->nome}} {{$agenda->profissional->sobrenome}}</td>
                                 <td>{{$agenda->profissional->profissional}}</td>
                                 <td>
