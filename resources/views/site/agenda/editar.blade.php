@@ -278,6 +278,15 @@
                         <div class="error-message">{{ $message }}</div>
                     @enderror
 
+                    <div>
+                        <h2>Período</h2>
+                        <select value="{{ old('periodo')}}" name="periodo" id="periodo">
+                            <option value="" selected disabled>Selecione o período do atendimento: </option>
+                            <option value="manha">Manhã</option>
+                            <option value="tarde">Tarde</option>
+                        </select>
+                    </div> 
+
                     <h2>Profissional</h2>
                     <div class="select-container">
                         <select name="profissional_id" id="profissional_id">
