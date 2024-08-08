@@ -89,7 +89,7 @@
             box-shadow: 0 0 0 0;
             border: 0 none;
             outline: 0;
-        } 
+        }
 
         .login input::placeholder {
             color: lightcyan;
@@ -123,14 +123,14 @@
         }
 
         .error-message {
-            color: red; 
-            font-size: 0.8rem; 
+            color: red;
+            font-size: 0.8rem;
             margin-top: -10px;
             margin-bottom: 10px;
         }
 
         .input-error {
-            border: solid 1px red !important; 
+            border: solid 1px red !important;
             background-color: #ffe9e9 !important;
         }
 
@@ -175,7 +175,7 @@
     <div class="login-container">
         <div class="boas-vindas">
             <h1>DDH</h1>
-            <img src="logo.png" alt="DDH Logo">
+            <img src="/img/logo.png" alt="DDH Logo">
         </div>
 
         <div class="login">
@@ -190,7 +190,7 @@
                     <i class="icon" data-feather="user"></i>
                 </div>
                 <button type="submit">Enviar E-mail</button>
-            </form> 
+            </form>
         </div>
     </div>
 
